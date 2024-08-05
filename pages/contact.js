@@ -4,7 +4,11 @@ import Layout from "../src/layout/Layout";
 const Contact = () => {
   return (
     <Layout>
-      <PageBanner pageName={"Contact Us"} title="Contact" />{" "}
+      <PageBanner
+        pageName={"Contact Us"}
+        title="Contact"
+        subTitle={"Get in touch with us for reservations, inquiries, and more"}
+      />{" "}
       <section className="contact-section pt-130 pb-130">
         <div className="container">
           <div className="contact-info-wrapper pt-70 pb-30 wow fadeInUp">

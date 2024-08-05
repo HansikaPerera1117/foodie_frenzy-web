@@ -5,7 +5,13 @@ import Layout from "../src/layout/Layout";
 const BlogDetails = () => {
   return (
     <Layout>
-      <PageBanner pageName={"Fastfood"} title="Menu" />
+      <PageBanner
+        pageName={"Blog"}
+        title="Blog"
+        subTitle={
+          "Delve into our culinary adventures, recipes, and behind-the-scenes stories"
+        }
+      />
       <section className="blog-details-section pt-130 pb-100">
         <div className="container">
           <div className="row">

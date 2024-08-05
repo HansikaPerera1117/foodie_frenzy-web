@@ -11,7 +11,13 @@ const GalleryIsotope = dynamic(
 const Gallery = () => {
   return (
     <Layout>
-      <PageBanner pageName={"Fastfood"} title="Menu" />
+      <PageBanner
+        pageName={"Our Gallery"}
+        title="Our Gallery"
+        subTitle={
+          "Feast your eyes on a visual journey of our culinary delights and dining experiences"
+        }
+      />
       <section className="gallery-section pt-120 pb-90" id="gallery-filter">
         <div className="container">
           <div className="row justify-content-center">

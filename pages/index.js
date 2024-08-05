@@ -87,7 +87,7 @@ const Index = () => {
                       elementum non
                     </p>
                     <Link legacyBehavior href="/about">
-                      <a className="btn-link">
+                      <a className="main-btn btn-black">
                         read more
                         <i className="far fa-arrow-right" />
                       </a>
@@ -109,7 +109,7 @@ const Index = () => {
                       elementum non
                     </p>
                     <Link legacyBehavior href="/about">
-                      <a className="btn-link">
+                      <a className="main-btn btn-black">
                         read more
                         <i className="far fa-arrow-right" />
                       </a>
@@ -131,7 +131,7 @@ const Index = () => {
                       elementum non
                     </p>
                     <Link legacyBehavior href="/about">
-                      <a className="btn-link">
+                      <a className="main-btn btn-black">
                         read more
                         <i className="far fa-arrow-right" />
                       </a>

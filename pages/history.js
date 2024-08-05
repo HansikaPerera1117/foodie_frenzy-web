@@ -5,7 +5,13 @@ import Layout from "../src/layout/Layout";
 const History = () => {
   return (
     <Layout>
-      <PageBanner pageName={"Fastfood"} title="Menu" />{" "}
+      <PageBanner
+        pageName={"Our History"}
+        title="Our History"
+        subTitle={
+          "Discover the rich heritage and passion that have shaped our culinary journey"
+        }
+      />{" "}
       <section className="who-we-section pt-130 pb-80">
         <div className="container">
           <div className="row align-items-center">
@@ -187,18 +193,6 @@ const History = () => {
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-lg-12">
-              <div className="history-button text-center wow fadeInUp">
-                <Link legacyBehavior href="/history">
-                  <a className="main-btn filled-btn">
-                    View more history
-                    <i className="far fa-arrow-right" />
-                  </a>
-                </Link>
               </div>
             </div>
           </div>

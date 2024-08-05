@@ -7,7 +7,13 @@ import Layout from "../src/layout/Layout";
 const FAQ = () => {
   return (
     <Layout>
-      <PageBanner pageName={"Faqs"} title="Faqs" />{" "}
+      <PageBanner
+        pageName={"Faqs"}
+        title="Faqs"
+        subTitle={
+          "Find answers to all your questions about our dining experience"
+        }
+      />{" "}
       <section className="faq-section pt-130">
         <div className="container">
           <Tab.Container defaultActiveKey={"tab1"}>

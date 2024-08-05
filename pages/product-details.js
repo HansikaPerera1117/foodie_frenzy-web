@@ -14,7 +14,7 @@ const ProductsDetails = () => {
       cartValue == 1 ? setCartValue(1) : setCartValue(cartValue - 1);
   return (
     <Layout>
-      <PageBanner pageName={"Product Details"} title="Details" />
+      <PageBanner pageName={"Product Details"} title="product name" />
       <section className="products-details-section pt-125 pb-75">
         <div className="container">
           <div className="row">

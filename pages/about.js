@@ -7,18 +7,13 @@ import Layout from "../src/layout/Layout";
 const About = () => {
   return (
     <Layout>
-      <PageBanner pageName={"About Us"} />
+      <PageBanner
+        pageName={"About Us"}
+        subTitle={
+          "Savor the taste of culinary artistry where every dish tells a delicious story"
+        }
+      />
       <section className="about-shape-section pt-130 pb-80 p-r z-1">
-        <div className="shape shape-one">
-          <span>
-            <img src="assets/images/about/shape-1.png" alt="shape" />
-          </span>
-        </div>
-        <div className="shape shape-two">
-          <span>
-            <img src="assets/images/about/shape-2.png" alt="shape" />
-          </span>
-        </div>
         <div className="container">
           <div className="row">
             <div className="col-lg-6">
@@ -319,7 +314,7 @@ const About = () => {
               {/*=== Video Image Box ===*/}
               <div className="video-one_image-box mb-50 p-r z-1 wow fadeInLeft">
                 <img
-                  src="assets/images/gallery/video-1.jpg"
+                  src="assets/images/gallery/video-2.jpg"
                   alt="Video Image"
                 />
                 <div className="image-overlay" />

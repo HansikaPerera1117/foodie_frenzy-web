@@ -13,7 +13,13 @@ const Products = () => {
 
   return (
     <Layout>
-      <PageBanner pageName={"Our Shop"} title="Shop" />{" "}
+      <PageBanner
+        pageName={"Our Shop"}
+        title="Shop"
+        subTitle={
+          "Bring a taste of our restaurant to your home with our exclusive products"
+        }
+      />{" "}
       <section className="product-shop-section pt-130 pb-85">
         <div className="container">
           <div className="row">

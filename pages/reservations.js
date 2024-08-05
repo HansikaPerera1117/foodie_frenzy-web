@@ -5,7 +5,13 @@ import Layout from "../src/layout/Layout";
 const Reservations = () => {
   return (
     <Layout>
-      <PageBanner pageName={"Fastfood"} title="Menu" />{" "}
+      <PageBanner
+        pageName={"Reservations"}
+        title="Reservations"
+        subTitle={
+          "Book your table and indulge in an unforgettable dining experience"
+        }
+      />{" "}
       <section className="reservation-section pt-130 pb-80">
         <div className="container">
           <div className="row">

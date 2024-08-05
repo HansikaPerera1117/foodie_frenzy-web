@@ -52,9 +52,23 @@ const Header2 = ({ openSearchModal }) => {
               </div>
               {/*=== Nav right Item ===*/}
               <div className="nav-right-item d-flex align-items-center">
-                <div className="nav-call-button"></div>
+                <div className="nav-call-button">
+                  <Link legacyBehavior href="/cart">
+                    <a
+                      className="main-btn btn-red"
+                      style={{
+                        padding: "20px 20px",
+                      }}
+                    >
+                      <i
+                        className="fas fa-shopping-cart"
+                        style={{ position: "relative", right: 6 }}
+                      />
+                    </a>
+                  </Link>
+                </div>
                 <div className="menu-button d-xl-block d-none">
-                  <Link legacyBehavior href="/contact">
+                  <Link legacyBehavior href="/reservations">
                     <a className="main-btn btn-red">
                       Book a Table
                       <i className="fas fa-long-arrow-right" />

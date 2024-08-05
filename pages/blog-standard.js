@@ -5,7 +5,13 @@ import Layout from "../src/layout/Layout";
 const BlogStandard = () => {
   return (
     <Layout>
-      <PageBanner pageName={"Blog Standard"} title="Blog List" />
+      <PageBanner
+        pageName={"Blogs"}
+        title="Blog"
+        subTitle={
+          "Delve into our culinary adventures, recipes, and behind-the-scenes stories"
+        }
+      />
       <section className="blog-standard-section pt-130 pb-90">
         <div className="container">
           <div className="row">

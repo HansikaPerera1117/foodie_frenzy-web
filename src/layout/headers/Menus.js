@@ -6,84 +6,26 @@ const DeskTopMenus = () => {
     <nav className="main-menu desktop-menu">
       <ul>
         <li className="menu-item has-children">
-          <a href="/">Home</a>
+          <Link legacyBehavior href="/">
+            Home
+          </Link>
         </li>
         <li className="menu-item has-children">
-          <a href="#">
+          <Link legacyBehavior href="menu">
             Menu
-            <span className="dd-trigger">
-              <i className="far fa-angle-down" />
-            </span>
-          </a>
-          <ul className="sub-menu">
-            <li>
-              <Link legacyBehavior href="menu-fastfood">
-                Menu Fastfood
-              </Link>
-            </li>
-            <li>
-              <Link legacyBehavior href="menu-seafood">
-                Menu Seafood
-              </Link>
-            </li>
-          </ul>
-        </li>
-        <li className="menu-item">
-          <Link legacyBehavior href="about">
-            About
           </Link>
         </li>
         <li className="menu-item has-children">
           <a href="#">
-            Shop
+            About
             <span className="dd-trigger">
               <i className="far fa-angle-down" />
             </span>
           </a>
           <ul className="sub-menu">
-            <li>
-              <Link legacyBehavior href="products">
-                Our Products
-              </Link>
-            </li>
-            <li>
-              <Link legacyBehavior href="product-details">
-                Product Details
-              </Link>
-            </li>
-          </ul>
-        </li>
-        <li className="menu-item has-children">
-          <a href="#">
-            Blog
-            <span className="dd-trigger">
-              <i className="far fa-angle-down" />
-            </span>
-          </a>
-          <ul className="sub-menu">
-            <li>
-              <Link legacyBehavior href="blog-standard">
-                Blog Standard
-              </Link>
-            </li>
-            <li>
-              <Link legacyBehavior href="blog-details">
-                Blog Details
-              </Link>
-            </li>
-          </ul>
-        </li>
-        <li className="menu-item has-children">
-          <a href="#">
-            Pages
-            <span className="dd-trigger">
-              <i className="far fa-angle-down" />
-            </span>
-          </a>
-          <ul className="sub-menu">
-            <li>
-              <Link legacyBehavior href="gallery">
-                Our Gallery
+            <li className="menu-item">
+              <Link legacyBehavior href="about">
+                About
               </Link>
             </li>
             <li>
@@ -96,27 +38,38 @@ const DeskTopMenus = () => {
                 Our History
               </Link>
             </li>
-            <li>
-              <Link legacyBehavior href="reservations">
-                Reservations
-              </Link>
-            </li>
-            <li>
-              <Link legacyBehavior href="404">
-                404
-              </Link>
-            </li>
+
             <li>
               <Link legacyBehavior href="faq">
                 Faq
               </Link>
             </li>
-            <li>
-              <Link legacyBehavior href="contact">
-                Contact
-              </Link>
-            </li>
           </ul>
+        </li>
+        <li className="menu-item has-children">
+          <Link legacyBehavior href="products">
+            Shop
+          </Link>
+        </li>
+        <li className="menu-item has-children">
+          <Link legacyBehavior href="reservations">
+            Reservations
+          </Link>
+        </li>
+        <li className="menu-item has-children">
+          <Link legacyBehavior href="blog-standard">
+            Blog
+          </Link>
+        </li>
+        <li className="menu-item has-children">
+          <Link legacyBehavior href="gallery">
+            Our Gallery
+          </Link>
+        </li>
+        <li className="menu-item has-children">
+          <Link legacyBehavior href="contact">
+            Contact
+          </Link>
         </li>
       </ul>
     </nav>
@@ -138,24 +91,9 @@ const MobileMenu = () => {
           </a>
         </li>
         <li className="menu-item has-children">
-          <a href="#" onClick={() => active("Menu")}>
+          <a href="/menu" onClick={() => active("Menu")}>
             Menu
-            <span className={`dd-trigger ${activeIcon("Menu")}`}>
-              <i className="far fa-angle-down" />
-            </span>
           </a>
-          <ul className="sub-menu" style={activeSubMenu("Menu")}>
-            <li>
-              <Link legacyBehavior href="menu-fastfood">
-                Menu Fastfood
-              </Link>
-            </li>
-            <li>
-              <Link legacyBehavior href="menu-seafood">
-                Menu Seafood
-              </Link>
-            </li>
-          </ul>
         </li>
         <li className="menu-item">
           <Link legacyBehavior href="about">

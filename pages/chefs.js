@@ -4,7 +4,11 @@ import Layout from "../src/layout/Layout";
 const Chefs = () => {
   return (
     <Layout>
-      <PageBanner pageName={"Fastfood"} title="Menu" />{" "}
+      <PageBanner
+        pageName={"Our Chefs"}
+        title="Our Chefs"
+        subTitle={"Meet the culinary maestros behind our exquisite creations"}
+      />{" "}
       <section className="chefs-section pt-120 pb-100">
         <div className="container">
           <div className="row justify-content-center">

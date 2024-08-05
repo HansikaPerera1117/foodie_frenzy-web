@@ -5,7 +5,6 @@ import Layout from "../src/layout/Layout";
 const E404 = () => {
   return (
     <Layout>
-      <PageBanner pageName={"404 Pages"} title="404 Pages" />{" "}
       <section className="error-page-area pt-130 pb-130 p-r z-1">
         <div className="object object-one">
           <span>

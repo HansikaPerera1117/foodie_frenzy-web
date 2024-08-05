@@ -516,7 +516,7 @@ button {
   font-weight: 600;
   font-size: 16px;
   text-transform: uppercase;
-  border-radius: 7px;
+  border-radius: 40px;
   color: #fff;
   line-height: 24px;
   -webkit-transition: all 0.3s ease-out 0s;
@@ -1292,8 +1292,8 @@ button {
 }
 @media only screen and (min-width: 1200px) and (max-width: 1600px) {
   .header-navigation .main-menu ul > li {
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 15px;
+    margin-right: 15px;
   }
 }
 .header-navigation .main-menu ul > li > a {
@@ -1887,11 +1887,11 @@ button {
   }
 }
 .page-banner .page-banner-content ul.breadcrumb-link {
-  background-color: #df3f00;
+  background-color: #fbfbfb2e;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  border-radius: 7px;
+  border-radius: 12px;
   padding: 15px 40px;
 }
 .page-banner .page-banner-content ul.breadcrumb-link li {
@@ -2380,6 +2380,7 @@ button {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  border-radius: 10px;
 }
 @media (max-width: 767px) {
   .single-menu-item-three {
@@ -2453,6 +2454,7 @@ button {
 
 .menu-grid-item-one {
   padding: 40px 45px;
+  border-radius: 10px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   -webkit-transition: all 0.3s ease-out 0s;
   transition: all 0.3s ease-out 0s;
@@ -2881,6 +2883,8 @@ ul.slick-dots li.slick-active {
   -webkit-margin-start: -70px;
   margin-inline-start: -70px;
   margin-bottom: 30px;
+  position: relative;
+  z-index: 1;
 }
 @media (max-width: 991px) {
   .single-history-item .history-content-box span.duration {
@@ -3385,7 +3389,7 @@ form.reservation-form .nice-select ul.list {
 
 .reservation-style-one form.reservation-form label {
   position: absolute;
-  top: 23px;
+  top: 16px;
   right: 30px;
 }
 .reservation-style-one form.reservation-form label i {
@@ -3393,7 +3397,7 @@ form.reservation-form .nice-select ul.list {
 }
 .reservation-style-one form.reservation-form .nice-select,
 .reservation-style-one form.reservation-form .form_control {
-  height: 75px;
+  height: 60px;
   background-color: #fbf8f5;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 5px;
@@ -3640,6 +3644,7 @@ form.reservation-form .nice-select ul.list {
 .testimonial-slider-three .single-testimonial-three {
   margin-left: 15px;
   margin-right: 15px;
+  border-radius: 10px;
 }
 
 .testimonial-arrows {
@@ -3671,6 +3676,7 @@ form.reservation-form .nice-select ul.list {
   font-size: 18px;
   color: #fff;
   cursor: pointer;
+  border-radius: 20px;
   z-index: 1;
   -webkit-transition: all 0.3s ease-out 0s;
   transition: all 0.3s ease-out 0s;
@@ -4303,6 +4309,7 @@ form.reservation-form .nice-select ul.list {
   padding: 35px 30px;
   background-color: #fdf5f2;
   border: 1px solid rgba(14, 19, 23, 0.07);
+  border-radius: 10px;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .single-product-item {
