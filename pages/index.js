@@ -6,7 +6,376 @@ import { testimonialSliderOne } from "../src/sliderProps";
 import MenuSliderOne from "../src/components/slider/MenuSliderOne";
 import TestimonialSliderThree from "../src/components/slider/TestimonialSliderThree";
 import Partners from "../src/components/Partners";
+import { useEffect, useState } from "react";
 const Index = () => {
+  const [servicer, setServicer] = useState([]);
+  const [gallery, setGallery] = useState([]);
+
+  useEffect(() => {
+    setServicer([
+      {
+        id: 1,
+        value: (
+          <div className="col-lg-4 col-md-6 col-sm-12">
+            <div className="single-features-item-two animate-hover-icon wow fadeInUp mb-40">
+              <div className="inner-content">
+                <div className="icon">
+                  <i className="flaticon-pizza-slice-1" />
+                </div>
+                <div className="text">
+                  <h3 className="title">Fastfoods</h3>
+                  <p>
+                    Sit amet consectetur adipisci epsum nisi commodoy elementum
+                    non
+                  </p>
+                  <Link legacyBehavior href="/about">
+                    <a className="main-btn btn-black">
+                      read more
+                      <i className="far fa-arrow-right" />
+                    </a>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        ),
+      },
+      {
+        id: 2,
+        value: (
+          <div className="col-lg-4 col-md-6 col-sm-12">
+            <div className="single-features-item-two animate-hover-icon wow fadeInDown mb-40">
+              <div className="inner-content">
+                <div className="icon">
+                  <i className="flaticon-chef-1" />
+                </div>
+                <div className="text">
+                  <h3 className="title">Experience Chefs</h3>
+                  <p>
+                    Sit amet consectetur adipisci epsum nisi commodoy elementum
+                    non
+                  </p>
+                  <Link legacyBehavior href="/about">
+                    <a className="main-btn btn-black">
+                      read more
+                      <i className="far fa-arrow-right" />
+                    </a>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        ),
+      },
+      {
+        id: 3,
+        value: (
+          <div className="col-lg-4 col-md-6 col-sm-12">
+            <div className="single-features-item-two animate-hover-icon wow fadeInUp mb-40">
+              <div className="inner-content">
+                <div className="icon">
+                  <i className="flaticon-delivery-man" />
+                </div>
+                <div className="text">
+                  <h3 className="title">Online Delivery</h3>
+                  <p>
+                    Sit amet consectetur adipisci epsum nisi commodoy elementum
+                    non
+                  </p>
+                  <Link legacyBehavior href="/about">
+                    <a className="main-btn btn-black">
+                      read more
+                      <i className="far fa-arrow-right" />
+                    </a>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        ),
+      },
+    ]);
+
+    setGallery([
+      {
+        id: 1,
+        component: (
+          <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+            {/*=== Instagram Box ===*/}
+            <div className="instagram-box mb-30 wow fadeInDown">
+              <div className="instagram-img">
+                <img
+                  src="assets/images/instagram/insta-2.jpg"
+                  alt="Instagram Image"
+                />
+                <div className="insta-overlay" />
+                <a
+                  href="assets/images/instagram/insta-2.jpg"
+                  className="img-popup insta-icon"
+                >
+                  <i className="fab fa-instagram" />
+                </a>
+              </div>
+            </div>
+          </div>
+        ),
+      },
+      {
+        id: 2,
+        component: (
+          <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+            {/*=== Instagram Box ===*/}
+            <div className="instagram-box mb-30 wow fadeInUp">
+              <div className="instagram-img">
+                <img
+                  src="assets/images/instagram/insta-1.jpg"
+                  alt="Instagram Image"
+                />
+                <div className="insta-overlay" />
+                <a
+                  href="assets/images/instagram/insta-1.jpg"
+                  className="img-popup insta-icon"
+                >
+                  <i className="fab fa-instagram" />
+                </a>
+              </div>
+            </div>
+          </div>
+        ),
+      },
+      {
+        id: 3,
+        component: (
+          <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+            {/*=== Instagram Box ===*/}
+            <div className="instagram-box mb-30 wow fadeInUp">
+              <div className="instagram-img">
+                <img
+                  src="assets/images/instagram/insta-3.jpg"
+                  alt="Instagram Image"
+                />
+                <div className="insta-overlay" />
+                <a
+                  href="assets/images/instagram/insta-3.jpg"
+                  className="img-popup insta-icon"
+                >
+                  <i className="fab fa-instagram" />
+                </a>
+              </div>
+            </div>
+          </div>
+        ),
+      },
+      {
+        id: 4,
+        component: (
+          <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+            {/*=== Instagram Box ===*/}
+            <div className="instagram-box mb-30 wow fadeInDown">
+              <div className="instagram-img">
+                <img
+                  src="assets/images/instagram/insta-4.jpg"
+                  alt="Instagram Image"
+                />
+                <div className="insta-overlay" />
+                <a
+                  href="assets/images/instagram/insta-4.jpg"
+                  className="img-popup insta-icon"
+                >
+                  <i className="fab fa-instagram" />
+                </a>
+              </div>
+            </div>
+          </div>
+        ),
+      },
+      {
+        id: 5,
+        component: (
+          <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+            {/*=== Instagram Box ===*/}
+            <div className="instagram-box mb-30 wow fadeInUp">
+              <div className="instagram-img">
+                <img
+                  src="assets/images/instagram/insta-5.jpg"
+                  alt="Instagram Image"
+                />
+                <div className="insta-overlay" />
+                <a
+                  href="assets/images/instagram/insta-5.jpg"
+                  className="img-popup insta-icon"
+                >
+                  <i className="fab fa-instagram" />
+                </a>
+              </div>
+            </div>
+          </div>
+        ),
+      },
+      {
+        id: 6,
+        component: (
+          <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+            {/*=== Instagram Box ===*/}
+            <div className="instagram-box mb-30 wow fadeInDown">
+              <div className="instagram-img">
+                <img
+                  src="assets/images/instagram/insta-6.jpg"
+                  alt="Instagram Image"
+                />
+                <div className="insta-overlay" />
+                <a
+                  href="assets/images/instagram/insta-6.jpg"
+                  className="img-popup insta-icon"
+                >
+                  <i className="fab fa-instagram" />
+                </a>
+              </div>
+            </div>
+          </div>
+        ),
+      },
+      {
+        id: 7,
+        component: (
+          <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+            {/*=== Instagram Box ===*/}
+            <div className="instagram-box mb-30 wow fadeInUp">
+              <div className="instagram-img">
+                <img
+                  src="assets/images/instagram/insta-7.jpg"
+                  alt="Instagram Image"
+                />
+                <div className="insta-overlay" />
+                <a
+                  href="assets/images/instagram/insta-7.jpg"
+                  className="img-popup insta-icon"
+                >
+                  <i className="fab fa-instagram" />
+                </a>
+              </div>
+            </div>
+          </div>
+        ),
+      },
+      {
+        id: 8,
+        component: (
+          <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+            {/*=== Instagram Box ===*/}
+            <div className="instagram-box mb-30 wow fadeInDown">
+              <div className="instagram-img">
+                <img
+                  src="assets/images/instagram/insta-8.jpg"
+                  alt="Instagram Image"
+                />
+                <div className="insta-overlay" />
+                <a
+                  href="assets/images/instagram/insta-8.jpg"
+                  className="img-popup insta-icon"
+                >
+                  <i className="fab fa-instagram" />
+                </a>
+              </div>
+            </div>
+          </div>
+        ),
+      },
+      {
+        id: 9,
+        component: (
+          <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+            {/*=== Instagram Box ===*/}
+            <div className="instagram-box mb-30 wow fadeInUp">
+              <div className="instagram-img">
+                <img
+                  src="assets/images/instagram/insta-9.jpg"
+                  alt="Instagram Image"
+                />
+                <div className="insta-overlay" />
+                <a
+                  href="assets/images/instagram/insta-9.jpg"
+                  className="img-popup insta-icon"
+                >
+                  <i className="fab fa-instagram" />
+                </a>
+              </div>
+            </div>
+          </div>
+        ),
+      },
+      {
+        id: 10,
+        component: (
+          <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+            {/*=== Instagram Box ===*/}
+            <div className="instagram-box mb-30 wow fadeInDown">
+              <div className="instagram-img">
+                <img
+                  src="assets/images/instagram/insta-10.jpg"
+                  alt="Instagram Image"
+                />
+                <div className="insta-overlay" />
+                <a
+                  href="assets/images/instagram/insta-10.jpg"
+                  className="img-popup insta-icon"
+                >
+                  <i className="fab fa-instagram" />
+                </a>
+              </div>
+            </div>
+          </div>
+        ),
+      },
+      {
+        id: 11,
+        component: (
+          <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+            {/*=== Instagram Box ===*/}
+            <div className="instagram-box mb-30 wow fadeInUp">
+              <div className="instagram-img">
+                <img
+                  src="assets/images/instagram/insta-11.jpg"
+                  alt="Instagram Image"
+                />
+                <div className="insta-overlay" />
+                <a
+                  href="assets/images/instagram/insta-11.jpg"
+                  className="img-popup insta-icon"
+                >
+                  <i className="fab fa-instagram" />
+                </a>
+              </div>
+            </div>
+          </div>
+        ),
+      },
+      {
+        id: 12,
+        component: (
+          <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+            {/*=== Instagram Box ===*/}
+            <div className="instagram-box mb-30 wow fadeInDown">
+              <div className="instagram-img">
+                <img
+                  src="assets/images/instagram/insta-12.jpg"
+                  alt="Instagram Image"
+                />
+                <div className="insta-overlay" />
+                <a
+                  href="assets/images/instagram/insta-12.jpg"
+                  className="img-popup insta-icon"
+                >
+                  <i className="fab fa-instagram" />
+                </a>
+              </div>
+            </div>
+          </div>
+        ),
+      },
+    ]);
+  }, []);
+
   return (
     <Layout header={1} footer={1}>
       {/*=== Start Banner Section ===*/}
@@ -74,72 +443,11 @@ const Index = () => {
             </div>
           </div>
           <div className="row justify-content-center">
-            <div className="col-lg-4 col-md-6 col-sm-12">
-              <div className="single-features-item-two animate-hover-icon wow fadeInUp mb-40">
-                <div className="inner-content">
-                  <div className="icon">
-                    <i className="flaticon-pizza-slice-1" />
-                  </div>
-                  <div className="text">
-                    <h3 className="title">Fastfoods</h3>
-                    <p>
-                      Sit amet consectetur adipisci epsum nisi commodoy
-                      elementum non
-                    </p>
-                    <Link legacyBehavior href="/about">
-                      <a className="main-btn btn-black">
-                        read more
-                        <i className="far fa-arrow-right" />
-                      </a>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-4 col-md-6 col-sm-12">
-              <div className="single-features-item-two animate-hover-icon wow fadeInDown mb-40">
-                <div className="inner-content">
-                  <div className="icon">
-                    <i className="flaticon-chef-1" />
-                  </div>
-                  <div className="text">
-                    <h3 className="title">Experience Chefs</h3>
-                    <p>
-                      Sit amet consectetur adipisci epsum nisi commodoy
-                      elementum non
-                    </p>
-                    <Link legacyBehavior href="/about">
-                      <a className="main-btn btn-black">
-                        read more
-                        <i className="far fa-arrow-right" />
-                      </a>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-4 col-md-6 col-sm-12">
-              <div className="single-features-item-two animate-hover-icon wow fadeInUp mb-40">
-                <div className="inner-content">
-                  <div className="icon">
-                    <i className="flaticon-delivery-man" />
-                  </div>
-                  <div className="text">
-                    <h3 className="title">Online Delivery</h3>
-                    <p>
-                      Sit amet consectetur adipisci epsum nisi commodoy
-                      elementum non
-                    </p>
-                    <Link legacyBehavior href="/about">
-                      <a className="main-btn btn-black">
-                        read more
-                        <i className="far fa-arrow-right" />
-                      </a>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
+            {servicer.map((service) => {
+              console.log(service);
+
+              return service?.value;
+            })}
           </div>
         </div>
       </section>
@@ -519,222 +827,9 @@ const Index = () => {
       <section className="instagram-gallery pt-130 pb-100">
         <div className="container-fluid">
           <div className="row">
-            <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-              {/*=== Instagram Box ===*/}
-              <div className="instagram-box mb-30 wow fadeInUp">
-                <div className="instagram-img">
-                  <img
-                    src="assets/images/instagram/insta-1.jpg"
-                    alt="Instagram Image"
-                  />
-                  <div className="insta-overlay" />
-                  <a
-                    href="assets/images/instagram/insta-1.jpg"
-                    className="img-popup insta-icon"
-                  >
-                    <i className="fab fa-instagram" />
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-              {/*=== Instagram Box ===*/}
-              <div className="instagram-box mb-30 wow fadeInDown">
-                <div className="instagram-img">
-                  <img
-                    src="assets/images/instagram/insta-2.jpg"
-                    alt="Instagram Image"
-                  />
-                  <div className="insta-overlay" />
-                  <a
-                    href="assets/images/instagram/insta-2.jpg"
-                    className="img-popup insta-icon"
-                  >
-                    <i className="fab fa-instagram" />
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-              {/*=== Instagram Box ===*/}
-              <div className="instagram-box mb-30 wow fadeInUp">
-                <div className="instagram-img">
-                  <img
-                    src="assets/images/instagram/insta-3.jpg"
-                    alt="Instagram Image"
-                  />
-                  <div className="insta-overlay" />
-                  <a
-                    href="assets/images/instagram/insta-3.jpg"
-                    className="img-popup insta-icon"
-                  >
-                    <i className="fab fa-instagram" />
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-              {/*=== Instagram Box ===*/}
-              <div className="instagram-box mb-30 wow fadeInDown">
-                <div className="instagram-img">
-                  <img
-                    src="assets/images/instagram/insta-4.jpg"
-                    alt="Instagram Image"
-                  />
-                  <div className="insta-overlay" />
-                  <a
-                    href="assets/images/instagram/insta-4.jpg"
-                    className="img-popup insta-icon"
-                  >
-                    <i className="fab fa-instagram" />
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-              {/*=== Instagram Box ===*/}
-              <div className="instagram-box mb-30 wow fadeInUp">
-                <div className="instagram-img">
-                  <img
-                    src="assets/images/instagram/insta-5.jpg"
-                    alt="Instagram Image"
-                  />
-                  <div className="insta-overlay" />
-                  <a
-                    href="assets/images/instagram/insta-5.jpg"
-                    className="img-popup insta-icon"
-                  >
-                    <i className="fab fa-instagram" />
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-              {/*=== Instagram Box ===*/}
-              <div className="instagram-box mb-30 wow fadeInDown">
-                <div className="instagram-img">
-                  <img
-                    src="assets/images/instagram/insta-6.jpg"
-                    alt="Instagram Image"
-                  />
-                  <div className="insta-overlay" />
-                  <a
-                    href="assets/images/instagram/insta-6.jpg"
-                    className="img-popup insta-icon"
-                  >
-                    <i className="fab fa-instagram" />
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-              {/*=== Instagram Box ===*/}
-              <div className="instagram-box mb-30 wow fadeInUp">
-                <div className="instagram-img">
-                  <img
-                    src="assets/images/instagram/insta-7.jpg"
-                    alt="Instagram Image"
-                  />
-                  <div className="insta-overlay" />
-                  <a
-                    href="assets/images/instagram/insta-7.jpg"
-                    className="img-popup insta-icon"
-                  >
-                    <i className="fab fa-instagram" />
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-              {/*=== Instagram Box ===*/}
-              <div className="instagram-box mb-30 wow fadeInDown">
-                <div className="instagram-img">
-                  <img
-                    src="assets/images/instagram/insta-8.jpg"
-                    alt="Instagram Image"
-                  />
-                  <div className="insta-overlay" />
-                  <a
-                    href="assets/images/instagram/insta-8.jpg"
-                    className="img-popup insta-icon"
-                  >
-                    <i className="fab fa-instagram" />
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-              {/*=== Instagram Box ===*/}
-              <div className="instagram-box mb-30 wow fadeInUp">
-                <div className="instagram-img">
-                  <img
-                    src="assets/images/instagram/insta-9.jpg"
-                    alt="Instagram Image"
-                  />
-                  <div className="insta-overlay" />
-                  <a
-                    href="assets/images/instagram/insta-9.jpg"
-                    className="img-popup insta-icon"
-                  >
-                    <i className="fab fa-instagram" />
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-              {/*=== Instagram Box ===*/}
-              <div className="instagram-box mb-30 wow fadeInDown">
-                <div className="instagram-img">
-                  <img
-                    src="assets/images/instagram/insta-10.jpg"
-                    alt="Instagram Image"
-                  />
-                  <div className="insta-overlay" />
-                  <a
-                    href="assets/images/instagram/insta-10.jpg"
-                    className="img-popup insta-icon"
-                  >
-                    <i className="fab fa-instagram" />
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-              {/*=== Instagram Box ===*/}
-              <div className="instagram-box mb-30 wow fadeInUp">
-                <div className="instagram-img">
-                  <img
-                    src="assets/images/instagram/insta-11.jpg"
-                    alt="Instagram Image"
-                  />
-                  <div className="insta-overlay" />
-                  <a
-                    href="assets/images/instagram/insta-11.jpg"
-                    className="img-popup insta-icon"
-                  >
-                    <i className="fab fa-instagram" />
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-              {/*=== Instagram Box ===*/}
-              <div className="instagram-box mb-30 wow fadeInDown">
-                <div className="instagram-img">
-                  <img
-                    src="assets/images/instagram/insta-12.jpg"
-                    alt="Instagram Image"
-                  />
-                  <div className="insta-overlay" />
-                  <a
-                    href="assets/images/instagram/insta-12.jpg"
-                    className="img-popup insta-icon"
-                  >
-                    <i className="fab fa-instagram" />
-                  </a>
-                </div>
-              </div>
-            </div>
+            {gallery.map((image) => {
+              return image?.component;
+            })}
           </div>
         </div>
       </section>
