@@ -44,7 +44,7 @@ const About = () => {
             <div className="col-lg-6">
               <div className="about-three_content-box content-box-gap pl-lg-45 mb-50">
                 <div className="section-title section-title-left mb-30 wow fadeInUp">
-                  <span className="sub-title">About Qichen</span>
+                  <span className="sub-title">About Foodie Frenzy</span>
                   <h2>The Cleanest, Most Delicious Vegan Cookie Dough Ever.</h2>
                 </div>
                 <p className="wow fadeInDown">

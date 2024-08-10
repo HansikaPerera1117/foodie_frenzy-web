@@ -19,7 +19,7 @@ const App = ({ Component, pageProps }) => {
   return (
     <Fragment>
       <Head>
-        <title>Qichen - Restaurant React NextJS Template</title>
+        <title>Foodie Frenzy - Restaurant</title>
         {/*====== Favicon Icon ======*/}
         <link
           rel="shortcut icon"

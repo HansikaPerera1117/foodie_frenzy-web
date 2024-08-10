@@ -161,7 +161,7 @@ const Footer1 = () => {
             <div className="col-lg-6">
               {/*=== Copyright Text ===*/}
               <div className="copyright-text">
-                <p>© 2023 Qichen, All Rights Reserved</p>
+                <p>© 2023 Foodie Frenzy, All Rights Reserved</p>
               </div>
             </div>
             <div className="col-lg-6">

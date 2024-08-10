@@ -438,7 +438,7 @@ const Index = () => {
             <div className="col-xl-6 col-lg-12">
               <div className="section-title text-center mb-40">
                 <span className="sub-title">What we offer</span>
-                <h2>Why Choose Qichen Foods</h2>
+                <h2>Why Choose Foodie Frenzy Foods</h2>
               </div>
             </div>
           </div>
@@ -487,7 +487,7 @@ const Index = () => {
             <div className="col-lg-5">
               <div className="about-content-box content-box-gap pl-lg-40">
                 <div className="section-title mb-30 wow fadeInDown">
-                  <span className="sub-title">About Qichen</span>
+                  <span className="sub-title">About Foodie Frenzy</span>
                   <h2>We Provide Yamee Testy Seafoods Based USA</h2>
                 </div>
                 <p className="wow fadeInUp">
