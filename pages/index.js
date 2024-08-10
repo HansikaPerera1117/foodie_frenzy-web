@@ -16,13 +16,13 @@ const Index = () => {
       {
         id: 1,
         value: (
-          <div className="col-lg-4 col-md-6 col-sm-12">
+          <div className="col-lg-4 col-md-6 col-sm-12 ">
             <div className="single-features-item-two animate-hover-icon wow fadeInUp mb-40">
-              <div className="inner-content">
+              <div className="inner-content d-flex flex-column align-items-center">
                 <div className="icon">
                   <i className="flaticon-pizza-slice-1" />
                 </div>
-                <div className="text">
+                <div className="text text-center">
                   <h3 className="title">Fastfoods</h3>
                   <p>
                     Sit amet consectetur adipisci epsum nisi commodoy elementum
@@ -45,11 +45,11 @@ const Index = () => {
         value: (
           <div className="col-lg-4 col-md-6 col-sm-12">
             <div className="single-features-item-two animate-hover-icon wow fadeInDown mb-40">
-              <div className="inner-content">
+              <div className="inner-content  d-flex flex-column align-items-center">
                 <div className="icon">
                   <i className="flaticon-chef-1" />
                 </div>
-                <div className="text">
+                <div className="text text-center">
                   <h3 className="title">Experience Chefs</h3>
                   <p>
                     Sit amet consectetur adipisci epsum nisi commodoy elementum
@@ -72,11 +72,11 @@ const Index = () => {
         value: (
           <div className="col-lg-4 col-md-6 col-sm-12">
             <div className="single-features-item-two animate-hover-icon wow fadeInUp mb-40">
-              <div className="inner-content">
+              <div className="inner-content  d-flex flex-column align-items-center">
                 <div className="icon">
                   <i className="flaticon-delivery-man" />
                 </div>
-                <div className="text">
+                <div className="text text-center">
                   <h3 className="title">Online Delivery</h3>
                   <p>
                     Sit amet consectetur adipisci epsum nisi commodoy elementum
