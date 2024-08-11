@@ -2,7 +2,65 @@ import Link from "next/link";
 import PageBanner from "../src/components/PageBanner";
 import Partners from "../src/components/Partners";
 import Layout from "../src/layout/Layout";
+import { useEffect, useState } from "react";
 const BlogStandard = () => {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    setCategories([
+      {
+        id: 1,
+        list: (
+          <li>
+            <a href="#">
+              Hamburger<span className="number">(05)</span>
+            </a>
+          </li>
+        ),
+      },
+      {
+        id: 2,
+        list: (
+          <li>
+            <a href="#">
+              Italian Pizza<span className="number">(07)</span>
+            </a>
+          </li>
+        ),
+      },
+      {
+        id: 3,
+        list: (
+          <li>
+            <a href="#">
+              Vegetable Soup<span className="number">(03)</span>
+            </a>
+          </li>
+        ),
+      },
+      {
+        id: 4,
+        list: (
+          <li>
+            <a href="#">
+              Seafoods<span className="number">(04)</span>
+            </a>
+          </li>
+        ),
+      },
+      {
+        id: 5,
+        list: (
+          <li>
+            <a href="#">
+              Sandwich<span className="number">(09)</span>
+            </a>
+          </li>
+        ),
+      },
+    ]);
+  }, []);
+
   return (
     <Layout>
       <PageBanner
@@ -224,52 +282,13 @@ const BlogStandard = () => {
             </div>
             <div className="col-xl-4 col-lg-5 order-lg-2 order-1">
               <div className="sidebar-widget-area">
-                {/*=== Search Widget ===*/}
-                <div className="sidebar-widget search-widget mb-30 wow fadeInUp">
-                  <form onSubmit={(e) => e.preventDefault()}>
-                    <div className="form_group">
-                      <label>
-                        <i className="far fa-search" />
-                      </label>
-                      <input
-                        type="text"
-                        className="form_control"
-                        placeholder="Search"
-                        name="search"
-                        required=""
-                      />
-                    </div>
-                  </form>
-                </div>
                 {/*=== Category Widget ===*/}
                 <div className="sidebar-widget category-widget mb-40 wow fadeInUp">
                   <h4 className="widget-title">Category</h4>
                   <ul className="category-nav">
-                    <li>
-                      <a href="#">
-                        Hamburger<span className="number">(05)</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Italian Pizza<span className="number">(07)</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Vegetable Soup<span className="number">(03)</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Seafoods<span className="number">(04)</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Sandwich<span className="number">(09)</span>
-                      </a>
-                    </li>
+                    {categories.map((cat) => {
+                      return cat?.list;
+                    })}
                   </ul>
                 </div>
                 {/*=== Recent Post Widget ===*/}
@@ -366,20 +385,6 @@ const BlogStandard = () => {
                       Contact us
                     </a>
                   </div>
-                </div>
-                {/*=== Tag Widget ===*/}
-                <div className="sidebar-widget tag-cloud-widget mb-40 border-0 wow fadeInUp">
-                  <h4 className="widget-title">Products Tags</h4>
-                  <a href="#">Restaurant</a>
-                  <a href="#">Seafoods</a>
-                  <a href="#">Burger</a>
-                  <a href="#">Pizza</a>
-                  <a href="#">Soup</a>
-                  <a href="#">Crap</a>
-                  <a href="#">Juice</a>
-                  <a href="#">Bread</a>
-                  <a href="#">Drink &amp; Fruits</a>
-                  <a href="#">Ice</a>
                 </div>
               </div>
             </div>
