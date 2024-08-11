@@ -4,7 +4,90 @@ import Partners from "../src/components/Partners";
 import QichenCounter from "../src/components/QichenCounter";
 import TestimonialSliderThree from "../src/components/slider/TestimonialSliderThree";
 import Layout from "../src/layout/Layout";
+import { useEffect, useState } from "react";
 const About = () => {
+  const [servicer, setServicer] = useState([]);
+
+  useEffect(() => {
+    setServicer([
+      {
+        id: 1,
+        value: (
+          <div className="col-md-6">
+            <div className="fancy-features-item mb-30 wow fadeInUp">
+              <div className="icon">
+                <i className="flaticon-pizza-slice-1" />
+              </div>
+              <div className="text">
+                <h3 className="title">Fastfoods</h3>
+                <p>Sit amet consecte adisce epsum nisi commos</p>
+                <Link legacyBehavior href="/about">
+                  <a className="btn-link">Read more</a>
+                </Link>
+              </div>
+            </div>
+          </div>
+        ),
+      },
+      {
+        id: 2,
+        value: (
+          <div className="col-md-6">
+            <div className="fancy-features-item mb-30 wow fadeInUp">
+              <div className="icon">
+                <i className="flaticon-chef-1" />
+              </div>
+              <div className="text">
+                <h3 className="title">Experience Chefs</h3>
+                <p>Sit amet consecte adisce epsum nisi commos</p>
+                <Link legacyBehavior href="/about">
+                  <a className="btn-link">Read more</a>
+                </Link>
+              </div>
+            </div>
+          </div>
+        ),
+      },
+      {
+        id: 3,
+        value: (
+          <div className="col-md-6">
+            <div className="fancy-features-item mb-30 wow fadeInUp">
+              <div className="icon">
+                <i className="flaticon-delivery-man" />
+              </div>
+              <div className="text">
+                <h3 className="title">Online Delivery</h3>
+                <p>Sit amet consecte adisce epsum nisi commos</p>
+                <Link legacyBehavior href="/about">
+                  <a className="btn-link">Read more</a>
+                </Link>
+              </div>
+            </div>
+          </div>
+        ),
+      },
+      {
+        id: 4,
+        value: (
+          <div className="col-md-6">
+            <div className="fancy-features-item mb-30 wow fadeInUp">
+              <div className="icon">
+                <i className="flaticon-food-serving" />
+              </div>
+              <div className="text">
+                <h3 className="title">Fine Dining</h3>
+                <p>Sit amet consecte adisce epsum nisi commos</p>
+                <Link legacyBehavior href="/about">
+                  <a className="btn-link">Read more</a>
+                </Link>
+              </div>
+            </div>
+          </div>
+        ),
+      },
+    ]);
+  }, []);
   return (
     <Layout>
       <PageBanner
@@ -158,62 +241,12 @@ const About = () => {
             <div className="col-xl-6 col-lg-12">
               <div className="choose-item-list">
                 <div className="row">
-                  <div className="col-md-6">
-                    <div className="fancy-features-item mb-30 wow fadeInUp">
-                      <div className="icon">
-                        <i className="flaticon-pizza-slice-1" />
-                      </div>
-                      <div className="text">
-                        <h3 className="title">Fastfoods</h3>
-                        <p>Sit amet consecte adisce epsum nisi commos</p>
-                        <Link legacyBehavior href="/about">
-                          <a className="btn-link">Read more</a>
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-md-6">
-                    <div className="fancy-features-item mb-30 wow fadeInUp">
-                      <div className="icon">
-                        <i className="flaticon-chef-1" />
-                      </div>
-                      <div className="text">
-                        <h3 className="title">Experience Chefs</h3>
-                        <p>Sit amet consecte adisce epsum nisi commos</p>
-                        <Link legacyBehavior href="/about">
-                          <a className="btn-link">Read more</a>
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-md-6">
-                    <div className="fancy-features-item mb-30 wow fadeInUp">
-                      <div className="icon">
-                        <i className="flaticon-delivery-man" />
-                      </div>
-                      <div className="text">
-                        <h3 className="title">Online Delivery</h3>
-                        <p>Sit amet consecte adisce epsum nisi commos</p>
-                        <Link legacyBehavior href="/about">
-                          <a className="btn-link">Read more</a>
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-md-6">
-                    <div className="fancy-features-item mb-30 wow fadeInUp">
-                      <div className="icon">
-                        <i className="flaticon-food-serving" />
-                      </div>
-                      <div className="text">
-                        <h3 className="title">Fine Dining</h3>
-                        <p>Sit amet consecte adisce epsum nisi commos</p>
-                        <Link legacyBehavior href="/about">
-                          <a className="btn-link">Read more</a>
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
+                  {" "}
+                  {servicer.map((service) => {
+                    console.log(service);
+
+                    return service?.value;
+                  })}
                 </div>
               </div>
             </div>
