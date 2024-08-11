@@ -121,7 +121,7 @@ const CartPage = () => {
                   </div>
                 </div>
                 <div className="cart-actions d-flex justify-content-end">
-                  <Link href="/shop" className="main-btn btn-black mx-4">
+                  <Link href="/products" className="main-btn btn-black mx-4">
                     Continue Shopping
                   </Link>
                   <Link href="/checkout" className="main-btn btn-red">
