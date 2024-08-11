@@ -57,7 +57,7 @@ const DeskTopMenus = () => {
           </Link>
         </li>
         <li className="menu-item has-children">
-          <Link legacyBehavior href="blog-standard">
+          <Link legacyBehavior href="blog">
             Blog
           </Link>
         </li>
