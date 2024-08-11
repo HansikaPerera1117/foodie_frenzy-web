@@ -165,8 +165,6 @@ const Index = () => {
           </div>
           <div className="row justify-content-center">
             {servicer.map((service) => {
-              console.log(service);
-
               return service?.value;
             })}
           </div>
