@@ -62,12 +62,12 @@ const CartPage = () => {
           </div>
           {cartItems.map((item) => (
             <div className="row mb-3 " key={item.id}>
-              <div className="col-lg-1">
+              <div className="col-lg-1 d-flex align-items-center">
                 {" "}
                 <img src={item.image} alt="product Image" />
               </div>
-              <div className="col-lg-5 ">{item.name}</div>
-              <div className="col-lg-3">
+              <div className="col-lg-5 d-flex align-items-center">{item.name}</div>
+              <div className="col-lg-3 d-flex align-items-center">
                 <input
                   type="number"
                   value={item.quantity}
@@ -78,11 +78,11 @@ const CartPage = () => {
                   min="1"
                 />
               </div>
-              <div className="col-lg-1">${item.price.toFixed(2)}</div>
-              <div className="col-lg-1">
+              <div className="col-lg-1 d-flex align-items-center">${item.price.toFixed(2)}</div>
+              <div className="col-lg-1 d-flex align-items-center">
                 ${(item.price * item.quantity).toFixed(2)}
               </div>
-              <div className="col-lg-1">
+              <div className="col-lg-1 d-flex align-items-center">
                 <button
                   className="main-btn btn-black"
                   style={{
@@ -99,7 +99,7 @@ const CartPage = () => {
             </div>
           ))}
 
-          <div className="row justify-content-end">
+          <div className="row justify-content-end mt-5">
             <div className="col-lg-6">
               <div className="cart-total">
                 <div className="mb-3">

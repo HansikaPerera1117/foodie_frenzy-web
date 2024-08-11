@@ -121,7 +121,7 @@ h5 {
 }
 
 h6 {
-  font-size: 18px;
+  font-size: 17px;
 }
 
 ul,
@@ -150,7 +150,7 @@ body {
   font-style: normal;
   color: #666666;
   font-family: "Open Sans", sans-serif;
-  font-size: 18px;
+  font-size: 17px;
   line-height: 29px;
   overflow-x: hidden;
 }
@@ -307,6 +307,20 @@ label {
 }
 
 textarea.form_control {
+  padding-top: 15px;
+  display: inherit;
+  height: 145px;
+}
+
+.form_control2 {
+  width: 100%;
+  padding: 0 10px;
+  height: 42px;
+  border-radius: 7px;
+  border: 1px solid rgb(195, 195, 195);
+  background-color: #fbf8f5;
+}
+textarea.form_control2 {
   padding-top: 15px;
   display: inherit;
   height: 145px;
