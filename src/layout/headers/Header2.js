@@ -1,8 +1,15 @@
 import Link from "next/link";
 import Menus from "./Menus";
 import SearchBtn from "./SearchBtn";
+import { useState } from "react";
 
 const Header2 = ({ openSearchModal }) => {
+  const [isLogin, setIsLogin] = useState(false); //convert to redux
+
+  const handleLogout = () => {
+    alert("logout");
+  };
+
   return (
     <header className="header-area">
       {/*=== Header Navigation ===*/}
@@ -42,6 +49,47 @@ const Header2 = ({ openSearchModal }) => {
                 <Menus />
                 {/*=== Nav Button ===*/}
                 <div className="menu-button mt-40 d-xl-none">
+                  <div className="nav-call-button mb-3">
+                    {isLogin ? (
+                      <a
+                        onClick={() => {
+                          handleLogout();
+                        }}
+                        className="main-btn btn-black"
+                        style={{
+                          padding: "15px 20px",
+                        }}
+                      >
+                        LogOut
+                      </a>
+                    ) : (
+                      <Link legacyBehavior href="/login">
+                        <a
+                          className="main-btn btn-black"
+                          style={{
+                            padding: "15px 20px",
+                          }}
+                        >
+                          Login
+                        </a>
+                      </Link>
+                    )}
+                  </div>
+                  <div className="nav-call-button mb-3">
+                    <Link legacyBehavior href="/cart">
+                      <a
+                        className="main-btn btn-red"
+                        style={{
+                          padding: "20px 20px",
+                        }}
+                      >
+                        <i
+                          className="fas fa-shopping-cart"
+                          style={{ position: "relative", right: 6 }}
+                        />
+                      </a>
+                    </Link>
+                  </div>
                   <Link legacyBehavior href="/contact">
                     <a className="main-btn btn-red">
                       Book a Table
@@ -52,7 +100,33 @@ const Header2 = ({ openSearchModal }) => {
               </div>
               {/*=== Nav right Item ===*/}
               <div className="nav-right-item d-flex align-items-center">
-                <div className="nav-call-button">
+                <div className="menu-button d-xl-block d-none">
+                  {isLogin ? (
+                    <a
+                      onClick={() => {
+                        handleLogout();
+                      }}
+                      className="main-btn btn-black"
+                      style={{
+                        padding: "15px 20px",
+                      }}
+                    >
+                      LogOut
+                    </a>
+                  ) : (
+                    <Link legacyBehavior href="/login">
+                      <a
+                        className="main-btn btn-black"
+                        style={{
+                          padding: "15px 20px",
+                        }}
+                      >
+                        Login
+                      </a>
+                    </Link>
+                  )}
+                </div>
+                <div className="menu-button d-xl-block d-none">
                   <Link legacyBehavior href="/cart">
                     <a
                       className="main-btn btn-red"
@@ -71,7 +145,7 @@ const Header2 = ({ openSearchModal }) => {
                   <Link legacyBehavior href="/reservations">
                     <a className="main-btn btn-red">
                       Book a Table
-                      <i className="fas fa-long-arrow-right" />
+                      {/* <i className="fas fa-long-arrow-right" /> */}
                     </a>
                   </Link>
                 </div>

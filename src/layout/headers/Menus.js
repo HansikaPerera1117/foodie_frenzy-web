@@ -29,6 +29,11 @@ const DeskTopMenus = () => {
               </Link>
             </li>
             <li>
+              <Link legacyBehavior href="gallery">
+                Our Gallery
+              </Link>
+            </li>
+            <li>
               <Link legacyBehavior href="chefs">
                 Our Chefs
               </Link>
@@ -61,11 +66,11 @@ const DeskTopMenus = () => {
             Blog
           </Link>
         </li>
-        <li className="menu-item has-children">
+        {/* <li className="menu-item has-children">
           <Link legacyBehavior href="gallery">
             Our Gallery
           </Link>
-        </li>
+        </li> */}
         <li className="menu-item has-children">
           <Link legacyBehavior href="contact">
             Contact
@@ -96,58 +101,18 @@ const MobileMenu = () => {
           </a>
         </li>
         <li className="menu-item">
-          <Link legacyBehavior href="about">
+          <a href="#" onClick={() => active("about")}>
             About
-          </Link>
-        </li>
-        <li className="menu-item has-children">
-          <a href="#" onClick={() => active("Shop")}>
-            Shop
-            <span className={`dd-trigger ${activeIcon("Shop")}`}>
+            <span className={`dd-trigger ${activeIcon("about")}`}>
               <i className="far fa-angle-down" />
             </span>
           </a>
-          <ul className="sub-menu" style={activeSubMenu("Shop")}>
-            <li>
-              <Link legacyBehavior href="products">
-                Our Products
+          <ul className="sub-menu" style={activeSubMenu("about")}>
+            <li className="menu-item">
+              <Link legacyBehavior href="about">
+                About
               </Link>
             </li>
-            <li>
-              <Link legacyBehavior href="product-details">
-                Product Details
-              </Link>
-            </li>
-          </ul>
-        </li>
-        <li className="menu-item has-children">
-          <a href="#" onClick={() => active("Blog")}>
-            Blog
-            <span className={`dd-trigger ${activeIcon("Blog")}`}>
-              <i className="far fa-angle-down" />
-            </span>
-          </a>
-          <ul className="sub-menu" style={activeSubMenu("Blog")}>
-            <li>
-              <Link legacyBehavior href="blog-standard">
-                Blog Standard
-              </Link>
-            </li>
-            <li>
-              <Link legacyBehavior href="blog-details">
-                Blog Details
-              </Link>
-            </li>
-          </ul>
-        </li>
-        <li className="menu-item has-children">
-          <a href="#" onClick={() => active("Pages")}>
-            Pages
-            <span className={`dd-trigger ${activeIcon("Pages")}`}>
-              <i className="far fa-angle-down" />
-            </span>
-          </a>
-          <ul className="sub-menu" style={activeSubMenu("Pages")}>
             <li>
               <Link legacyBehavior href="gallery">
                 Our Gallery
@@ -163,27 +128,33 @@ const MobileMenu = () => {
                 Our History
               </Link>
             </li>
-            <li>
-              <Link legacyBehavior href="reservations">
-                Reservations
-              </Link>
-            </li>
-            <li>
-              <Link legacyBehavior href="404">
-                404
-              </Link>
-            </li>
+
             <li>
               <Link legacyBehavior href="faq">
                 Faq
               </Link>
             </li>
-            <li>
-              <Link legacyBehavior href="contact">
-                Contact
-              </Link>
-            </li>
           </ul>
+        </li>
+        <li className="menu-item has-children">
+          <a href="/products" onClick={() => active("products")}>
+            Shop
+          </a>
+        </li>
+        <li className="menu-item has-children">
+          <a href="/reservations" onClick={() => active("reservations")}>
+            Reservations
+          </a>
+        </li>
+        <li className="menu-item has-children">
+          <a href="/blog" onClick={() => active("blog")}>
+            Blog
+          </a>
+        </li>
+        <li className="menu-item has-children">
+          <a href="/contact" onClick={() => active("contact")}>
+            Contact
+          </a>
         </li>
       </ul>
     </nav>

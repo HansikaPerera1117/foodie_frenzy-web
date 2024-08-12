@@ -528,7 +528,7 @@ button {
   justify-content: center;
   padding: 18px 40px;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 15px;
   text-transform: uppercase;
   border-radius: 40px;
   color: #fff;
@@ -1262,8 +1262,8 @@ button {
   color: #df3f00;
 }
 .header-navigation .nav-right-item .nav-call-button {
-  -webkit-margin-start: 30px;
-  margin-inline-start: 30px;
+  -webkit-margin-start: 10px;
+  margin-inline-start: 10px;
 }
 @media (max-width: 767px) {
   .header-navigation .nav-right-item .nav-call-button {
@@ -1283,8 +1283,8 @@ button {
   margin-inline-end: 7px;
 }
 .header-navigation .nav-right-item .menu-button {
-  -webkit-margin-start: 30px;
-  margin-inline-start: 30px;
+  -webkit-margin-start: 10px;
+  margin-inline-start: 10px;
 }
 .header-navigation .nav-right-item .menu-button .main-btn {
   padding: 18px 35px;
@@ -1313,7 +1313,7 @@ button {
 .header-navigation .main-menu ul > li > a {
   position: relative;
   display: block;
-  font-size: 18px;
+  font-size: 16px;
   color: #000;
   font-weight: 600;
   padding: 10px 0;
