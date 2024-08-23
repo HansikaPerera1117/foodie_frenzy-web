@@ -221,110 +221,6 @@ const Products = () => {
                     }}
                   />
                 </div>
-                {/*=== Recent Product Widget ===*/}
-                <div className="sidebar-widget recent-products-widget mb-45 wow fadeInUp">
-                  <h4 className="widget-title">
-                    Products <span className="line" />
-                  </h4>
-                  <ul className="product-list">
-                    <li className="product-item d-flex align-items-center">
-                      <div className="thumb">
-                        <img src="assets/images/product/thumb-1.jpg" alt="" />
-                      </div>
-                      <div className="info">
-                        <ul className="ratings">
-                          <li>
-                            <i className="fas fa-star" />
-                          </li>
-                          <li>
-                            <i className="fas fa-star" />
-                          </li>
-                          <li>
-                            <i className="fas fa-star" />
-                          </li>
-                          <li>
-                            <i className="fas fa-star" />
-                          </li>
-                          <li>
-                            <i className="fas fa-star" />
-                          </li>
-                        </ul>
-                        <h6>
-                          <Link legacyBehavior href="product-details">
-                            Vegetable Hamburger
-                          </Link>
-                        </h6>
-                        <span className="price">
-                          <span className="curreny">$</span>58.63
-                        </span>
-                      </div>
-                    </li>
-                    <li className="product-item d-flex align-items-center">
-                      <div className="thumb">
-                        <img src="assets/images/product/thumb-2.jpg" alt="" />
-                      </div>
-                      <div className="info">
-                        <ul className="ratings">
-                          <li>
-                            <i className="fas fa-star" />
-                          </li>
-                          <li>
-                            <i className="fas fa-star" />
-                          </li>
-                          <li>
-                            <i className="fas fa-star" />
-                          </li>
-                          <li>
-                            <i className="fas fa-star" />
-                          </li>
-                          <li>
-                            <i className="fas fa-star" />
-                          </li>
-                        </ul>
-                        <h6>
-                          <Link legacyBehavior href="product-details">
-                            Italian Chicken Pizza
-                          </Link>
-                        </h6>
-                        <span className="price">
-                          <span className="curreny">$</span>83.25
-                        </span>
-                      </div>
-                    </li>
-                    <li className="product-item d-flex align-items-center">
-                      <div className="thumb">
-                        <img src="assets/images/product/thumb-3.jpg" alt="" />
-                      </div>
-                      <div className="info">
-                        <ul className="ratings">
-                          <li>
-                            <i className="fas fa-star" />
-                          </li>
-                          <li>
-                            <i className="fas fa-star" />
-                          </li>
-                          <li>
-                            <i className="fas fa-star" />
-                          </li>
-                          <li>
-                            <i className="fas fa-star" />
-                          </li>
-                          <li>
-                            <i className="fas fa-star" />
-                          </li>
-                        </ul>
-                        <h6>
-                          <Link legacyBehavior href="product-details">
-                            Crab Seafood sauce
-                          </Link>
-                        </h6>
-                        <span className="price">
-                          <span className="curreny">$</span>83.25
-                        </span>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
               </div>
             </div>
             <div className="col-lg-9">
@@ -333,7 +229,7 @@ const Products = () => {
                   {productList.map((product) => {
                     return (
                       <div
-                        className="col-xxl-4 col-md-6 col-sm-6"
+                        className="col-xxl-3 col-md-6 col-sm-6"
                         key={product?.id}
                       >
                         {console.log(product)}
