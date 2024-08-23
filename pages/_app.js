@@ -1,9 +1,11 @@
 import Head from "next/head";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, Suspense, useEffect, useState } from "react";
 import "slick-carousel/slick/slick-theme.css";
 import PreLoader from "../src/layout/PreLoader";
 import "../styles/globals.css";
 import "/node_modules/sassy-datepicker/dist/styles.css";
+import { Provider } from "react-redux";
+import store from "../src/redux/index";
 
 const App = ({ Component, pageProps }) => {
   const [loader, setLoader] = useState(true);
@@ -66,7 +68,11 @@ const App = ({ Component, pageProps }) => {
         {/*====== Style css ======*/}
         <link rel="stylesheet" href="assets/css/style.css" />
       </Head>
-      {loader && <PreLoader />} <Component {...pageProps} />
+      <Provider store={store}>
+        <Suspense fallback={<PreLoader />}>
+          <Component {...pageProps} />
+        </Suspense>
+      </Provider>
     </Fragment>
   );
 };

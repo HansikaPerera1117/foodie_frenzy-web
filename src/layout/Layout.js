@@ -5,6 +5,8 @@ import { animation } from "../utils";
 import BackToTop from "./BackToTop";
 import Footer from "./footer/Index";
 import Header from "./headers/Index";
+import { ToastContainer } from "react-toastify";
+import PreLoader from "./PreLoader";
 
 const Layout = ({ header, children, footer }) => {
   useEffect(() => {
@@ -14,8 +16,10 @@ const Layout = ({ header, children, footer }) => {
   const [searchModal, setSearchModal] = useState(false);
   return (
     <Fragment>
+      <ToastContainer newestOnTop />
       <VideoPopup />
       <ImageView />
+      <PreLoader />
       <Header header={2} openSearchModal={setSearchModal} />
       {children}
       <Footer footer={1} />
