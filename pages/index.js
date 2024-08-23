@@ -138,7 +138,6 @@ const Index = () => {
           }
         });
         await setCategories(temp);
-        console.log(temp);
 
         // popUploader(dispatch, false);
       })
@@ -237,7 +236,6 @@ const Index = () => {
             {categories.map((category) => {
               return (
                 <div className="col-lg-4 col-md-6 col-sm-12" key={category?.id}>
-                  {console.log(category)}
                   <div className="single-features-item-two animate-hover-icon wow fadeInDown mb-40">
                     <div className="inner-content  d-flex flex-column align-items-center">
                       <div className="icon">
