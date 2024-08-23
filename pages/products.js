@@ -229,7 +229,7 @@ const Products = () => {
                   {productList.map((product) => {
                     return (
                       <div
-                        className="col-xxl-3 col-md-6 col-sm-6"
+                        className="col-xxl-4 col-md-6 col-sm-6"
                         key={product?.id}
                       >
                         {console.log(product)}
