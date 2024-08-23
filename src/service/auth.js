@@ -11,6 +11,17 @@ export async function loginService(userCredentials) {
   return await ApiService.callApi(apiObject);
 }
 
+export async function createAccount(userCredentials) {
+  const apiObject = {};
+  apiObject.method = "POST";
+  apiObject.authentication = false;
+  apiObject.urlencoded = false;
+  apiObject.isWithoutPrefix = false;
+  apiObject.endpoint = "";
+  apiObject.body = userCredentials;
+  return await ApiService.callApi(apiObject);
+}
+
 export async function resetPasswordConfirmEmail(data) {
   const apiObject = {};
   apiObject.method = "POST";

@@ -1,7 +1,7 @@
 import axios from "axios";
 import apiConfig from "./apiConfig";
 import Cookies from "js-cookie";
-import * as constants from "../common/constants";
+import * as constants from "../util/constants";
 import * as authService from "./auth";
 
 export const callApi = async (apiObject) => {

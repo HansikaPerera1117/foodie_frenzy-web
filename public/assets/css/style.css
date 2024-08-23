@@ -5887,3 +5887,300 @@ form.reservation-form .nice-select ul.list {
     margin-right: 10px;
   }
 }
+
+/* login */
+
+/* Variables */
+.borderless-input {
+  border-top: none !important;
+  border-right: none !important;
+  border-left: none !important;
+  border-radius: 0 !important;
+}
+
+.loginAuth {
+  /* background-image: url(../../../../public/assets/images/blog/blog-1.jpg); */
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  overflow-x: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.loginAuth .btn-forgot {
+  font-weight: normal;
+  color: #5b5b5b;
+  cursor: pointer;
+}
+
+.loginAuth .btn-forgot:hover {
+  cursor: pointer;
+  color: #0e1317; /* Replace with the actual value of $c5 */
+}
+
+.loginAuth .text-sign-up {
+  font-weight: bold;
+  color: #0e1317; /* Replace with the actual value of $c5 */
+}
+
+.loginAuth .text-sign-up:hover {
+  cursor: pointer;
+  font-weight: bold;
+  color: #0e1317; /* Replace with the actual value of $c5 */
+}
+
+.loginAuth .forgot-card {
+  margin: 1rem;
+  max-width: 500px;
+}
+
+.loginAuth .forgot-card input {
+  border-top: none !important;
+  border-right: none !important;
+  border-left: none !important;
+  border-radius: 0 !important;
+}
+
+.loginAuth .forgot-card .borderless-input {
+  border-top: none !important;
+  border-right: none !important;
+  border-left: none !important;
+  border-radius: 0 !important;
+}
+
+.loginAuth .forgot-card h1 {
+  color: #323232;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.loginAuth .forgot-card p {
+  font-size: 16px;
+  color: #505050;
+  font-weight: 600;
+  line-height: 1.2;
+  font-style: normal;
+  margin-bottom: 30px;
+}
+
+.loginAuth .forgot-card .btn-signin {
+  padding: 10px 30px;
+  border-radius: 40px;
+  background-color: #0e1317; /* Replace with the actual value of $c5 */
+  border: #0e1317; /* Replace with the actual value of $c5 */
+}
+
+.loginAuth .forgot-card .upper-border {
+  margin-top: 1rem;
+  border-top: 1px rgba(182, 182, 182, 0.44) solid !important;
+}
+
+.signUp {
+  background-image: url(../../../../public/img/blog/1.jpg);
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  overflow-x: hidden;
+}
+
+.signUp .btn-forgot {
+  font-weight: normal;
+  color: #5b5b5b;
+  cursor: pointer;
+}
+
+.signUp .btn-forgot:hover {
+  cursor: pointer;
+  color: #0e1317; /* Replace with the actual value of $c5 */
+}
+
+.signUp .text-sign-up {
+  font-weight: bold;
+  color: #0e1317; /* Replace with the actual value of $c5 */
+}
+
+.signUp .text-sign-up:hover {
+  cursor: pointer;
+  font-weight: bold;
+  color: #0e1317; /* Replace with the actual value of $c5 */
+}
+
+.signUp .forgot-card {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: 1rem;
+  max-width: 450px;
+}
+
+.signUp .forgot-card input {
+  border-top: none !important;
+  border-right: none !important;
+  border-left: none !important;
+  border-radius: 0 !important;
+}
+
+.signUp .forgot-card .borderless-input {
+  border-top: none !important;
+  border-right: none !important;
+  border-left: none !important;
+  border-radius: 0 !important;
+}
+
+.signUp .forgot-card h1 {
+  color: #323232;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.signUp .forgot-card p {
+  font-size: 16px;
+  color: #505050;
+  font-weight: 600;
+  line-height: 1.2;
+  font-style: normal;
+  margin-bottom: 30px;
+}
+
+.signUp .forgot-card .btn-signin {
+  padding: 10px 30px;
+  border-radius: 40px;
+  background-color: #0e1317; /* Replace with the actual value of $c5 */
+  border: #0e1317; /* Replace with the actual value of $c5 */
+}
+
+.signUp .forgot-card .upper-border {
+  margin-top: 1rem;
+  border-top: 1px rgba(182, 182, 182, 0.44) solid !important;
+}
+
+.createAccount {
+  /* background-image: url(../../../../public/img/blog/2.jpg); */
+  background-attachment: fixed;
+  background-size: cover;
+  overflow-x: hidden;
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.createAccount .btn-create {
+  padding: 10px 30px;
+  border-radius: 40px;
+  background-color: #0e1317; /* Replace with the actual value of $c5 */
+  border: #0e1317; /* Replace with the actual value of $c5 */
+  font-weight: normal;
+  color: #ffffff !important;
+  cursor: pointer;
+  margin-bottom: 35px;
+}
+
+.createAccount .btn-create:hover {
+  cursor: pointer;
+  color: #d4d4d4 !important;
+}
+
+.createAccount .forgot-card {
+  margin: 1rem;
+  max-width: 600px;
+}
+
+.createAccount .forgot-card input {
+  border-top: none !important;
+  border-right: none !important;
+  border-left: none !important;
+  border-radius: 0 !important;
+  margin: 10px 0;
+}
+
+.createAccount .forgot-card h1 {
+  color: #323232;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.createAccount .forgot-card p {
+  font-size: 16px;
+  color: #505050;
+  font-weight: 600;
+  line-height: 1.2;
+  font-style: normal;
+  margin-bottom: 30px;
+}
+
+.createAccount .forgot-card .btn-continue {
+  border-radius: 40px;
+  background-color: #0e1317; /* Replace with the actual value of $c5 */
+  border: #0e1317; /* Replace with the actual value of $c5 */
+}
+
+.createAccount .forgot-card .upper-border {
+  margin-top: 2rem;
+  border-top: 1px rgba(182, 182, 182, 0.44) solid !important;
+}
+
+.createAccount .upload-image {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.createAccount .avatar-uploader {
+  width: 50%;
+}
+
+@media screen and (min-width: 426px) {
+  .createAccount .forgot-card {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+  }
+}
+
+/* Common Styles */
+.upper-border {
+  position: absolute;
+  bottom: 10px;
+  left: 15px;
+  right: 15px;
+  margin-top: 0 !important;
+}
+
+.forgot-card {
+  margin: 1rem !important;
+  height: auto !important;
+  display: flex;
+  align-self: center;
+}
+
+.btn-signin,
+.btn-continue {
+  margin-bottom: 50px;
+}
+
+.text-hint {
+  font-weight: bold;
+  color: #0e1317; /* Replace with the actual value of $c5 */
+}
+
+.text-hint:hover {
+  cursor: pointer;
+  font-weight: bold;
+  color: #0e1317; /* Replace with the actual value of $c5 */
+}

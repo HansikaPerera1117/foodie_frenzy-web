@@ -64,7 +64,7 @@ const Checkout = () => {
               <CheckoutForm />
             </div>
             <div className="col-lg-4">
-              <div className="order-summary">
+              <div className="order-summaryorder-summary">
                 <h3>Order Summary</h3>
                 <div className="order-items mt-3">
                   {CartData.map((item, index) => (
