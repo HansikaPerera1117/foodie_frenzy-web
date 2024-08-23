@@ -111,15 +111,17 @@ const Products = () => {
     productsFiltration(data, currentPage)
       .then((res) => {
         res.data?.records.map((product, index) => {
-          temp.push({
-            id: product?.id,
-            name: product?.name,
-            status: product?.status,
-            price: product?.fromPrice,
-            files: product?.productFile,
-            description: product?.description,
-            category: product?.category,
-          });
+          if (product?.status === 1) {
+            temp.push({
+              id: product?.id,
+              name: product?.name,
+              status: product?.status,
+              price: product?.fromPrice,
+              files: product?.productFile,
+              description: product?.description,
+              category: product?.category,
+            });
+          }
         });
         setProductList(temp);
         // setCurrentPage(res?.data?.currentPage);

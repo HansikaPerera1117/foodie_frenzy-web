@@ -2469,7 +2469,8 @@ button {
 .menu-grid-item-one {
   padding: 40px 45px;
   border-radius: 10px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
   -webkit-transition: all 0.3s ease-out 0s;
   transition: all 0.3s ease-out 0s;
 }

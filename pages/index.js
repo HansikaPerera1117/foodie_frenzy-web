@@ -176,7 +176,7 @@ const Index = () => {
                   Join us for an unforgettable dining experience.
                 </p>
                 <div className="hero-button wow fadeInUp" data-wow-delay=".9s">
-                  <Link legacyBehavior href="/menu-seafood">
+                  <Link legacyBehavior href="/menu">
                     <a className="main-btn btn-red">
                       order now
                       <i className="far fa-arrow-right" />
