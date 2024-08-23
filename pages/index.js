@@ -1,3 +1,5 @@
+"use client";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Slider from "react-slick";
 import { ReservationsFromLg12 } from "../src/components/ReservationsFrom";
@@ -6,12 +8,18 @@ import { testimonialSliderOne } from "../src/sliderProps";
 import MenuSliderOne from "../src/components/slider/MenuSliderOne";
 import TestimonialSliderThree from "../src/components/slider/TestimonialSliderThree";
 import Partners from "../src/components/Partners";
-import { useEffect, useState } from "react";
 import GalleryImages from "../src/components/slider/GalleryImages";
+import { getAllCategories } from "../src/service/categoriesService";
+import defaultCategoryImg from "../public/assets/images/default-category-img.png";
+
 const Index = () => {
   const [servicer, setServicer] = useState([]);
+  const [categories, setCategories] = useState([]);
+
+  // let dispatch = useDispatch();
 
   useEffect(() => {
+    loadAllCatagories();
     setServicer([
       {
         id: 1,
@@ -97,6 +105,44 @@ const Index = () => {
     ]);
   }, []);
 
+  const loadAllCatagories = () => {
+    let temp = [];
+    setCategories([]);
+    // popUploader(dispatch, true);
+    getAllCategories()
+      .then(async (resp) => {
+        resp?.data?.records.map((category, index) => {
+          if (category?.status === 1) {
+            temp.push({
+              id: category?.id,
+              // image:
+              //   category?.file && category.file.length > 0
+              //     ? category.file.map((img) => {
+              //         img?.originalPath;
+              //       })
+              //     : defaultCategoryImg,
+              image:
+                category?.file && category.file.length > 0
+                  ? category.file[0]?.originalPath // Ensure you're accessing the correct property
+                  : null,
+              name: category?.name,
+              description:
+                category?.description != null ? category?.description : "",
+              categories_status: category?.status,
+            });
+          }
+        });
+        await setCategories(temp);
+        console.log(temp);
+
+        // popUploader(dispatch, false);
+      })
+      .catch((err) => {
+        // popUploader(dispatch, false);
+        handleError(err);
+      });
+  };
+
   return (
     <Layout header={1} footer={1}>
       {/*=== Start Banner Section ===*/}
@@ -171,6 +217,50 @@ const Index = () => {
         </div>
       </section>
       {/*=== End Features Section ===*/}
+      {/*=== Start Category Section ===*/}
+      <section className="features-section pt-75 pb-75">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-xl-6 col-lg-12">
+              <div className="section-title text-center mb-40">
+                <span className="sub-title">Our Popular Food</span>
+                <h2>Best Category Foods Menu</h2>
+              </div>
+            </div>
+          </div>
+          <div className="row justify-content-center">
+            {categories.map((category) => {
+              return (
+                <div className="col-lg-4 col-md-6 col-sm-12" key={category?.id}>
+                  {console.log(category)}
+                  <div className="single-features-item-two animate-hover-icon wow fadeInDown mb-40">
+                    <div className="inner-content  d-flex flex-column align-items-center">
+                      <div className="icon">
+                        <img
+                          src={
+                            category.image
+                              ? category.image
+                              : defaultCategoryImg?.src
+                          }
+                          alt="category image"
+                        />
+                      </div>
+                      <div className="text text-center">
+                        <h3 className="title">{category?.name}</h3>
+                        <p>{category?.description}</p>
+                        <Link legacyBehavior href="/menu">
+                          <a className="main-btn btn-black">Explore</a>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+      {/*=== End Category Section ===*/}
       {/*=== Start About Section ===*/}
       <section className="about-section pt-130">
         <div className="container">
