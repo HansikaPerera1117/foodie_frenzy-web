@@ -8,6 +8,7 @@ import Layout from "../src/layout/Layout";
 import { getAllCategories } from "../src/service/categoriesService";
 import RangeSlider from "../src/components/PriceRange";
 import debounce from "lodash.debounce";
+import { productsFiltration } from "../src/service/productService";
 
 const Products = () => {
   const [categories, setCategories] = useState([]);
@@ -25,436 +26,8 @@ const Products = () => {
 
   useEffect(() => {
     loadAllCatagories();
+    debounceHandleProductFiltration(searchProductName, searchCategory, range);
     niceSelect();
-
-    setProductList([
-      {
-        id: 1,
-        product: (
-          <div className="col-xxl-4 col-md-6 col-sm-6">
-            <div className="single-product-item text-center wow fadeInUp mb-30">
-              <div className="product-thumbnail">
-                <img
-                  src="assets/images/product/product-1.png"
-                  alt="Product Image"
-                />
-              </div>
-              <div className="product-info">
-                <ul className="ratings">
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                </ul>
-                <h3 className="title">
-                  <Link legacyBehavior href="product-details">
-                    Delicious Vegetables Italian Pizza
-                  </Link>
-                </h3>
-                <span className="price">
-                  <span className="curreny">$</span>253.59
-                </span>
-              </div>
-            </div>
-          </div>
-        ),
-      },
-      {
-        id: 2,
-        product: (
-          <div className="col-xxl-4 col-md-6 col-sm-6">
-            <div className="single-product-item text-center wow fadeInUp mb-30">
-              <div className="product-thumbnail">
-                <img
-                  src="assets/images/product/product-2.png"
-                  alt="Product Image"
-                />
-                <span className="discount">25% Off</span>
-              </div>
-              <div className="product-info">
-                <ul className="ratings">
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                </ul>
-                <h3 className="title">
-                  <Link legacyBehavior href="product-details">
-                    Cheese Burger Onion Tomato Lettuce
-                  </Link>
-                </h3>
-                <span className="price">
-                  <span className="curreny">$</span>152.53
-                </span>
-              </div>
-            </div>
-          </div>
-        ),
-      },
-      {
-        id: 3,
-        product: (
-          <div className="col-xxl-4 col-md-6 col-sm-6">
-            <div className="single-product-item text-center wow fadeInUp mb-30">
-              <div className="product-thumbnail">
-                <img
-                  src="assets/images/product/product-3.png"
-                  alt="Product Image"
-                />
-              </div>
-              <div className="product-info">
-                <ul className="ratings">
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                </ul>
-                <h3 className="title">
-                  <Link legacyBehavior href="product-details">
-                    Board Pita Chicken Ingredients
-                  </Link>
-                </h3>
-                <span className="price">
-                  <span className="curreny">$</span>85.59
-                </span>
-              </div>
-            </div>
-          </div>
-        ),
-      },
-      {
-        id: 4,
-        product: (
-          <div className="col-xxl-4 col-md-6 col-sm-6">
-            <div className="single-product-item text-center wow fadeInUp mb-30">
-              <div className="product-thumbnail">
-                <img
-                  src="assets/images/product/product-4.png"
-                  alt="Product Image"
-                />
-                <span className="discount">25% Off</span>
-              </div>
-              <div className="product-info">
-                <ul className="ratings">
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                </ul>
-                <h3 className="title">
-                  <Link legacyBehavior href="product-details">
-                    Baked Chicken Wings Asian Tomatoes
-                  </Link>
-                </h3>
-                <span className="price">
-                  <span className="curreny">$</span>240.59
-                </span>
-              </div>
-            </div>
-          </div>
-        ),
-      },
-      {
-        id: 5,
-        product: (
-          <div className="col-xxl-4 col-md-6 col-sm-6">
-            <div className="single-product-item text-center wow fadeInUp mb-30">
-              <div className="product-thumbnail">
-                <img
-                  src="assets/images/product/product-5.png"
-                  alt="Product Image"
-                />
-              </div>
-              <div className="product-info">
-                <ul className="ratings">
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                </ul>
-                <h3 className="title">
-                  <Link legacyBehavior href="product-details">
-                    Red Alaskan King Sea Crab
-                  </Link>
-                </h3>
-                <span className="price">
-                  <span className="curreny">$</span>152.53
-                </span>
-              </div>
-            </div>
-          </div>
-        ),
-      },
-      {
-        id: 6,
-        product: (
-          <div className="col-xxl-4 col-md-6 col-sm-6">
-            <div className="single-product-item text-center wow fadeInUp mb-30">
-              <div className="product-thumbnail">
-                <img
-                  src="assets/images/product/product-6.png"
-                  alt="Product Image"
-                />
-                <span className="discount">Hot Deal</span>
-              </div>
-              <div className="product-info">
-                <ul className="ratings">
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                </ul>
-                <h3 className="title">
-                  <Link legacyBehavior href="product-details">
-                    Pizza With Seafood Italian Foods
-                  </Link>
-                </h3>
-                <span className="price">
-                  <span className="curreny">$</span>320.59
-                </span>
-              </div>
-            </div>
-          </div>
-        ),
-      },
-      {
-        id: 7,
-        product: (
-          <div className="col-xxl-4 col-md-6 col-sm-6">
-            <div className="single-product-item text-center wow fadeInUp mb-30">
-              <div className="product-thumbnail">
-                <img
-                  src="assets/images/product/product-7.png"
-                  alt="Product Image"
-                />
-                <span className="discount">25% Off</span>
-              </div>
-              <div className="product-info">
-                <ul className="ratings">
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                </ul>
-                <h3 className="title">
-                  <Link legacyBehavior href="product-details">
-                    Footlong Submarine Sandwich
-                  </Link>
-                </h3>
-                <span className="price">
-                  <span className="curreny">$</span>440.59
-                </span>
-              </div>
-            </div>
-          </div>
-        ),
-      },
-      {
-        id: 8,
-        product: (
-          <div className="col-xxl-4 col-md-6 col-sm-6">
-            <div className="single-product-item text-center wow fadeInUp mb-30">
-              <div className="product-thumbnail">
-                <img
-                  src="assets/images/product/product-8.png"
-                  alt="Product Image"
-                />
-              </div>
-              <div className="product-info">
-                <ul className="ratings">
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                </ul>
-                <h3 className="title">
-                  <Link legacyBehavior href="product-details">
-                    Fresh Crab seafood Sauce Crab
-                  </Link>
-                </h3>
-                <span className="price">
-                  <span className="curreny">$</span>352.53
-                </span>
-              </div>
-            </div>
-          </div>
-        ),
-      },
-      {
-        id: 9,
-        product: (
-          <div className="col-xxl-4 col-md-6 col-sm-6">
-            <div className="single-product-item text-center wow fadeInUp mb-30">
-              <div className="product-thumbnail">
-                <img
-                  src="assets/images/product/product-9.png"
-                  alt="Product Image"
-                />
-                <span className="discount">25% Off</span>
-              </div>
-              <div className="product-info">
-                <ul className="ratings">
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                </ul>
-                <h3 className="title">
-                  <Link legacyBehavior href="product-details">
-                    Chicken Biryani Served Terracotta
-                  </Link>
-                </h3>
-                <span className="price">
-                  <span className="curreny">$</span>530.59
-                </span>
-              </div>
-            </div>
-          </div>
-        ),
-      },
-      {
-        id: 10,
-        product: (
-          <div className="col-xxl-4 col-md-6 col-sm-6">
-            <div className="single-product-item text-center wow fadeInUp mb-30">
-              <div className="product-thumbnail">
-                <img
-                  src="assets/images/product/product-6.png"
-                  alt="Product Image"
-                />
-                <span className="discount">Hot Deal</span>
-              </div>
-              <div className="product-info">
-                <ul className="ratings">
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                  <li>
-                    <i className="fas fa-star" />
-                  </li>
-                </ul>
-                <h3 className="title">
-                  <Link legacyBehavior href="product-details">
-                    Pizza With Seafood Italian Foods
-                  </Link>
-                </h3>
-                <span className="price">
-                  <span className="curreny">$</span>320.59
-                </span>
-              </div>
-            </div>
-          </div>
-        ),
-      },
-    ]);
   }, []);
 
   const loadAllCatagories = () => {
@@ -494,7 +67,7 @@ const Products = () => {
         handleError(err);
       });
   };
-  
+
   const handleChangePrice = (value) => {
     const sanitizedValue = value.map((v) => (isNaN(v) ? 0 : v));
     setRange(sanitizedValue);
@@ -593,7 +166,7 @@ const Products = () => {
                         name="search"
                         required=""
                         onChange={(e) => {
-                          setSearchCategory(e.target.value);
+                          setSearchProductName(e.target.value);
                           debounceHandleProductFiltration(
                             e.target.value,
                             searchCategory,
@@ -633,7 +206,7 @@ const Products = () => {
                   <h4 className="widget-title">Price</h4>
                   <RangeSlider
                     min={0}
-                    max={1000}
+                    max={10000}
                     onChange={({ min, max }) =>
                       console.log(`min = ${min}, max = ${max}`)
                     }
@@ -757,8 +330,71 @@ const Products = () => {
             <div className="col-lg-9">
               <div className="products-wrapper">
                 <div className="row">
-                  {productList.map((prd) => {
-                    return prd?.product;
+                  {productList.map((product) => {
+                    return (
+                      <div
+                        className="col-xxl-4 col-md-6 col-sm-6"
+                        key={product?.id}
+                      >
+                        {console.log(product)}
+                        <div className="single-product-item text-center wow fadeInUp mb-30">
+                          <div className="product-thumbnail">
+                            {product?.files && product.files.length > 0 ? (
+                              product.files.map((img, index) => {
+                                if (img?.isDeafult) {
+                                  return (
+                                    <img
+                                      src={img?.originalPath}
+                                      alt={product.name}
+                                      className="rounded"
+                                      onError={(e) =>
+                                        (e.target.src =
+                                          "https://i.ibb.co/qpB9ZCZ/placeholder.png")
+                                      }
+                                    />
+                                  );
+                                }
+                              })
+                            ) : (
+                              <img
+                                src="https://i.ibb.co/qpB9ZCZ/placeholder.png"
+                                className="rounded"
+                                alt="placeholder"
+                              />
+                            )}
+                          </div>
+                          <div className="product-info">
+                            <ul className="ratings mt-4">
+                              <li>
+                                <i className="fas fa-star" />
+                              </li>
+                              <li>
+                                <i className="fas fa-star" />
+                              </li>
+                              <li>
+                                <i className="fas fa-star" />
+                              </li>
+                              <li>
+                                <i className="fas fa-star" />
+                              </li>
+                              <li>
+                                <i className="fas fa-star" />
+                              </li>
+                            </ul>
+                            <span>{product?.category?.name}</span>
+                            <h3 className="title">
+                              <a legacyBehavior href={"/product-details"}>
+                                {product?.name}
+                              </a>
+                            </h3>
+                            <span className="price">
+                              <span className="curreny">LKR</span>
+                              {product?.price}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    );
                   })}
                 </div>
                 <div className="row">
