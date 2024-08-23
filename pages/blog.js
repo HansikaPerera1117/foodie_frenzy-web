@@ -3,67 +3,52 @@ import PageBanner from "../src/components/PageBanner";
 import Partners from "../src/components/Partners";
 import Layout from "../src/layout/Layout";
 import { useEffect, useState } from "react";
+import { getAllCategories } from "../src/service/categoriesService";
 const BlogStandard = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     document.title = "Blogs | Foodie Frenzy Restaurant";
+    loadAllCatagories();
   }, []);
 
-  useEffect(() => {
-    setCategories([
-      {
-        id: 1,
-        list: (
-          <li>
-            <a href="#">
-              Hamburger<span className="number">(05)</span>
-            </a>
-          </li>
-        ),
-      },
-      {
-        id: 2,
-        list: (
-          <li>
-            <a href="#">
-              Italian Pizza<span className="number">(07)</span>
-            </a>
-          </li>
-        ),
-      },
-      {
-        id: 3,
-        list: (
-          <li>
-            <a href="#">
-              Vegetable Soup<span className="number">(03)</span>
-            </a>
-          </li>
-        ),
-      },
-      {
-        id: 4,
-        list: (
-          <li>
-            <a href="#">
-              Seafoods<span className="number">(04)</span>
-            </a>
-          </li>
-        ),
-      },
-      {
-        id: 5,
-        list: (
-          <li>
-            <a href="#">
-              Sandwich<span className="number">(09)</span>
-            </a>
-          </li>
-        ),
-      },
-    ]);
-  }, []);
+  const loadAllCatagories = () => {
+    let temp = [];
+    setCategories([]);
+    // popUploader(dispatch, true);
+    getAllCategories()
+      .then(async (resp) => {
+        resp?.data?.records.map((category, index) => {
+          if (category?.status === 1) {
+            temp.push({
+              id: category?.id,
+              // image:
+              //   category?.file && category.file.length > 0
+              //     ? category.file.map((img) => {
+              //         img?.originalPath;
+              //       })
+              //     : defaultCategoryImg,
+              image:
+                category?.file && category.file.length > 0
+                  ? category.file[0]?.originalPath // Ensure you're accessing the correct property
+                  : null,
+              name: category?.name,
+              description:
+                category?.description != null ? category?.description : "",
+              categories_status: category?.status,
+            });
+          }
+        });
+        await setCategories(temp);
+        console.log(temp);
+
+        // popUploader(dispatch, false);
+      })
+      .catch((err) => {
+        // popUploader(dispatch, false);
+        handleError(err);
+      });
+  };
 
   return (
     <Layout>
@@ -291,7 +276,11 @@ const BlogStandard = () => {
                   <h4 className="widget-title">Category</h4>
                   <ul className="category-nav">
                     {categories.map((cat) => {
-                      return cat?.list;
+                      return (
+                        <li>
+                          <a>{cat?.name}</a>
+                        </li>
+                      );
                     })}
                   </ul>
                 </div>
