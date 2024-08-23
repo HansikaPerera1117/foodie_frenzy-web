@@ -9,6 +9,10 @@ const About = () => {
   const [servicer, setServicer] = useState([]);
 
   useEffect(() => {
+    document.title = "About Us | Foodie Frenzy Restaurant";
+  }, []);
+
+  useEffect(() => {
     setServicer([
       {
         id: 1,

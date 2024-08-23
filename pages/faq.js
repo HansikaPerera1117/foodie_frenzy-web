@@ -4,7 +4,12 @@ import Partners from "../src/components/Partners";
 import QichenAccordion from "../src/components/QichenAccordion";
 import ReservationsFrom from "../src/components/ReservationsFrom";
 import Layout from "../src/layout/Layout";
+import { useEffect } from "react";
 const FAQ = () => {
+  useEffect(() => {
+    document.title = "FAQ | Foodie Frenzy Restaurant";
+  }, []);
+
   return (
     <Layout>
       <PageBanner

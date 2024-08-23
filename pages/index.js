@@ -13,6 +13,10 @@ import { getAllCategories } from "../src/service/categoriesService";
 import defaultCategoryImg from "../public/assets/images/default-category-img.png";
 
 const Index = () => {
+  useEffect(() => {
+    document.title = "Home | Foodie Frenzy Restaurant";
+  }, []);
+
   const [servicer, setServicer] = useState([]);
   const [categories, setCategories] = useState([]);
 

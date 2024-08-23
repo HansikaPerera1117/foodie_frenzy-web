@@ -7,6 +7,10 @@ import GalleryImages from "../src/components/slider/GalleryImages";
 import React, { useEffect, useState } from "react";
 import { getAllProducts } from "../src/service/productService";
 const MenuSeaFood = () => {
+  useEffect(() => {
+    document.title = "Our Menu | Foodie Frenzy Restaurant";
+  }, []);
+
   const [productList, setProductList] = useState([]);
 
   useEffect(() => {

@@ -25,6 +25,10 @@ const Products = () => {
   const [totalRecodes, setTotalRecodes] = useState(0);
 
   useEffect(() => {
+    document.title = "Shop | Foodie Frenzy Restaurant";
+  }, []);
+
+  useEffect(() => {
     loadAllCatagories();
     debounceHandleProductFiltration(searchProductName, searchCategory, range);
     niceSelect();

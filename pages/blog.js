@@ -7,6 +7,10 @@ const BlogStandard = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
+    document.title = "Blogs | Foodie Frenzy Restaurant";
+  }, []);
+
+  useEffect(() => {
     setCategories([
       {
         id: 1,

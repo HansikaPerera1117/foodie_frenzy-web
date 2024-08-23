@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 
 // Import your components and data
@@ -15,6 +15,9 @@ export const metadata = {
 };
 
 const Checkout = () => {
+  useEffect(() => {
+    document.title = "Checkout | Foodie Frenzy Restaurant";
+  }, []);
   const CartData = [
     {
       id: 1,

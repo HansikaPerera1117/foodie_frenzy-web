@@ -1,7 +1,12 @@
+import { useEffect } from "react";
 import PageBanner from "../src/components/PageBanner";
 import Partners from "../src/components/Partners";
 import Layout from "../src/layout/Layout";
 const Contact = () => {
+  useEffect(() => {
+    document.title = "Contact Us | Foodie Frenzy Restaurant";
+  }, []);
+
   return (
     <Layout>
       <PageBanner

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Card,
   CardBody,
@@ -25,6 +25,10 @@ import { useDispatch } from "react-redux";
 import { createAccount } from "../src/service/auth";
 
 const Page = () => {
+  useEffect(() => {
+    document.title = "Sign In | Foodie Frenzy Restaurant";
+  }, []);
+
   const router = useRouter();
   //  const dispatch = useDispatch();
 

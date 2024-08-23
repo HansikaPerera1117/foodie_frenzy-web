@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Layout from "../src/layout/Layout";
 import PageBanner from "../src/components/PageBanner";
@@ -23,6 +23,10 @@ const sampleCartItems = [
 
 const CartPage = () => {
   const [cartItems, setCartItems] = useState(sampleCartItems);
+
+  useEffect(() => {
+    document.title = "Cart | Foodie Frenzy Restaurant";
+  }, []);
 
   const handleQuantityChange = (itemId, quantity) => {
     setCartItems((prevItems) =>
@@ -66,7 +70,9 @@ const CartPage = () => {
                 {" "}
                 <img src={item.image} alt="product Image" />
               </div>
-              <div className="col-lg-5 d-flex align-items-center">{item.name}</div>
+              <div className="col-lg-5 d-flex align-items-center">
+                {item.name}
+              </div>
               <div className="col-lg-3 d-flex align-items-center">
                 <input
                   type="number"
@@ -78,7 +84,9 @@ const CartPage = () => {
                   min="1"
                 />
               </div>
-              <div className="col-lg-1 d-flex align-items-center">${item.price.toFixed(2)}</div>
+              <div className="col-lg-1 d-flex align-items-center">
+                ${item.price.toFixed(2)}
+              </div>
               <div className="col-lg-1 d-flex align-items-center">
                 ${(item.price * item.quantity).toFixed(2)}
               </div>

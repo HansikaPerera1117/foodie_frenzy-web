@@ -1,8 +1,13 @@
+import { useEffect } from "react";
 import PageBanner from "../src/components/PageBanner";
 import Partners from "../src/components/Partners";
 import ReservationsFrom from "../src/components/ReservationsFrom";
 import Layout from "../src/layout/Layout";
 const Reservations = () => {
+  useEffect(() => {
+    document.title = "Reservation | Foodie Frenzy Restaurant";
+  }, []);
+
   return (
     <Layout>
       <PageBanner

@@ -1,6 +1,6 @@
 "use client"; // This directive marks the file as a Client Component
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import * as constant from "../src/util/constants";
 import { loginService } from "../src/service/auth";
@@ -26,6 +26,10 @@ const SignInPage = () => {
   const [temp, setTemp] = useState({ email: "", password: "" });
   const router = useRouter();
   // const dispatch = useDispatch();
+
+  useEffect(() => {
+    document.title = "LogIn | Foodie Frenzy Restaurant";
+  }, []);
 
   const handleInputChange = (fieldName, value) => {
     setTemp((prevState) => ({
