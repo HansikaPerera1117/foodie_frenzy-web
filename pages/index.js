@@ -461,7 +461,7 @@ const Index = () => {
               {/*=== Reservation Image Box ===*/}
               <div className="reservation-image-box wow fadeInLeft mb-50 mb-20">
                 <img
-                  src="assets/images/contact/contact-1.jpg"
+                  src="assets/images/contact/contact-8.jpg"
                   alt="Reservation Image"
                 />
               </div>
