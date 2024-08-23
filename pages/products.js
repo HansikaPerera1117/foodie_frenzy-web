@@ -1,78 +1,32 @@
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import niceSelect from "react-nice-select";
 import PageBanner from "../src/components/PageBanner";
 import Partners from "../src/components/Partners";
 import PriceRange from "../src/components/PriceRange";
 import Layout from "../src/layout/Layout";
+import { getAllCategories } from "../src/service/categoriesService";
+import RangeSlider from "../src/components/PriceRange";
+import debounce from "lodash.debounce";
 
 const Products = () => {
   const [categories, setCategories] = useState([]);
   const [productList, setProductList] = useState([]);
+  const [searchProductName, setSearchProductName] = useState("");
+  const [searchCategory, setSearchCategory] = useState("");
+  const [range, setRange] = useState([0, 0]);
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(0);
+
+  //-------------------------- pagination --------------------------
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalRecodes, setTotalRecodes] = useState(0);
+
   useEffect(() => {
+    loadAllCatagories();
     niceSelect();
-    setCategories([
-      {
-        id: 1,
-        list: (
-          <li>
-            <a href="#">
-              Vegetable Hamburger
-              <span className="dot-border" />
-              <span className="number">08</span>
-            </a>
-          </li>
-        ),
-      },
-      {
-        id: 2,
-        list: (
-          <li>
-            <a href="#">
-              Italian Pizza
-              <span className="dot-border" />
-              <span className="number">03</span>
-            </a>
-          </li>
-        ),
-      },
-      {
-        id: 3,
-        list: (
-          <li>
-            <a href="#">
-              Sandwich
-              <span className="dot-border" />
-              <span className="number">15</span>
-            </a>
-          </li>
-        ),
-      },
-      {
-        id: 4,
-        list: (
-          <li>
-            <a href="#">
-              Chicken Roll
-              <span className="dot-border" />
-              <span className="number">12</span>
-            </a>
-          </li>
-        ),
-      },
-      {
-        id: 5,
-        list: (
-          <li>
-            <a href="#">
-              Soup
-              <span className="dot-border" />
-              <span className="number">12</span>
-            </a>
-          </li>
-        ),
-      },
-    ]);
+
     setProductList([
       {
         id: 1,
@@ -503,6 +457,113 @@ const Products = () => {
     ]);
   }, []);
 
+  const loadAllCatagories = () => {
+    let temp = [];
+    setCategories([]);
+    // popUploader(dispatch, true);
+    getAllCategories()
+      .then(async (resp) => {
+        resp?.data?.records.map((category, index) => {
+          if (category?.status === 1) {
+            temp.push({
+              id: category?.id,
+              // image:
+              //   category?.file && category.file.length > 0
+              //     ? category.file.map((img) => {
+              //         img?.originalPath;
+              //       })
+              //     : defaultCategoryImg,
+              image:
+                category?.file && category.file.length > 0
+                  ? category.file[0]?.originalPath // Ensure you're accessing the correct property
+                  : null,
+              name: category?.name,
+              description:
+                category?.description != null ? category?.description : "",
+              categories_status: category?.status,
+            });
+          }
+        });
+        await setCategories(temp);
+        console.log(temp);
+
+        // popUploader(dispatch, false);
+      })
+      .catch((err) => {
+        // popUploader(dispatch, false);
+        handleError(err);
+      });
+  };
+  
+  const handleChangePrice = (value) => {
+    const sanitizedValue = value.map((v) => (isNaN(v) ? 0 : v));
+    setRange(sanitizedValue);
+    setMinPrice(sanitizedValue[0]);
+    setMaxPrice(sanitizedValue[1]);
+    debounceHandleProductFiltration(
+      searchProductName,
+      searchCategory,
+      sanitizedValue
+    );
+  };
+
+  const handleProductFiltration = (
+    productName,
+    category,
+    range,
+    currentPage
+  ) => {
+    let max = "";
+    let min = "";
+
+    if (range[0] === 0 && range[1] === 0) {
+      max = "";
+      min = "";
+    } else {
+      min = range[0];
+      max = range[1];
+    }
+
+    setProductList([]);
+    // popUploader(dispatch, true);
+
+    let data = {
+      name: productName,
+      category: category === undefined ? "" : category === null ? "" : category,
+      status: "",
+      maxPrice: max,
+      minPrice: min,
+    };
+    let temp = [];
+    productsFiltration(data, currentPage)
+      .then((res) => {
+        res.data?.records.map((product, index) => {
+          temp.push({
+            id: product?.id,
+            name: product?.name,
+            status: product?.status,
+            price: product?.fromPrice,
+            files: product?.productFile,
+            description: product?.description,
+            category: product?.category,
+          });
+        });
+        setProductList(temp);
+        // setCurrentPage(res?.data?.currentPage);
+        // setTotalRecodes(res?.data?.totalCount);
+        // popUploader(dispatch, false);
+      })
+      .catch((c) => {
+        // popUploader(dispatch, false);
+        handleError(c);
+      });
+  };
+
+  const debounceHandleProductFiltration = React.useCallback(
+    debounce(handleProductFiltration, 500),
+    []
+  );
+
   return (
     <Layout>
       <PageBanner
@@ -520,7 +581,7 @@ const Products = () => {
                 {/*=== Product Search Widget ===*/}
                 <div className="sidebar-widget product-search-widget mb-45 wow fadeInUp">
                   <h4 className="widget-title">Search</h4>
-                  <form onSubmit={(e) => e.preventDefault()}>
+                  <form>
                     <div className="form_group">
                       <label>
                         <i className="fas fa-search" />
@@ -531,6 +592,14 @@ const Products = () => {
                         placeholder="Search"
                         name="search"
                         required=""
+                        onChange={(e) => {
+                          setSearchCategory(e.target.value);
+                          debounceHandleProductFiltration(
+                            e.target.value,
+                            searchCategory,
+                            range
+                          );
+                        }}
                       />
                     </div>
                   </form>
@@ -540,14 +609,44 @@ const Products = () => {
                   <h4 className="widget-title">Categories</h4>
                   <ul className="category-nav">
                     {categories.map((cat) => {
-                      return cat?.list;
+                      return (
+                        <li>
+                          <a
+                            onClick={(e) => {
+                              setSearchCategory(cat?.id);
+                              debounceHandleProductFiltration(
+                                searchProductName,
+                                cat?.id,
+                                range
+                              );
+                            }}
+                          >
+                            {cat?.name}
+                          </a>
+                        </li>
+                      );
                     })}
                   </ul>
                 </div>
                 {/*=== Price Range Widget ===*/}
                 <div className="sidebar-widget price-range-widget mb-35 wow fadeInUp">
                   <h4 className="widget-title">Price</h4>
-                  <PriceRange />
+                  <RangeSlider
+                    min={0}
+                    max={1000}
+                    onChange={({ min, max }) =>
+                      console.log(`min = ${min}, max = ${max}`)
+                    }
+                    getValues={(values) => {
+                      console.log(values);
+                      setMinPrice(parseFloat(values?.minValue));
+                      setMaxPrice(parseFloat(values?.maxValue));
+                      handleChangePrice([
+                        parseFloat(values?.minValue),
+                        parseFloat(values?.maxValue),
+                      ]);
+                    }}
+                  />
                 </div>
                 {/*=== Recent Product Widget ===*/}
                 <div className="sidebar-widget recent-products-widget mb-45 wow fadeInUp">

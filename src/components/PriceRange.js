@@ -8,7 +8,7 @@ import React, {
   useState,
 } from "react";
 
-const RangeSlider = ({ min, max, onChange }) => {
+const RangeSlider = ({ min, max, onChange, getValues }) => {
   const [minVal, setMinVal] = useState(min);
   const [maxVal, setMaxVal] = useState(max);
   const minValRef = useRef(null);
@@ -48,8 +48,9 @@ const RangeSlider = ({ min, max, onChange }) => {
 
   // Get min and max values when their state changes
   useEffect(() => {
-    onChange({ min: minVal, max: maxVal });
-  }, [minVal, maxVal, onChange]);
+    // onChange({ min: minVal, max: maxVal });
+    getValues({ minValue: minVal, maxValue: maxVal });
+  }, [minVal, maxVal]);
 
   return (
     <Fragment>
@@ -91,7 +92,7 @@ const RangeSlider = ({ min, max, onChange }) => {
           <p className="amount">
             Price{" "}
             <span>
-              ${minVal} - ${maxVal}
+              LKR {minVal} - LKR {maxVal}
             </span>
           </p>
         </div>
@@ -106,13 +107,4 @@ RangeSlider.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
-const PriceRange = () => {
-  return (
-    <RangeSlider
-      min={0}
-      max={1000}
-      onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`)}
-    />
-  );
-};
-export default PriceRange;
+export default RangeSlider;
