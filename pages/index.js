@@ -19,6 +19,7 @@ const Index = () => {
   // let dispatch = useDispatch();
 
   useEffect(() => {
+    document.title = "Gallery | Foodie Frenzy Restaurant";
     loadAllCatagories();
     setServicer([
       {
@@ -663,7 +664,7 @@ const Index = () => {
                   doloremque laudantium totam aperiam eaque queab inventore
                   veritatis et quasi architecto beatae vitae sunt explicabo.
                 </p>
-                <a href="#" className="main-btn btn-red">
+                <a href="/reservations" className="main-btn btn-red">
                   reservations
                   <i className="far fa-arrow-right" />
                 </a>

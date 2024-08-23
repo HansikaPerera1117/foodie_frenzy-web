@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 import PageBanner from "../src/components/PageBanner";
 import Partners from "../src/components/Partners";
 import Layout from "../src/layout/Layout";
+import { useEffect } from "react";
 const GalleryIsotope = dynamic(
   () => import("../src/components/GalleryIsotope"),
   {
@@ -9,6 +10,10 @@ const GalleryIsotope = dynamic(
   }
 );
 const Gallery = () => {
+  useEffect(() => {
+    document.title = "Gallery | Foodie Frenzy Restaurant";
+  }, []);
+
   return (
     <Layout>
       <PageBanner
