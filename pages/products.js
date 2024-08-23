@@ -238,63 +238,60 @@ const Products = () => {
                         className="col-xxl-4 col-md-6 col-sm-6"
                         key={product?.id}
                       >
-                        {console.log(product)}
-                        <div className="single-product-item text-center wow fadeInUp mb-30">
-                          <div className="product-thumbnail">
-                            {product?.files && product.files.length > 0 ? (
-                              product.files.map((img, index) => {
-                                if (img?.isDeafult) {
-                                  return (
-                                    <img
-                                      src={img?.originalPath}
-                                      alt={product.name}
-                                      className="rounded"
-                                      onError={(e) =>
-                                        (e.target.src =
-                                          "https://i.ibb.co/qpB9ZCZ/placeholder.png")
-                                      }
-                                    />
-                                  );
-                                }
-                              })
-                            ) : (
-                              <img
-                                src="https://i.ibb.co/qpB9ZCZ/placeholder.png"
-                                className="rounded"
-                                alt="placeholder"
-                              />
-                            )}
+                        <a legacyBehavior href={"/product-details"}>
+                          <div className="single-product-item text-center wow fadeInUp mb-30">
+                            <div className="product-thumbnail">
+                              {product?.files && product.files.length > 0 ? (
+                                product.files.map((img, index) => {
+                                  if (img?.isDeafult) {
+                                    return (
+                                      <img
+                                        src={img?.originalPath}
+                                        alt={product.name}
+                                        className="rounded"
+                                        onError={(e) =>
+                                          (e.target.src =
+                                            "https://i.ibb.co/qpB9ZCZ/placeholder.png")
+                                        }
+                                      />
+                                    );
+                                  }
+                                })
+                              ) : (
+                                <img
+                                  src="https://i.ibb.co/qpB9ZCZ/placeholder.png"
+                                  className="rounded"
+                                  alt="placeholder"
+                                />
+                              )}
+                            </div>
+                            <div className="product-info">
+                              <ul className="ratings mt-4">
+                                <li>
+                                  <i className="fas fa-star" />
+                                </li>
+                                <li>
+                                  <i className="fas fa-star" />
+                                </li>
+                                <li>
+                                  <i className="fas fa-star" />
+                                </li>
+                                <li>
+                                  <i className="fas fa-star" />
+                                </li>
+                                <li>
+                                  <i className="fas fa-star" />
+                                </li>
+                              </ul>
+                              <span>{product?.category?.name}</span>
+                              <h3 className="title">{product?.name}</h3>
+                              <span className="price">
+                                <span className="curreny">LKR</span>
+                                {product?.price}
+                              </span>
+                            </div>
                           </div>
-                          <div className="product-info">
-                            <ul className="ratings mt-4">
-                              <li>
-                                <i className="fas fa-star" />
-                              </li>
-                              <li>
-                                <i className="fas fa-star" />
-                              </li>
-                              <li>
-                                <i className="fas fa-star" />
-                              </li>
-                              <li>
-                                <i className="fas fa-star" />
-                              </li>
-                              <li>
-                                <i className="fas fa-star" />
-                              </li>
-                            </ul>
-                            <span>{product?.category?.name}</span>
-                            <h3 className="title">
-                              <a legacyBehavior href={"/product-details"}>
-                                {product?.name}
-                              </a>
-                            </h3>
-                            <span className="price">
-                              <span className="curreny">LKR</span>
-                              {product?.price}
-                            </span>
-                          </div>
-                        </div>
+                        </a>
                       </div>
                     );
                   })}
