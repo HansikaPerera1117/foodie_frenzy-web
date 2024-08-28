@@ -4,6 +4,7 @@ import Partners from "../src/components/Partners";
 import Layout from "../src/layout/Layout";
 import { useEffect, useState } from "react";
 import { getAllCategories } from "../src/service/categoriesService";
+import { handleError } from "../src/util/CommonFun";
 const BlogStandard = () => {
   const [categories, setCategories] = useState([]);
 

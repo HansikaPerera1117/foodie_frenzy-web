@@ -6,6 +6,7 @@ import BackToTop from "./BackToTop";
 import Footer from "./footer/Index";
 import Header from "./headers/Index";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import PreLoader from "./PreLoader";
 
 const Layout = ({ header, children, footer }) => {

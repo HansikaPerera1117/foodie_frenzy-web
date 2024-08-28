@@ -6,6 +6,7 @@ import Layout from "../src/layout/Layout";
 import GalleryImages from "../src/components/slider/GalleryImages";
 import React, { useEffect, useState } from "react";
 import { getAllProducts } from "../src/service/productService";
+import { handleError } from "../src/util/CommonFun";
 const MenuSeaFood = () => {
   useEffect(() => {
     document.title = "Our Menu | Foodie Frenzy Restaurant";

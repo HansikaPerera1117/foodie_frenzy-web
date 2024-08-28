@@ -132,3 +132,9 @@ export const formatPrice = (value) => {
 export const popUploader = (dispatch, val) => {
   dispatch({ type: "IS_LOADER", value: { isLoader: val, type: 0 } });
 };
+
+export const handleError = (c) => {
+  c?.response?.data?.message
+    ? customToastMsg(c?.response?.data?.message[0], 0)
+    : customToastMsg("Sorry! Try again later", 0);
+};

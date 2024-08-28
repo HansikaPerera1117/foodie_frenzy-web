@@ -11,6 +11,7 @@ import Partners from "../src/components/Partners";
 import GalleryImages from "../src/components/slider/GalleryImages";
 import { getAllCategories } from "../src/service/categoriesService";
 import defaultCategoryImg from "../public/assets/images/default-category-img.png";
+import { handleError } from "../src/util/CommonFun";
 
 const Index = () => {
   useEffect(() => {

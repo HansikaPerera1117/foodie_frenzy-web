@@ -2,6 +2,7 @@ import { Fragment, useEffect, useRef, useState } from "react";
 import { getAllGalleryImages } from "../service/galleryService";
 import "yet-another-react-lightbox/styles.css";
 import Lightbox from "yet-another-react-lightbox";
+import { handleError } from "../util/CommonFun";
 
 const GalleryIsotope = () => {
   const [galleryList, setGalleryList] = useState([]);

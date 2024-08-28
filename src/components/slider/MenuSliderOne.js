@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import { menuSliderOne } from "../../sliderProps";
 import { useEffect, useState } from "react";
 import { getAllProducts } from "../../service/productService";
+import { handleError } from "../../util/CommonFun";
 const MenuSliderOne = () => {
   const [productList, setProductList] = useState([]);
 

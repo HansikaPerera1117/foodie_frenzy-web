@@ -28,6 +28,11 @@ const DeskTopMenus = () => {
                 About
               </Link>
             </li>
+            <li className="menu-item">
+              <Link legacyBehavior href="branches">
+                Branches
+              </Link>
+            </li>
             <li>
               <Link legacyBehavior href="gallery">
                 Our Gallery
@@ -111,6 +116,11 @@ const MobileMenu = () => {
             <li className="menu-item">
               <Link legacyBehavior href="about">
                 About
+              </Link>
+            </li>
+            <li className="menu-item">
+              <Link legacyBehavior href="branches">
+                Branches
               </Link>
             </li>
             <li>
