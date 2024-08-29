@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Slider from "react-slick";
-import { ReservationsFromLg12 } from "../src/components/ReservationsFrom";
 import Layout from "../src/layout/Layout";
 import { testimonialSliderOne } from "../src/sliderProps";
 import MenuSliderOne from "../src/components/slider/MenuSliderOne";
@@ -12,6 +11,7 @@ import GalleryImages from "../src/components/slider/GalleryImages";
 import { getAllCategories } from "../src/service/categoriesService";
 import defaultCategoryImg from "../public/assets/images/default-category-img.png";
 import { handleError } from "../src/util/CommonFun";
+import ReservationsFrom from "../src/components/ReservationsFrom";
 
 const Index = () => {
   useEffect(() => {
@@ -483,7 +483,7 @@ const Index = () => {
                 </p>
                 {/*=== Reservation Form ===*/}
                 <div className="reservation-style-one">
-                  <ReservationsFromLg12 />
+                  <ReservationsFrom />
                 </div>
               </div>
             </div>
