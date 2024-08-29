@@ -146,7 +146,6 @@ const ReservationsFrom = () => {
         <CardDetailsForm
           getPaymentId={async (paymentId) => {
             if (paymentId) {
-              console.log(paymentId);
               setPaymentId(paymentId);
               await handlePaymentSuccess(paymentId);
             } else {
@@ -339,8 +338,8 @@ const ReservationsFrom = () => {
                   type="button"
                   className="main-btn btn-red"
                   onClick={() => {
-                    //checkLoginCustomer();
-                    handleSubmitReservation();
+                    checkLoginCustomer();
+                    //handleSubmitReservation();
                   }}
                 >
                   book a table <i className="far fa-arrow-right" />
