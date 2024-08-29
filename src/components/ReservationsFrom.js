@@ -103,7 +103,6 @@ const ReservationsFrom = () => {
         contactNo: formData.phone,
         date: formData.date,
         time: formData.time,
-        paymentId: paymentId,
       };
 
       setReservationData(data);
@@ -111,9 +110,14 @@ const ReservationsFrom = () => {
     }
   };
 
-  const handlePaymentSuccess = async () => {
+  const handlePaymentSuccess = async (paymentId) => {
+    const updatedReservationData = {
+      ...reservationData,
+      paymentId: paymentId,
+    };
+
     // popUploader(dispatch, true);
-    await placeReservation(reservationData)
+    await placeReservation(updatedReservationData)
       .then((response) => {
         // popUploader(dispatch, false);
         customToastMsg("Reservation placed successfully", 1);
