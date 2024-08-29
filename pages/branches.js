@@ -159,14 +159,14 @@ const Branches = () => {
       {/*=== End branches Section ===*/}
 
       {/*=== Start branch list Section ===*/}
-      <section className="features-section pt-75 pb-75">
+      <section className="features-section  pb-75">
         <div className="container">
           <div className="row justify-content-start">
             {branchList.map((branch) => {
               console.log(branch);
 
               return (
-                <div className="col-lg-6 col-md-12 col-sm-12 " key={branch?.id}>
+                <div className="col-lg-12 col-md-12 col-sm-12 " key={branch?.id}>
                   <div className="single-features-item-two animate-hover-icon wow fadeInDown mb-40">
                     <div className="inner-content  d-flex flex-column align-items-center">
                       <div className="text text-start">

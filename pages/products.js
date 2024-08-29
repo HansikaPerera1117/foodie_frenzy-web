@@ -287,7 +287,7 @@ const Products = () => {
                               <h3 className="title">{product?.name}</h3>
                               <span className="price">
                                 <span className="curreny">LKR</span>
-                                {product?.price}
+                                {" " + product?.price}
                               </span>
                             </div>
                           </div>
