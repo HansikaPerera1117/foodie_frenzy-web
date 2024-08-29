@@ -13,6 +13,7 @@
     "@reduxjs/toolkit": "^2.2.7",
     "axios": "^1.7.3",
     "bootstrap": "^5.3.3",
+    "html-react-parser": "^5.1.15",
     "isotope-layout": "^3.0.6",
     "js-cookie": "^3.0.5",
     "lodash.debounce": "^4.0.8",

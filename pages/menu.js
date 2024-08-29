@@ -6,7 +6,8 @@ import Layout from "../src/layout/Layout";
 import GalleryImages from "../src/components/slider/GalleryImages";
 import React, { useEffect, useState } from "react";
 import { getAllProducts } from "../src/service/productService";
-import { handleError } from "../src/util/CommonFun";
+import { handleError, truncateDescription } from "../src/util/CommonFun";
+import parse from "html-react-parser";
 const MenuSeaFood = () => {
   useEffect(() => {
     document.title = "Our Menu | Foodie Frenzy Restaurant";
@@ -21,7 +22,6 @@ const MenuSeaFood = () => {
   const loadAllProducts = () => {
     setProductList([]);
     // popUploader(dispatch, true);
-
     let temp = [];
     getAllProducts()
       .then((res) => {
@@ -31,7 +31,7 @@ const MenuSeaFood = () => {
               id: product?.id,
               name: product?.name,
               status: product?.status,
-              price: product?.fromPrice,
+              price: product?.price,
               files: product?.productFile,
               description: product?.description,
               category: product?.category,
@@ -106,7 +106,7 @@ const MenuSeaFood = () => {
                         <span className="dot-border" />
                         <span className="price">LKR {menu?.price}</span>
                       </h3>
-                      <p>{menu?.description}</p>
+                      <p>{parse(truncateDescription(menu?.description, 20))}</p>
                       <ul className="ratings">
                         <li>
                           <i className="fas fa-star" />

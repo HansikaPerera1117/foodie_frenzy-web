@@ -45,6 +45,7 @@ const ReservationsFrom = () => {
             name: branch?.name,
           });
         });
+
         setBranchList(temp);
         // popUploader(dispatch, false);
       })
@@ -98,7 +99,7 @@ const ReservationsFrom = () => {
         name: formData.name,
         branchId: formData.branchId,
         email: formData.email,
-        personCount: formData.person,
+        personCount: parseFloat(formData.person),
         contactNo: formData.phone,
         date: formData.date,
         time: formData.time,
@@ -110,9 +111,9 @@ const ReservationsFrom = () => {
     }
   };
 
-  const handlePaymentSuccess = () => {
+  const handlePaymentSuccess = async () => {
     // popUploader(dispatch, true);
-    placeReservation(reservationData)
+    await placeReservation(reservationData)
       .then((response) => {
         // popUploader(dispatch, false);
         customToastMsg("Reservation placed successfully", 1);
@@ -139,9 +140,11 @@ const ReservationsFrom = () => {
     <>
       {isShowPaymentForm ? (
         <CardDetailsForm
-          getPaymentId={(paymentId) => {
+          getPaymentId={async (paymentId) => {
             if (paymentId) {
-              handlePaymentSuccess(paymentId);
+              console.log(paymentId);
+              setPaymentId(paymentId);
+              await handlePaymentSuccess(paymentId);
             } else {
               setIsShowPaymentForm(false);
             }
@@ -319,9 +322,8 @@ const ReservationsFrom = () => {
                   value={branchId}
                 >
                   <option data-display="Select Branch">Select Branch</option>
-                  <option value={1}>Branch 1 </option>
                   {branchList.map((branch) => {
-                    <option value={branch?.id}>{branch?.name}</option>;
+                    return <option value={branch?.id}>{branch?.name}</option>;
                   })}
                 </select>
               </div>
@@ -334,7 +336,7 @@ const ReservationsFrom = () => {
                   className="main-btn btn-red"
                   onClick={() => {
                     //checkLoginCustomer();
-                    setIsShowPaymentForm(true);
+                    handleSubmitReservation();
                   }}
                 >
                   book a table <i className="far fa-arrow-right" />

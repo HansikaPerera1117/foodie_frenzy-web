@@ -120,7 +120,7 @@ const Products = () => {
               id: product?.id,
               name: product?.name,
               status: product?.status,
-              price: product?.fromPrice,
+              price: product?.price,
               files: product?.productFile,
               description: product?.description,
               category: product?.category,

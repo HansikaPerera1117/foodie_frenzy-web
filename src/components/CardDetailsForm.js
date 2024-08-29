@@ -13,7 +13,7 @@ import { useState } from "react";
 import { makeAdvancePayment } from "../service/paymentService";
 import { customToastMsg, handleError } from "../util/CommonFun";
 
-const CardDetailsForm = (getPaymentId) => {
+const CardDetailsForm = ({ getPaymentId }) => {
   const [error, setError] = useState(null);
 
   //card details
@@ -56,7 +56,16 @@ const CardDetailsForm = (getPaymentId) => {
         .then((response) => {
           // popUploader(dispatch, false);
           customToastMsg("Payment added successfully", 1);
-          getPaymentId(response?.id);
+
+          const paymentId = response?.data?.id;
+
+          getPaymentId(paymentId);
+
+          setCardName("");
+          setCardNo("");
+          setCvv("");
+          setExpDate("");
+          setAmount("");
         })
         .catch((error) => {
           // popUploader(dispatch, false);

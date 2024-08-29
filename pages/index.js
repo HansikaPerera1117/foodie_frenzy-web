@@ -12,6 +12,7 @@ import { getAllCategories } from "../src/service/categoriesService";
 import defaultCategoryImg from "../public/assets/images/default-category-img.png";
 import { handleError } from "../src/util/CommonFun";
 import ReservationsFrom from "../src/components/ReservationsFrom";
+import parse from "html-react-parser";
 
 const Index = () => {
   useEffect(() => {
@@ -121,15 +122,9 @@ const Index = () => {
           if (category?.status === 1) {
             temp.push({
               id: category?.id,
-              // image:
-              //   category?.file && category.file.length > 0
-              //     ? category.file.map((img) => {
-              //         img?.originalPath;
-              //       })
-              //     : defaultCategoryImg,
               image:
-                category?.file && category.file.length > 0
-                  ? category.file[0]?.originalPath // Ensure you're accessing the correct property
+                category?.file && Object.keys(category?.file).length > 0
+                  ? category.file?.originalPath
                   : null,
               name: category?.name,
               description:
@@ -241,6 +236,8 @@ const Index = () => {
                     <div className="inner-content  d-flex flex-column align-items-center">
                       <div className="icon">
                         <img
+                          height={80}
+                          width="auto"
                           src={
                             category.image
                               ? category.image
@@ -251,7 +248,7 @@ const Index = () => {
                       </div>
                       <div className="text text-center">
                         <h3 className="title">{category?.name}</h3>
-                        <p>{category?.description}</p>
+                        <p>{parse(category?.description)}</p>
                         <Link legacyBehavior href="/menu">
                           <a className="main-btn btn-black">Explore</a>
                         </Link>

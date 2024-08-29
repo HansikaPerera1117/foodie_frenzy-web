@@ -138,3 +138,16 @@ export const handleError = (c) => {
     ? customToastMsg(c?.response?.data?.message[0], 0)
     : customToastMsg("Sorry! Try again later", 0);
 };
+
+export const truncateDescription = (description, wordLimit) => {
+  if (!description) return "";
+
+  // Split description into words
+  const words = description.split(" ");
+
+  // If the number of words is less than or equal to the limit, return the description as is
+  if (words.length <= wordLimit) return description;
+
+  // Otherwise, return the truncated description with ellipsis
+  return words.slice(0, wordLimit).join(" ") + "...";
+};

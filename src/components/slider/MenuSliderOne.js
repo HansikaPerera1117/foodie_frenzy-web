@@ -3,7 +3,9 @@ import Slider from "react-slick";
 import { menuSliderOne } from "../../sliderProps";
 import { useEffect, useState } from "react";
 import { getAllProducts } from "../../service/productService";
-import { handleError } from "../../util/CommonFun";
+import { handleError, truncateDescription } from "../../util/CommonFun";
+import parse from "html-react-parser";
+
 const MenuSliderOne = () => {
   const [productList, setProductList] = useState([]);
 
@@ -24,7 +26,7 @@ const MenuSliderOne = () => {
               id: product?.id,
               name: product?.name,
               status: product?.status,
-              price: product?.fromPrice,
+              price: product?.price,
               files: product?.productFile,
               description: product?.description,
               category: product?.category,
@@ -78,10 +80,10 @@ const MenuSliderOne = () => {
                   {menu?.name}
                 </Link>
               </h3>
-              <p>{menu?.description}</p>
+              <p>{parse(truncateDescription(menu?.description, 20))}</p>
               <span className="price">
-                <span className="currency">LKR</span>
-                {menu?.price}
+                <span className="currency">LKR </span>
+                {" " + menu?.price}
               </span>
             </div>
           </div>
