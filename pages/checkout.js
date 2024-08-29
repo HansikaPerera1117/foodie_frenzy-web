@@ -5,6 +5,7 @@ import Link from "next/link";
 import Layout from "../src/layout/Layout";
 import PageBanner from "../src/components/PageBanner";
 import CheckoutForm from "../src/components/CheckoutForm";
+import CardDetailsForm2 from "../src/components/CardDetailsForm2";
 
 // Metadata for the page
 export const metadata = {

@@ -333,7 +333,8 @@ const ReservationsFrom = () => {
                   type="button"
                   className="main-btn btn-red"
                   onClick={() => {
-                    checkLoginCustomer();
+                    //checkLoginCustomer();
+                    setIsShowPaymentForm(true);
                   }}
                 >
                   book a table <i className="far fa-arrow-right" />
