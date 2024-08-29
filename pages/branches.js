@@ -8,13 +8,10 @@ import TestimonialSliderThree from "../src/components/slider/TestimonialSliderTh
 import Layout from "../src/layout/Layout";
 import { handleError } from "../src/util/CommonFun";
 import { getAllBranches } from "../src/service/branchService";
+import parse from "html-react-parser";
 
 const Branches = () => {
-  const [branchList, setBranchList] = useState([
-    { id: 1 },
-    { id: 1 },
-    { id: 1 },
-  ]);
+  const [branchList, setBranchList] = useState([]);
 
   // let dispatch = useDispatch();
 
@@ -30,17 +27,16 @@ const Branches = () => {
     getAllBranches()
       .then(async (resp) => {
         resp?.data?.records.map((branch, index) => {
-          if (branch?.status === 1) {
-            temp.push({
-              id: branch?.id,
-              name: branch?.name,
-              facilities:
-                branch?.description != null ? branch?.description : "",
-              address: branch?.status,
-              locationUrl: branch?.status,
-            });
-          }
+          temp.push({
+            id: branch?.id,
+            name: branch?.name,
+            facilities: branch?.facilities,
+            address: branch?.address,
+            locationUrl: branch?.url,
+          });
         });
+        console.log(temp);
+
         await setBranchList(temp);
         // popUploader(dispatch, false);
       })
@@ -165,22 +161,24 @@ const Branches = () => {
       {/*=== Start branch list Section ===*/}
       <section className="features-section pt-75 pb-75">
         <div className="container">
-          <div className="row justify-content-center">
+          <div className="row justify-content-start">
             {branchList.map((branch) => {
+              console.log(branch);
+
               return (
-                <div className="col-lg-4 col-md-6 col-sm-12" key={branch?.id}>
+                <div className="col-lg-6 col-md-12 col-sm-12 " key={branch?.id}>
                   <div className="single-features-item-two animate-hover-icon wow fadeInDown mb-40">
                     <div className="inner-content  d-flex flex-column align-items-center">
-                      <div className="text text-center">
+                      <div className="text text-start">
                         <h3 className="title">{branch?.name}</h3>
-                        <p>{branch?.description}</p>
-                        <p>{branch?.address}</p>
+                        <p>{parse(branch?.facilities)}</p>
+                        <p>Address : {branch?.address}</p>
                         <a
                           legacyBehavior
                           target="blank"
                           href={branch?.locationUrl}
                         >
-                          <a className="main-btn btn-white">Branch Location</a>
+                          <a className="main-btn btn-black">Branch Location</a>
                         </a>
                       </div>
                     </div>

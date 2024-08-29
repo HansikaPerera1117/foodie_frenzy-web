@@ -33,6 +33,7 @@ const MenuSliderOne = () => {
             });
           }
         });
+
         setProductList(temp);
         // setCurrentPage(res?.data?.currentPage);
         // setTotalRecodes(res?.data?.totalCount);
