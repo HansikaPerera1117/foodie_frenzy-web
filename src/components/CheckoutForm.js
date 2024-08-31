@@ -123,7 +123,10 @@ const CheckoutForm = ({ btnLeft }) => {
     await placeOrder(updatedOrderData)
       .then((response) => {
         // popUploader(dispatch, false);
-        customToastMsg("Order placed successfully", 1);
+        customToastMsg(
+          "Thanks for shop with us, your order placed successfully.",
+          1
+        );
         setFormData({
           firstName: "",
           lastName: "",
@@ -134,13 +137,7 @@ const CheckoutForm = ({ btnLeft }) => {
           paymentMethod: "",
         });
         localStorage.removeItem("CART_LIST");
-        customSweetAlert(
-          "Thanks for shop with us, your order placed successfully.",
-          1,
-          () => {
-            window.location.href = "/";
-          }
-        );
+        window.location.href = "/";
       })
       .catch((error) => {
         // popUploader(dispatch, false);
