@@ -1,5 +1,4 @@
-"use client"; // This directive marks the file as a Client Component
-
+"use client";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import * as constant from "../src/util/constants";

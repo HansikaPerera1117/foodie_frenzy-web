@@ -1,3 +1,4 @@
+"use client";
 import { useCallback, useEffect, useState } from "react";
 import DatePicker from "sassy-datepicker";
 import TimePicker from "@ashwinthomas/react-time-picker-dropdown";

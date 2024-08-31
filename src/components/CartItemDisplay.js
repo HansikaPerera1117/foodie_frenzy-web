@@ -1,4 +1,4 @@
-// CartDisplay.js
+"use client";
 import React from "react";
 
 const CartItemDisplay = ({ cartTotal }) => {

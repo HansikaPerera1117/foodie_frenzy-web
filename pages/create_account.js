@@ -39,7 +39,6 @@ const Page = () => {
     firstName: "",
     lastName: "",
     contactNo: "",
-    address: "",
   });
 
   const handleInputChange = (fieldName, value) => {
@@ -49,11 +48,38 @@ const Page = () => {
     }));
   };
 
+  const validateInputsDetails = () => {
+    if (temp.firstName === "") {
+      customToastMsg("First name cannot be empty");
+    } else if (temp.lastName === "") {
+      customToastMsg("Last name cannot be empty");
+    } else if (!validateInputs(temp.password, ["isEmpty"]).isValid) {
+      customToastMsg(validateInputs(temp.password, ["isEmpty"]).errorMessage);
+    } else if (temp.password !== temp?.con_password) {
+      customToastMsg("Recheck confirmation password");
+    } else if (temp.contactNo === "") {
+      customToastMsg("Contact No cannot be empty");
+    } else if (!validateInputs(temp.email, ["isEmpty", "isEmail"]).isValid) {
+      customToastMsg(
+        validateInputs(temp.email, ["isEmpty", "isEmail"]).errorMessage
+      );
+    } else {
+      handleSignIn();
+    }
+  };
+
   const handleSignIn = async () => {
     // popUploader(dispatch, true);
+    const data = {
+      firstName: temp.firstName,
+      lastName: temp.lastName,
+      contactNo: temp.contactNo,
+      email: temp.email,
+      password: temp.password,
+    };
 
-    console.log("Customized Form Data:", temp);
-    createAccount(temp)
+    console.log("Customized Form Data:", data);
+    createAccount(data)
       .then((res) => {
         window.location.href = "/login";
         // popUploader(dispatch, false);
@@ -62,24 +88,6 @@ const Page = () => {
         // popUploader(dispatch, false);
         customToastMsg(c.message, 0);
       });
-  };
-
-  const validateInputsDetails = () => {
-    if (temp.firstName === "") {
-      alert("First name cannot be empty");
-    } else if (temp.lastName === "") {
-      alert("Last name cannot be empty");
-    } else if (!validateInputs(temp.password, ["isEmpty"]).isValid) {
-      alert(validateInputs(temp.password, ["isEmpty"]).errorMessage);
-    } else if (temp.contactNo === "") {
-      alert("Contact No cannot be empty");
-    } else if (!validateInputs(temp.email, ["isEmpty", "isEmail"]).isValid) {
-      alert(validateInputs(temp.email, ["isEmpty", "isEmail"]).errorMessage);
-    } else if (temp.address === "") {
-      alert("Address cannot be empty");
-    } else {
-      handleSignIn();
-    }
   };
 
   return (
@@ -213,25 +221,14 @@ const Page = () => {
                   </Row>
 
                   {/* address */}
-                  <FormGroup name="address" label="Address">
-                    <Input
-                      placeholder="Enter your address"
-                      size="large"
-                      onChange={(e) =>
-                        handleInputChange("address", e.target.value)
-                      }
-                      type="text"
-                      id="address"
-                      value={temp.address}
-                      required
-                    />
-                  </FormGroup>
 
                   <Row>
                     <Col md={12} className="d-flex justify-content-end">
                       <Button
                         className="btn-create"
-                        onClick={validateInputsDetails}
+                        onClick={() => {
+                          validateInputsDetails();
+                        }}
                       >
                         Create
                       </Button>

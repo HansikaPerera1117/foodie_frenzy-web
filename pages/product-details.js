@@ -1,19 +1,11 @@
-import Link from "next/link";
+"use client";
 import React, { useEffect, useState } from "react";
 import { Nav, Tab } from "react-bootstrap";
-import Slider from "react-slick";
 import PageBanner from "../src/components/PageBanner";
 import Partners from "../src/components/Partners";
 import ProductDetailsSlider from "../src/components/slider/ProductDetailsSlider";
 import Layout from "../src/layout/Layout";
-import { recentProductSlider } from "../src/sliderProps";
-import debounce from "lodash.debounce";
-import RangeSlider from "../src/components/PriceRange";
-import { getAllCategories } from "../src/service/categoriesService";
-import {
-  getProductById,
-  productsFiltration,
-} from "../src/service/productService";
+import { getProductById } from "../src/service/productService";
 import MenuSliderOne from "../src/components/slider/MenuSliderOne";
 import { useSearchParams } from "next/navigation";
 import { handleError } from "../src/util/CommonFun";

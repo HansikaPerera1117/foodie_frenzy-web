@@ -1,6 +1,6 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-
 // Import your components and data
 import Layout from "../src/layout/Layout";
 import PageBanner from "../src/components/PageBanner";

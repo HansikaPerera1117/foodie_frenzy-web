@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import PageBanner from "../src/components/PageBanner";
 import Partners from "../src/components/Partners";

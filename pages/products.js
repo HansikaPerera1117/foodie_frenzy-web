@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import niceSelect from "react-nice-select";
 import PageBanner from "../src/components/PageBanner";

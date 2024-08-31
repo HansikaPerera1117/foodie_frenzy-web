@@ -17,7 +17,7 @@ export async function createAccount(userCredentials) {
   apiObject.authentication = false;
   apiObject.urlencoded = false;
   apiObject.isWithoutPrefix = false;
-  apiObject.endpoint = "";
+  apiObject.endpoint = "api/customer/auth/register";
   apiObject.body = userCredentials;
   return await ApiService.callApi(apiObject);
 }
