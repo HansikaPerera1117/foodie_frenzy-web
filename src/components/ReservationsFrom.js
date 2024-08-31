@@ -114,7 +114,7 @@ const ReservationsFrom = () => {
       };
 
       console.log(data);
-      
+
       setReservationData(data);
       setIsShowPaymentForm(true);
     }
@@ -140,6 +140,7 @@ const ReservationsFrom = () => {
           person: "",
           branchId: "",
         });
+        localStorage.removeItem("CART_LIST");
       })
       .catch((error) => {
         // popUploader(dispatch, false);
@@ -348,7 +349,7 @@ const ReservationsFrom = () => {
                   type="button"
                   className="main-btn btn-red"
                   onClick={() => {
-                   // checkLoginCustomer();
+                    // checkLoginCustomer();
                     handleSubmitReservation();
                   }}
                 >

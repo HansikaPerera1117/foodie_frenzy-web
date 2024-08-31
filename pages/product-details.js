@@ -19,12 +19,15 @@ import { useSearchParams } from "next/navigation";
 import { handleError } from "../src/util/CommonFun";
 import parse from "html-react-parser";
 import TestimonialSliderThree from "../src/components/slider/TestimonialSliderThree";
+import CartItemDisplay from "../src/components/CartItemDisplay";
 
 const ProductsDetails = () => {
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
   const [productId, setProductId] = useState("");
   const [productDetails, setProductDetails] = useState([]);
+  const [cartAddedBtn, setCartAddedBtn] = useState(false);
+  const [cartTotal, setCartTotal] = useState(0);
 
   const [cartValue, setCartValue] = useState(1);
   const plus = () => setCartValue(cartValue + 1),
@@ -33,6 +36,11 @@ const ProductsDetails = () => {
 
   useEffect(() => {
     document.title = "Product Details | Foodie Frenzy Restaurant";
+    setCartTotal(
+      localStorage.getItem("CART_LIST")
+        ? JSON.parse(localStorage.getItem("CART_LIST")).length
+        : 0
+    );
   }, []);
 
   useEffect(() => {
@@ -40,8 +48,14 @@ const ProductsDetails = () => {
       console.log("Product ID:", id);
       setProductId(id);
       getProductDetails(id);
+      setCartAddedBtn(false);
     }
   }, [id]);
+
+  useEffect(() => {
+    const cartNumberEl = document.querySelector(".cart-number");
+    cartNumberEl.innerHTML = cartTotal;
+  }, [cartTotal]);
 
   const getProductDetails = (productId) => {
     setProductDetails([]);
@@ -59,8 +73,46 @@ const ProductsDetails = () => {
       });
   };
 
+  const addToCart = () => {
+    let details = localStorage.getItem("CART_LIST")
+      ? JSON.parse(localStorage.getItem("CART_LIST"))
+      : [];
+
+    const fileUrl =
+      productDetails?.productFile?.length > 0
+        ? productDetails.productFile.find((img) => img.isDefault)?.file
+            .originalPath
+        : null;
+
+    let productObject = {
+      id: productDetails?.id,
+      name: productDetails?.name,
+      status: productDetails?.status,
+      price: productDetails?.price,
+      filesUrl: fileUrl,
+      description: productDetails?.description,
+      category: {
+        id: productDetails?.category?.id,
+        name: productDetails?.category?.name,
+      },
+      qty: cartValue,
+      total: productDetails?.price * cartValue,
+    };
+
+    console.log(productObject);
+
+    details.push(productObject);
+
+    localStorage.setItem("CART_LIST", JSON.stringify(details));
+
+    setCartTotal(cartTotal + cartValue);
+
+    setCartAddedBtn(true);
+  };
+
   return (
     <Layout>
+      <CartItemDisplay cartTotal={cartTotal} />
       <PageBanner
         pageName={productDetails?.name}
         title={productDetails?.name}
@@ -136,10 +188,25 @@ const ProductsDetails = () => {
                               </div>
                             </li>
                             <li>
-                              <a href="#" className="main-btn btn-red">
-                                Add to cart
-                                <i className="far fa-arrow-right" />
-                              </a>
+                              {cartAddedBtn ? (
+                                <button
+                                  className="main-btn btn-black"
+                                  disabled={true}
+                                >
+                                  Added
+                                  <i className="far fa-arrow-right" />
+                                </button>
+                              ) : (
+                                <button
+                                  className="main-btn btn-red"
+                                  onClick={() => {
+                                    addToCart();
+                                  }}
+                                >
+                                  Add to cart
+                                  <i className="far fa-arrow-right" />
+                                </button>
+                              )}
                             </li>
                           </ul>
                         </div>

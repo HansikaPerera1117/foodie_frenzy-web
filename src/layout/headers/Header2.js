@@ -1,10 +1,21 @@
 import Link from "next/link";
 import Menus from "./Menus";
 import SearchBtn from "./SearchBtn";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import CartItemDisplay from "../../components/CartItemDisplay";
 
 const Header2 = ({ openSearchModal }) => {
   const [isLogin, setIsLogin] = useState(false); //convert to redux
+  const [cartTotal, setCartTotal] = useState(0);
+
+  useEffect(() => {
+    setIsLogin(localStorage.getItem("isLogin"));
+    setCartTotal(
+      localStorage.getItem("CART_LIST")
+        ? JSON.parse(localStorage.getItem("CART_LIST")).length
+        : 0
+    );
+  }, []);
 
   const handleLogout = () => {
     alert("logout");
@@ -75,20 +86,23 @@ const Header2 = ({ openSearchModal }) => {
                       </Link>
                     )}
                   </div>
-                  <div className="nav-call-button mb-3">
-                    <Link legacyBehavior href="/cart">
-                      <a
-                        className="main-btn btn-red"
-                        style={{
-                          padding: "20px 20px",
-                        }}
-                      >
-                        <i
-                          className="fas fa-shopping-cart"
-                          style={{ position: "relative", right: 6 }}
-                        />
-                      </a>
-                    </Link>
+                  <div
+                    className="nav-call-button mb-3 "
+                    style={{ position: "relative" }}
+                  >
+                    <a
+                      href="/cart"
+                      className="main-btn btn-red "
+                      style={{
+                        padding: "20px 20px",
+                      }}
+                    >
+                      <i
+                        className="fas fa-shopping-cart"
+                        style={{ position: "relative", right: 6 }}
+                      />
+                    </a>
+                    <i className="cart-number">{cartTotal}</i>
                   </div>
                   <Link legacyBehavior href="/contact">
                     <a className="main-btn btn-red">
@@ -126,20 +140,24 @@ const Header2 = ({ openSearchModal }) => {
                     </Link>
                   )}
                 </div>
-                <div className="menu-button d-xl-block d-none">
-                  <Link legacyBehavior href="/cart">
-                    <a
-                      className="main-btn btn-red"
-                      style={{
-                        padding: "20px 20px",
-                      }}
-                    >
-                      <i
-                        className="fas fa-shopping-cart"
-                        style={{ position: "relative", right: 6 }}
-                      />
-                    </a>
-                  </Link>
+                <div
+                  className="menu-button d-xl-block d-none"
+                  style={{ position: "relative" }}
+                >
+                  <a
+                    href="/cart"
+                    className="main-btn btn-red"
+                    style={{
+                      padding: "20px 20px",
+                    }}
+                  >
+                    <i
+                      className="fas fa-shopping-cart"
+                      style={{ position: "relative", right: 6 }}
+                    />
+                  </a>
+                  {/* <i className="cart-number">{cartTotal}</i> */}
+                  <CartItemDisplay cartTotal={cartTotal} />
                 </div>
                 <div className="menu-button d-xl-block d-none">
                   <Link legacyBehavior href="/reservations">

@@ -121,7 +121,7 @@ export const logout = () => {
   Cookies.remove(constant.Expire_time);
   Cookies.remove(constant.USER_PROFILE);
   Cookies.remove("Eligible");
-  localStorage.removeItem(constant.CART_LIST);
+  localStorage.removeItem("CART_LIST");
   window.location.href = "/signin";
 };
 

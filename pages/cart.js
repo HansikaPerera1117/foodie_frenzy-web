@@ -3,50 +3,42 @@ import Link from "next/link";
 import Layout from "../src/layout/Layout";
 import PageBanner from "../src/components/PageBanner";
 
-// Sample data to simulate cart items
-const sampleCartItems = [
-  {
-    id: 1,
-    name: "Delicious Vegetables Italian Pizza",
-    image: " assets/images/product/product-1.png",
-    quantity: 2,
-    price: 253.59,
-  },
-  {
-    id: 2,
-    name: "Baked Chicken Wings Asian Tomatoes",
-    image: "assets/images/product/product-3.png",
-    quantity: 1,
-    price: 240.59,
-  },
-];
-
 const CartPage = () => {
-  const [cartItems, setCartItems] = useState(sampleCartItems);
+  const [cartDetails, setCartDetails] = useState([]);
+  const [cartSubTotal, setCartSubTotal] = useState(0);
+  const [cartTotal, setCartTotal] = useState(0);
 
   useEffect(() => {
     document.title = "Cart | Foodie Frenzy Restaurant";
+    setCartDetails(
+      localStorage.getItem("CART_LIST")
+        ? JSON.parse(localStorage.getItem("CART_LIST"))
+        : []
+    );
   }, []);
 
-  const handleQuantityChange = (itemId, quantity) => {
-    setCartItems((prevItems) =>
-      prevItems.map((item) =>
-        item.id === itemId ? { ...item, quantity: Number(quantity) } : item
-      )
-    );
-  };
+  useEffect(() => {
+    const total = cartDetails.reduce((acc, item) => acc + item.total, 0);
+    setCartSubTotal(total);
+    setCartTotal(total + 250);
+  }, [cartDetails]);
 
   const handleRemoveItem = (itemId) => {
-    setCartItems((prevItems) => prevItems.filter((item) => item.id !== itemId));
+    let cartDetails = localStorage.getItem("CART_LIST")
+      ? JSON.parse(localStorage.getItem("CART_LIST"))
+      : [];
+
+    const itemIndex = cartDetails.findIndex((item) => item.id === itemId);
+
+    if (itemIndex > -1) {
+      cartDetails.splice(itemIndex, 1);
+    }
+
+    localStorage.setItem("CART_LIST", JSON.stringify(cartDetails));
+    window.location.reload();
   };
 
-  const calculateSubtotal = () => {
-    return cartItems
-      .reduce((total, item) => total + item.price * item.quantity, 0)
-      .toFixed(2);
-  };
-
-  const shippingCost = 5.0; // Example fixed shipping cost
+  const shippingCost = 250; // Example fixed shipping cost
 
   const calculateTotal = () => {
     return (parseFloat(calculateSubtotal()) + shippingCost).toFixed(2);
@@ -59,38 +51,30 @@ const CartPage = () => {
         <div className="cart-table">
           <div className="row mb-3">
             <div className="col-lg-6 fw-bold">Product</div>
-            <div className="col-lg-3 fw-bold">Quantity</div>
-            <div className="col-lg-1 fw-bold">Price</div>
-            <div className="col-lg-1 fw-bold">Total</div>
+            <div className="col-lg-1 fw-bold text-end">Quantity</div>
+            <div className="col-lg-2 fw-bold text-end">Price(LKR)</div>
+            <div className="col-lg-2 fw-bold text-end">Total(LKR)</div>
             <div className="col-lg-1 fw-bold"></div>
           </div>
-          {cartItems.map((item) => (
+          {cartDetails.map((item) => (
             <div className="row mb-3 " key={item.id}>
               <div className="col-lg-1 d-flex align-items-center">
                 {" "}
-                <img src={item.image} alt="product Image" />
+                <img src={item.filesUrl} alt="product Image" />
               </div>
               <div className="col-lg-5 d-flex align-items-center">
                 {item.name}
               </div>
-              <div className="col-lg-3 d-flex align-items-center">
-                <input
-                  type="number"
-                  value={item.quantity}
-                  onChange={(e) =>
-                    handleQuantityChange(item.id, e.target.value)
-                  }
-                  className="form-control"
-                  min="1"
-                />
+              <div className="col-lg-1 d-flex align-items-center justify-content-end">
+                <label>{item.qty}</label>
               </div>
-              <div className="col-lg-1 d-flex align-items-center">
-                ${item.price.toFixed(2)}
+              <div className="col-lg-2 d-flex align-items-center justify-content-end">
+                {item.price.toFixed(2)}
               </div>
-              <div className="col-lg-1 d-flex align-items-center">
-                ${(item.price * item.quantity).toFixed(2)}
+              <div className="col-lg-2 d-flex align-items-center justify-content-end">
+                {(item.price * item.qty).toFixed(2)}
               </div>
-              <div className="col-lg-1 d-flex align-items-center">
+              <div className="col-lg-1 d-flex align-items-center justify-content-end">
                 <button
                   className="main-btn btn-black"
                   style={{
@@ -113,19 +97,19 @@ const CartPage = () => {
                 <div className="mb-3">
                   <div className="d-flex justify-content-between">
                     <span>Subtotal:</span>
-                    <span>${calculateSubtotal()}</span>
+                    <span>LKR{" " + cartSubTotal.toFixed(2)}</span>
                   </div>
                 </div>
                 <div className="mb-3">
                   <div className="d-flex justify-content-between">
                     <span>Estimated shipping:</span>
-                    <span>${shippingCost.toFixed(2)}</span>
+                    <span>LKR{shippingCost.toFixed(2)}</span>
                   </div>
                 </div>
                 <div className="mb-3">
                   <div className="d-flex justify-content-between">
                     <span>Total:</span>
-                    <span>${calculateTotal()}</span>
+                    <span>LKR{" " + cartTotal.toFixed(2)}</span>
                   </div>
                 </div>
                 <div className="cart-actions d-flex justify-content-end">
