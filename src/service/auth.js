@@ -6,7 +6,7 @@ export async function loginService(userCredentials) {
   apiObject.authentication = false;
   apiObject.urlencoded = false;
   apiObject.isWithoutPrefix = false;
-  apiObject.endpoint = "api/auth/email/login";
+  apiObject.endpoint = "api/auth/login/email/CUSTOMER";
   apiObject.body = userCredentials;
   return await ApiService.callApi(apiObject);
 }
