@@ -54,7 +54,7 @@ const CheckoutForm = ({ btnLeft }) => {
   }, []);
 
   const checkLoginCustomer = () => {
-    if (localStorage.getItem("isLogin")) {
+    if (localStorage.getItem("CUSTOMER")) {
       handlePlaceOrder();
     } else {
       customToastMsg("You have to login before place order");

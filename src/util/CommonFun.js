@@ -118,11 +118,13 @@ export const customToastMsg = (e, type, c) => {
 export const logout = () => {
   Cookies.remove(constant.ACCESS_TOKEN);
   Cookies.remove(constant.REFRESH_TOKEN);
-  Cookies.remove(constant.Expire_time);
+  // Cookies.remove(constant.Expire_time);
   Cookies.remove(constant.USER_PROFILE);
-  Cookies.remove("Eligible");
+  // Cookies.remove("Eligible");
   localStorage.removeItem("CART_LIST");
-  window.location.href = "/signin";
+  localStorage.removeItem("CUSTOMER");
+
+  window.location.href = "/login";
 };
 
 export const formatPrice = (value) => {

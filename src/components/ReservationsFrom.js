@@ -74,7 +74,7 @@ const ReservationsFrom = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const checkLoginCustomer = () => {
-    if (localStorage.getItem("isLogin")) {
+    if (localStorage.getItem("CUSTOMER")) {
       handleSubmitReservation();
     } else {
       customToastMsg("You have to login before make a reservation");

@@ -11,7 +11,6 @@ import { useSearchParams } from "next/navigation";
 import { handleError } from "../src/util/CommonFun";
 import parse from "html-react-parser";
 import TestimonialSliderThree from "../src/components/slider/TestimonialSliderThree";
-import CartItemDisplay from "../src/components/CartItemDisplay";
 
 const ProductsDetails = () => {
   const searchParams = useSearchParams();
@@ -104,7 +103,7 @@ const ProductsDetails = () => {
 
   return (
     <Layout>
-      <CartItemDisplay cartTotal={cartTotal} />
+      
       <PageBanner
         pageName={productDetails?.name}
         title={productDetails?.name}

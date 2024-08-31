@@ -1,15 +1,14 @@
 import Link from "next/link";
 import Menus from "./Menus";
-import SearchBtn from "./SearchBtn";
-import { useEffect, useState } from "react";
-import CartItemDisplay from "../../components/CartItemDisplay";
+import React, { useEffect, useState } from "react";
+// import { logout } from "../../util/CommonFun";
 
 const Header2 = ({ openSearchModal }) => {
   const [isLogin, setIsLogin] = useState(false); //convert to redux
   const [cartTotal, setCartTotal] = useState(0);
 
   useEffect(() => {
-    setIsLogin(localStorage.getItem("isLogin"));
+    setIsLogin(localStorage.getItem("CUSTOMER") ? true : false);
     setCartTotal(
       localStorage.getItem("CART_LIST")
         ? JSON.parse(localStorage.getItem("CART_LIST")).length
@@ -18,7 +17,8 @@ const Header2 = ({ openSearchModal }) => {
   }, []);
 
   const handleLogout = () => {
-    alert("logout");
+    setIsLogin(false);
+    // logout();
   };
 
   return (
@@ -156,8 +156,7 @@ const Header2 = ({ openSearchModal }) => {
                       style={{ position: "relative", right: 6 }}
                     />
                   </a>
-                  {/* <i className="cart-number">{cartTotal}</i> */}
-                  <CartItemDisplay cartTotal={cartTotal} />
+                  <i className="cart-number">{cartTotal}</i>
                 </div>
                 <div className="menu-button d-xl-block d-none">
                   <Link legacyBehavior href="/reservations">
