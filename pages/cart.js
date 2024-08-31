@@ -63,7 +63,10 @@ const CartPage = () => {
                 <img src={item.filesUrl} alt="product Image" />
               </div>
               <div className="col-lg-5 d-flex align-items-center">
-                {item.name}
+                <div className=" d-flex  flex-column">
+                  <span className="fw-semibold">{item.name}</span>
+                  <span> Category :{item.category?.name}</span>
+                </div>
               </div>
               <div className="col-lg-1 d-flex align-items-center justify-content-end">
                 <label>{item.qty}</label>

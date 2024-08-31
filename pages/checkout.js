@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
 // Import your components and data
@@ -16,9 +16,25 @@ export const metadata = {
 };
 
 const Checkout = () => {
+  const [cartDetails, setCartDetails] = useState([]);
+  const [cartSubTotal, setCartSubTotal] = useState(0);
+  const [cartTotal, setCartTotal] = useState(0);
+
   useEffect(() => {
     document.title = "Checkout | Foodie Frenzy Restaurant";
+    setCartDetails(
+      localStorage.getItem("CART_LIST")
+        ? JSON.parse(localStorage.getItem("CART_LIST"))
+        : []
+    );
   }, []);
+
+  useEffect(() => {
+    const total = cartDetails.reduce((acc, item) => acc + item.total, 0);
+    setCartSubTotal(total);
+    setCartTotal(total + 250);
+  }, [cartDetails]);
+
   const CartData = [
     {
       id: 1,
@@ -54,7 +70,7 @@ const Checkout = () => {
     (sum, item) => sum + item.price * item.quantity,
     0
   );
-  const shipping = 5; // Example flat rate shipping
+  const shipping = 250;
   const total = subtotal + shipping;
 
   return (
@@ -71,41 +87,43 @@ const Checkout = () => {
               <div className="order-summaryorder-summary">
                 <h3>Order Summary</h3>
                 <div className="order-items mt-3">
-                  {CartData.map((item, index) => (
+                  {cartDetails.map((item, index) => (
                     <div key={index} className="order-item my-4">
                       <Link href={`/product/${item.id}`}>
-                        <div className="item-details">
+                        <div className="item-details d-flex">
                           <img
-                            src={item.image}
+                            src={item.filesUrl}
                             alt={item.name}
                             style={{ maxWidth: "40%" }}
                             className="item-image"
                           />
-                          <div>
+                          <div className="ms-4">
                             <h4>{item.name}</h4>
-                            <p>Quantity: {item.quantity}</p>
+                            <p>Quantity: {item.qty}</p>
+                            <p className="item-total">
+                              LKR{(item.price * item.qty).toFixed(2)}
+                            </p>
                           </div>
                         </div>
                       </Link>
-                      <div className="item-total">
-                        ${(item.price * item.quantity).toFixed(2)}
-                      </div>
                     </div>
                   ))}
                 </div>
 
                 <div className="order-totals mt-4">
-                  <div className="subtotal">
-                    <span>Subtotal:</span>
-                    <span>${subtotal.toFixed(2)}</span>
+                  <div className="subtotal d-flex justify-content-between">
+                    <span>Subtotal</span>
+                    <span className="fw-bold">
+                      LKR{cartSubTotal.toFixed(2)}
+                    </span>
                   </div>
-                  <div className="shipping">
-                    <span>Shipping:</span>
-                    <span>${shipping.toFixed(2)}</span>
+                  <div className="shipping d-flex justify-content-between">
+                    <span>Shipping</span>
+                    <span>LKR{shipping.toFixed(2)}</span>
                   </div>
-                  <div className="total fw-bold">
-                    <span>Total:</span>
-                    <span>${total.toFixed(2)}</span>
+                  <div className="total fw-bold d-flex justify-content-between">
+                    <span>Total</span>
+                    <span>LKR{cartTotal.toFixed(2)}</span>
                   </div>
                 </div>
               </div>

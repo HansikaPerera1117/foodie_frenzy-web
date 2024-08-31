@@ -52,8 +52,8 @@ export const customSweetAlert = (
     title,
     text,
     icon: msgType,
-    showCancelButton: true,
-    confirmButtonText: "Yes",
+    showCancelButton: false,
+    confirmButtonText: "Back To Home",
     customClass: {
       confirmButton: "btn btn-primary mr-2 mx-2",
       cancelButton: "btn btn-outline-danger mx-2",

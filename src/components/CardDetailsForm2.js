@@ -9,11 +9,11 @@ import {
   ModalHeader,
   Row,
 } from "reactstrap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { makeAdvancePayment } from "../service/paymentService";
 import { customToastMsg, handleError } from "../util/CommonFun";
 
-const CardDetailsForm2 = (getPaymentId) => {
+const CardDetailsForm2 = ({getPaymentId}) => {
   const [error, setError] = useState(null);
 
   //card details
@@ -22,6 +22,16 @@ const CardDetailsForm2 = (getPaymentId) => {
   const [cvv, setCvv] = useState("");
   const [expDate, setExpDate] = useState("");
   const [amount, setAmount] = useState("");
+
+  const [cartTotal, setCartTotal] = useState(0);
+
+  useEffect(() => {
+    const cart = localStorage.getItem("CART_LIST")
+      ? JSON.parse(localStorage.getItem("CART_LIST"))
+      : [];
+    const total = cart.reduce((acc, item) => acc + item.total, 0);
+    setCartTotal(total + 250);
+  }, []);
 
   const makePayment = () => {
     let isValidated = false;
@@ -33,8 +43,6 @@ const CardDetailsForm2 = (getPaymentId) => {
       customToastMsg("CVV cannot be empty");
     } else if (expDate === "") {
       customToastMsg("Expire date cannot be empty");
-    } else if (amount === "") {
-      customToastMsg("Add payment amount");
     } else {
       isValidated = true;
     }
@@ -43,7 +51,7 @@ const CardDetailsForm2 = (getPaymentId) => {
       // popUploader(dispatch, true);
 
       const data = {
-        amount: parseFloat(amount),
+        amount: parseFloat(cartTotal),
         cardDetails: {
           name: cardName,
           cardNo: cardNo,
@@ -56,7 +64,15 @@ const CardDetailsForm2 = (getPaymentId) => {
         .then((response) => {
           // popUploader(dispatch, false);
           customToastMsg("Payment added successfully", 1);
-          getPaymentId(response?.id);
+          const paymentId = response?.data?.id;
+
+          getPaymentId(paymentId);
+
+          setCardName("");
+          setCardNo("");
+          setCvv("");
+          setExpDate("");
+          setAmount("");
         })
         .catch((error) => {
           // popUploader(dispatch, false);
@@ -154,10 +170,8 @@ const CardDetailsForm2 = (getPaymentId) => {
               }`}
               placeholder="Enter payment amount"
               name="amount"
-              onChange={(e) => {
-                setAmount(e.target.value);
-              }}
-              value={amount}
+              disabled={true}
+              value={cartTotal}
               required=""
             />
           </div>
@@ -175,7 +189,7 @@ const CardDetailsForm2 = (getPaymentId) => {
               makePayment();
             }}
           >
-            Make Advance Payment <i className="far fa-arrow-right" />
+            Make Payment <i className="far fa-arrow-right" />
           </button>
         </div>
       </div>
