@@ -49,45 +49,46 @@ const MenuSliderOne = () => {
     <Slider {...menuSliderOne} className="menu-slider-one wow fadeInUp">
       {productList.map((menu) => {
         return (
-          <div className="menu-grid-item-one text-center mb-60">
-            <div className="thumb">
-              {menu?.files && menu.files.length > 0 ? (
-                menu.files.map((img, index) => {
-                  if (img?.isDeafult) {
-                    return (
-                      <img
-                        src={img?.originalPath}
-                        alt={menu.name}
-                        className="rounded"
-                        onError={(e) =>
-                          (e.target.src =
-                            "https://i.ibb.co/qpB9ZCZ/placeholder.png")
-                        }
-                      />
-                    );
-                  }
-                })
-              ) : (
-                <img
-                  src="https://i.ibb.co/qpB9ZCZ/placeholder.png"
-                  className="rounded"
-                  alt="placeholder"
-                />
-              )}
+          <Link legacyBehavior href={`/product-details?id=${menu.id}`}>
+            <div
+              className="menu-grid-item-one text-center mb-60"
+              style={{ cursor: "pointer" }}
+            >
+              <div className="thumb">
+                {menu?.files && menu.files.length > 0 ? (
+                  menu.files.map((img, index) => {
+                    if (img?.isDeafult) {
+                      return (
+                        <img
+                          src={img?.originalPath}
+                          alt={menu.name}
+                          className="rounded"
+                          onError={(e) =>
+                            (e.target.src =
+                              "https://i.ibb.co/qpB9ZCZ/placeholder.png")
+                          }
+                        />
+                      );
+                    }
+                  })
+                ) : (
+                  <img
+                    src="https://i.ibb.co/qpB9ZCZ/placeholder.png"
+                    className="rounded"
+                    alt="placeholder"
+                  />
+                )}
+              </div>
+              <div className="text">
+                <h3 className="title">{menu?.name}</h3>
+                <p>{parse(truncateDescription(menu?.description, 20))}</p>
+                <span className="price">
+                  <span className="currency">LKR </span>
+                  {" " + menu?.price}
+                </span>
+              </div>
             </div>
-            <div className="text">
-              <h3 className="title">
-                <Link legacyBehavior href="/product-details">
-                  {menu?.name}
-                </Link>
-              </h3>
-              <p>{parse(truncateDescription(menu?.description, 20))}</p>
-              <span className="price">
-                <span className="currency">LKR </span>
-                {" " + menu?.price}
-              </span>
-            </div>
-          </div>
+          </Link>
         );
       })}
     </Slider>

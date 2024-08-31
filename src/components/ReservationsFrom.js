@@ -113,6 +113,8 @@ const ReservationsFrom = () => {
         time: formData.time,
       };
 
+      console.log(data);
+      
       setReservationData(data);
       setIsShowPaymentForm(true);
     }
@@ -346,8 +348,8 @@ const ReservationsFrom = () => {
                   type="button"
                   className="main-btn btn-red"
                   onClick={() => {
-                    checkLoginCustomer();
-                    //handleSubmitReservation();
+                   // checkLoginCustomer();
+                    handleSubmitReservation();
                   }}
                 >
                   book a table <i className="far fa-arrow-right" />

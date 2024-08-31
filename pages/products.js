@@ -1,9 +1,7 @@
-import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import niceSelect from "react-nice-select";
 import PageBanner from "../src/components/PageBanner";
 import Partners from "../src/components/Partners";
-import PriceRange from "../src/components/PriceRange";
 import Layout from "../src/layout/Layout";
 import { getAllCategories } from "../src/service/categoriesService";
 import RangeSlider from "../src/components/PriceRange";
@@ -238,8 +236,14 @@ const Products = () => {
                         className="col-xxl-4 col-md-6 col-sm-6"
                         key={product?.id}
                       >
-                        <a legacyBehavior href={"/product-details"}>
-                          <div className="single-product-item text-center wow fadeInUp mb-30">
+                        <a
+                          legacyBehavior
+                          href={`/product-details?id=${product.id}`}
+                        >
+                          <div
+                            className="single-product-item text-center wow fadeInUp mb-30"
+                            style={{ cursor: "pointer" }}
+                          >
                             <div className="product-thumbnail">
                               {product?.files && product.files.length > 0 ? (
                                 product.files.map((img, index) => {

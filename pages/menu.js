@@ -71,67 +71,73 @@ const MenuSeaFood = () => {
           <div className="row">
             {productList.map((menu) => {
               return (
-                <div className="col-lg-6 col-md-12">
-                  <div className="single-menu-item-three mb-30 wow fadeInUp">
-                    <div className="thumb">
-                      {menu?.files && menu.files.length > 0 ? (
-                        menu.files.map((img, index) => {
-                          if (img?.isDeafult) {
-                            return (
-                              <img
-                                src={img?.originalPath}
-                                alt={menu.name}
-                                className="rounded"
-                                onError={(e) =>
-                                  (e.target.src =
-                                    "https://i.ibb.co/qpB9ZCZ/placeholder.png")
-                                }
-                              />
-                            );
-                          }
-                        })
-                      ) : (
-                        <img
-                          src="https://i.ibb.co/qpB9ZCZ/placeholder.png"
-                          className="rounded"
-                          alt="placeholder"
-                        />
-                      )}
-                    </div>
-                    <div className="text">
-                      <h3 className="item-title-price">
-                        <Link legacyBehavior href="/product-details">
+                <Link legacyBehavior href={`/product-details?id=${menu.id}`}>
+                  <div
+                    className="col-lg-6 col-md-12"
+                    style={{ cursor: "pointer" }}
+                  >
+                    <div className="single-menu-item-three mb-30 wow fadeInUp">
+                      <div className="thumb">
+                        {menu?.files && menu.files.length > 0 ? (
+                          menu.files.map((img, index) => {
+                            if (img?.isDeafult) {
+                              return (
+                                <img
+                                  src={img?.originalPath}
+                                  alt={menu.name}
+                                  className="rounded"
+                                  onError={(e) =>
+                                    (e.target.src =
+                                      "https://i.ibb.co/qpB9ZCZ/placeholder.png")
+                                  }
+                                />
+                              );
+                            }
+                          })
+                        ) : (
+                          <img
+                            src="https://i.ibb.co/qpB9ZCZ/placeholder.png"
+                            className="rounded"
+                            alt="placeholder"
+                          />
+                        )}
+                      </div>
+                      <div className="text">
+                        <h3 className="item-title-price">
                           <a className="item-title">{menu?.name}</a>
-                        </Link>
-                        <span className="dot-border" />
-                        <span className="price">LKR {menu?.price}</span>
-                      </h3>
-                      <p>{parse(truncateDescription(menu?.description, 20))}</p>
-                      <ul className="ratings">
-                        <li>
-                          <i className="fas fa-star" />
-                        </li>
-                        <li>
-                          <i className="fas fa-star" />
-                        </li>
-                        <li>
-                          <i className="fas fa-star" />
-                        </li>
-                        <li>
-                          <i className="fas fa-star" />
-                        </li>
-                        <li>
-                          <i className="fas fa-star" />
-                        </li>
-                        <li>
-                          <span>
-                            <a href="#">(5k Reviews)</a>
-                          </span>
-                        </li>
-                      </ul>
+
+                          <span className="dot-border" />
+                          <span className="price">LKR {menu?.price}</span>
+                        </h3>
+                        <p>
+                          {parse(truncateDescription(menu?.description, 20))}
+                        </p>
+                        <ul className="ratings">
+                          <li>
+                            <i className="fas fa-star" />
+                          </li>
+                          <li>
+                            <i className="fas fa-star" />
+                          </li>
+                          <li>
+                            <i className="fas fa-star" />
+                          </li>
+                          <li>
+                            <i className="fas fa-star" />
+                          </li>
+                          <li>
+                            <i className="fas fa-star" />
+                          </li>
+                          <li>
+                            <span>
+                              <a href="#">(5k Reviews)</a>
+                            </span>
+                          </li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               );
             })}
           </div>
