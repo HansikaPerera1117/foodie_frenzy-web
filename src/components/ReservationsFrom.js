@@ -103,7 +103,7 @@ const ReservationsFrom = () => {
     }
     if (isValidated) {
       const data = {
-        cusId: customerDetails?.id,
+        customerId: customerDetails?.id,
         name: formData.name,
         branchId: formData.branchId,
         email: formData.email,

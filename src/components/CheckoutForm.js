@@ -81,15 +81,29 @@ const CheckoutForm = ({ btnLeft }) => {
       isValidated = true;
     }
     if (isValidated) {
+      const cartDetails = localStorage.getItem("CART_LIST")
+        ? JSON.parse(localStorage.getItem("CART_LIST"))
+        : [];
+      const total = cartDetails.reduce((acc, item) => acc + item.total, 0);
+
+      const newArray = orderProductsList.map((item) => ({
+        id: item.id,
+        qty: item.qty,
+      }));
+
       const data = {
-        cusId: customerDetails?.id,
-        name: formData.firstName + " " + formData.lastName,
-        address: formData.address,
-        email: formData.email,
-        contactNo: formData.contactNumber,
-        orderNote: formData.orderNotes,
-        paymentMethod: formData.paymentMethod,
-        orderItems: orderProductsList,
+        paymentType: formData.paymentMethod,
+        subTotal: total + 250,
+        description: formData.orderNotes,
+        customerId: customerDetails?.id,
+        productIds: newArray,
+        deliveryDetails: {
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          contactNo: formData.contactNumber,
+          email: formData.email,
+          addressLine1: formData.address,
+        },
       };
 
       console.log(data);
