@@ -27,10 +27,17 @@ const ReservationsFrom = () => {
 
   // Date Picker
   const [visible, setVisible] = useState(false);
+
   const [branchList, setBranchList] = useState([]);
+  const [customerDetails, setCustomerDetails] = useState({});
 
   useEffect(() => {
     loadAllBranches();
+    setCustomerDetails(
+      localStorage.getItem("CUSTOMER")
+        ? JSON.parse(localStorage.getItem("CUSTOMER"))
+        : {}
+    );
   }, []);
 
   const loadAllBranches = () => {
@@ -96,6 +103,7 @@ const ReservationsFrom = () => {
     }
     if (isValidated) {
       const data = {
+        cusId: customerDetails?.id,
         name: formData.name,
         branchId: formData.branchId,
         email: formData.email,

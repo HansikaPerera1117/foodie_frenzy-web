@@ -56,6 +56,10 @@ const SignInPage = () => {
           Cookies.set(constant.REFRESH_TOKEN, res.refreshToken);
           Cookies.set(constant.Expire_time, res.tokenExpires);
           Cookies.set(constant.USER_PROFILE, JSON.stringify(res.user));
+
+          localStorage.setItem("CUSTOMER", JSON.stringify(res.user));
+          localStorage.setItem("isLogin", true);
+
           window.location.href = "/";
           // popUploader(dispatch, false);
         }
