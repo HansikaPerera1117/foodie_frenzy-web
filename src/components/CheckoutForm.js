@@ -64,7 +64,9 @@ const CheckoutForm = ({ btnLeft }) => {
   const handlePlaceOrder = async () => {
     let isValidated = false;
 
-    if (formData.firstName === "") {
+    if (orderProductsList.length === 0) {
+      customToastMsg("First add some products to cart");
+    } else if (formData.firstName === "") {
       customToastMsg("First Name cannot be empty");
     } else if (formData.lastName === "") {
       customToastMsg("Last Name cannot be empty");
