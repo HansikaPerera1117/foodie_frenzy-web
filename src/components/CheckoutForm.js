@@ -96,15 +96,14 @@ const CheckoutForm = ({ btnLeft }) => {
         paymentType: formData.paymentMethod,
         subTotal: total + 250,
         description: formData.orderNotes,
-        customerId: customerDetails?.id,
-        productIds: newArray,
-        deliveryDetails: {
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          contactNo: formData.contactNumber,
-          email: formData.email,
-          addressLine1: formData.address,
-        },
+        userId: customerDetails?.id,
+        orderItems: newArray,
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        contactNo: formData.contactNumber,
+        email: formData.email,
+        addressLine: formData.address,
+        orderType: "DELIVERY",
       };
 
       console.log(data);
@@ -300,8 +299,7 @@ const CheckoutForm = ({ btnLeft }) => {
                   type="button"
                   className="main-btn btn-red"
                   onClick={() => {
-                    //checkLoginCustomer();
-                    handlePlaceOrder();
+                    checkLoginCustomer();
                   }}
                 >
                   Place Order <i className="far fa-arrow-right"></i>

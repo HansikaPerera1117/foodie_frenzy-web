@@ -104,7 +104,7 @@ const ReservationsFrom = () => {
     }
     if (isValidated) {
       const data = {
-        customerId: customerDetails?.id,
+        userId: customerDetails?.id,
         name: formData.name,
         branchId: formData.branchId,
         email: formData.email,
@@ -350,8 +350,7 @@ const ReservationsFrom = () => {
                   type="button"
                   className="main-btn btn-red"
                   onClick={() => {
-                    // checkLoginCustomer();
-                    handleSubmitReservation();
+                    checkLoginCustomer();
                   }}
                 >
                   book a table <i className="far fa-arrow-right" />

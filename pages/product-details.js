@@ -40,6 +40,7 @@ const ProductsDetails = () => {
       setProductId(id);
       getProductDetails(id);
       setCartAddedBtn(false);
+      setCartValue(1);
     }
   }, [id]);
 
@@ -103,7 +104,6 @@ const ProductsDetails = () => {
 
   return (
     <Layout>
-      
       <PageBanner
         pageName={productDetails?.name}
         title={productDetails?.name}
