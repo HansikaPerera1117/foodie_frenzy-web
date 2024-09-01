@@ -8,6 +8,10 @@ import { getAllCategories } from "../src/service/categoriesService";
 import RangeSlider from "../src/components/PriceRange";
 import debounce from "lodash.debounce";
 import { productsFiltration } from "../src/service/productService";
+import { getAllOffers } from "../src/service/offersService";
+import Link from "next/link";
+import parse from "html-react-parser";
+import defaultCategoryImg from "../public/assets/images/default-category-img.png";
 
 const Products = () => {
   const [categories, setCategories] = useState([]);
@@ -17,6 +21,8 @@ const Products = () => {
   const [range, setRange] = useState([0, 0]);
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(0);
+
+  const [offersList, setOffersList] = useState([]);
 
   //-------------------------- pagination --------------------------
 
@@ -29,6 +35,7 @@ const Products = () => {
 
   useEffect(() => {
     loadAllCatagories();
+    loadAllOffers();
     debounceHandleProductFiltration(searchProductName, searchCategory, range);
     niceSelect();
   }, []);
@@ -68,6 +75,35 @@ const Products = () => {
       .catch((err) => {
         // popUploader(dispatch, false);
         handleError(err);
+      });
+  };
+
+  const loadAllOffers = () => {
+    setOffersList([]);
+    // popUploader(dispatch, true);
+    let temp = [];
+    getAllOffers()
+      .then((res) => {
+        res.data?.map((offer, index) => {
+          temp.push({
+            id: offer?.id,
+            title: offer?.title,
+            startAt: offer?.startAt,
+            price: offer?.value,
+            files: offer?.file,
+            description: offer?.description,
+            endAt: offer?.endAt,
+          });
+        });
+        setOffersList(temp);
+        // setCurrentPage(res?.data?.currentPage);
+        // setTotalRecodes(res?.data?.totalCount);
+        // popUploader(dispatch, false);
+      })
+      .catch((c) => {
+        // popUploader(dispatch, false);
+        handleError(c);
+        console.log(c);
       });
   };
 
@@ -151,7 +187,7 @@ const Products = () => {
           "Bring a taste of our restaurant to your home with our exclusive products"
         }
       />{" "}
-      <section className="product-shop-section pt-130 pb-85">
+      <section className="product-shop-section pt-130 ">
         <div className="container">
           <div className="row">
             <div className="col-lg-3">
@@ -342,6 +378,54 @@ const Products = () => {
           </div>
         </div>
       </section>
+      {/*====== start offers Section ======*/}
+      <section className="menu-section pt-120 pb-95">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-xl-6 col-lg-12">
+              <div className="section-title text-center mb-60 wow fadeInUp">
+                <span className="sub-title">Best offers</span>
+                <h2>Our Trending Offers</h2>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            {offersList.map((offer) => {
+              return (
+                <Link legacyBehavior href={`/products`}>
+                  <div
+                    className="col-lg-6 col-md-12"
+                    style={{ cursor: "pointer" }}
+                  >
+                    <div className="single-menu-item-three mb-30 wow fadeInUp">
+                      <div className="text">
+                        <h3 className="price">- {offer?.price} %</h3>
+                        <h3 className="item-title-price">
+                          <a className="item-title">{offer?.title}</a>
+                        </h3>
+                        <h5 className="mb-2">Start Date : {offer?.startAt}</h5>
+                        <h5 className="mb-2">End Date : {offer?.endAt}</h5>
+                        <p>{parse(offer?.description)}</p>
+                      </div>
+                      <div className="thumb">
+                        <img
+                          height={80}
+                          width="auto"
+                          src={
+                            offer.image ? offer.image : defaultCategoryImg?.src
+                          }
+                          alt="category image"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+      {/*====== End offers Section ======*/}
       <Partners />
     </Layout>
   );

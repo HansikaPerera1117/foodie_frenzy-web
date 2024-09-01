@@ -9,15 +9,20 @@ import React, { useEffect, useState } from "react";
 import { getAllProducts } from "../src/service/productService";
 import { handleError, truncateDescription } from "../src/util/CommonFun";
 import parse from "html-react-parser";
+import { getAllOffers } from "../src/service/offersService";
+import defaultCategoryImg from "../public/assets/images/default-category-img.png";
+
 const MenuSeaFood = () => {
   useEffect(() => {
     document.title = "Our Menu | Foodie Frenzy Restaurant";
   }, []);
 
   const [productList, setProductList] = useState([]);
+  const [offersList, setOffersList] = useState([]);
 
   useEffect(() => {
     loadAllProducts();
+    loadAllOffers();
   }, []);
 
   const loadAllProducts = () => {
@@ -47,6 +52,35 @@ const MenuSeaFood = () => {
       .catch((c) => {
         // popUploader(dispatch, false);
         handleError(c);
+      });
+  };
+
+  const loadAllOffers = () => {
+    setOffersList([]);
+    // popUploader(dispatch, true);
+    let temp = [];
+    getAllOffers()
+      .then((res) => {
+        res.data?.map((offer, index) => {
+          temp.push({
+            id: offer?.id,
+            title: offer?.title,
+            startAt: offer?.startAt,
+            price: offer?.value,
+            files: offer?.file,
+            description: offer?.description,
+            endAt: offer?.endAt,
+          });
+        });
+        setOffersList(temp);
+        // setCurrentPage(res?.data?.currentPage);
+        // setTotalRecodes(res?.data?.totalCount);
+        // popUploader(dispatch, false);
+      })
+      .catch((c) => {
+        // popUploader(dispatch, false);
+        handleError(c);
+        console.log(c);
       });
   };
 
@@ -160,6 +194,54 @@ const MenuSeaFood = () => {
         </div>
       </section>
       {/*====== End Menu Section ======*/}
+      {/*====== start offers Section ======*/}
+      <section className="menu-section pt-120 pb-95">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-xl-6 col-lg-12">
+              <div className="section-title text-center mb-60 wow fadeInUp">
+                <span className="sub-title">Best offers</span>
+                <h2>Our Trending Offers</h2>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            {offersList.map((offer) => {
+              return (
+                <Link legacyBehavior href={`/products`}>
+                  <div
+                    className="col-lg-6 col-md-12"
+                    style={{ cursor: "pointer" }}
+                  >
+                    <div className="single-menu-item-three mb-30 wow fadeInUp">
+                      <div className="text">
+                        <h3 className="price">- {offer?.price} %</h3>
+                        <h3 className="item-title-price">
+                          <a className="item-title">{offer?.title}</a>
+                        </h3>
+                        <h5 className="mb-2">Start Date : {offer?.startAt}</h5>
+                        <h5 className="mb-2">End Date : {offer?.endAt}</h5>
+                        <p>{parse(offer?.description)}</p>
+                      </div>
+                      <div className="thumb">
+                        <img
+                          height={80}
+                          width="auto"
+                          src={
+                            offer.image ? offer.image : defaultCategoryImg?.src
+                          }
+                          alt="category image"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+      {/*====== End offers Section ======*/}
       {/*=== Start Instagram Section ===*/}
       <section className="instagram-gallery pt-130 pb-100">
         <GalleryImages />

@@ -151,6 +151,8 @@ const ProductsDetails = () => {
                             </span>
                           </li>
                         </ul>
+
+                        <h4 className="mb-2">Available for purchase</h4>
                         <p>
                           {parse(
                             productDetails?.description
