@@ -61,7 +61,7 @@ const CheckoutForm = ({ btnLeft }) => {
     }
   };
 
-  const handlePlaceOrder = () => {
+  const handlePlaceOrder = async () => {
     let isValidated = false;
 
     if (formData.firstName === "") {
@@ -85,16 +85,17 @@ const CheckoutForm = ({ btnLeft }) => {
       const cartDetails = localStorage.getItem("CART_LIST")
         ? JSON.parse(localStorage.getItem("CART_LIST"))
         : [];
-      const total = cartDetails.reduce((acc, item) => acc + item.total, 0);
+      const subTotal = cartDetails.reduce((acc, item) => acc + item.total, 0);
+      const total = subTotal + 250;
 
       const newArray = orderProductsList.map((item) => ({
         id: item.id,
-        qty: item.qty,
+        qty: parseFloat(item.qty),
       }));
 
       const data = {
         paymentType: formData.paymentMethod,
-        subTotal: total + 250,
+        subTotal: parseFloat(total),
         description: formData.orderNotes,
         userId: customerDetails?.id,
         orderItems: newArray,
@@ -104,23 +105,34 @@ const CheckoutForm = ({ btnLeft }) => {
         email: formData.email,
         addressLine: formData.address,
         orderType: "DELIVERY",
+        paymentId: "",
       };
 
       console.log(data);
 
       setOrderData(data);
-      setIsShowPaymentForm(true);
+
+      if (formData.paymentMethod === "CASH_ON_DELIVERY") {
+        await handlePaymentSuccess(data);
+      } else if (formData.paymentMethod === "ONLINE_PAYMENT") {
+        setIsShowPaymentForm(true);
+      }
     }
   };
 
-  const handlePaymentSuccess = async (paymentId) => {
+  const setPaymentIdToOrderObject = async (paymentId) => {
     const updatedOrderData = {
       ...orderData,
       paymentId: paymentId,
     };
+    await handlePaymentSuccess(updatedOrderData);
+  };
+
+  const handlePaymentSuccess = async (orderDetailsObject) => {
+    console.log(orderDetailsObject);
 
     // popUploader(dispatch, true);
-    await placeOrder(updatedOrderData)
+    await placeOrder(orderDetailsObject)
       .then((response) => {
         // popUploader(dispatch, false);
         customToastMsg(
@@ -156,9 +168,8 @@ const CheckoutForm = ({ btnLeft }) => {
           getPaymentId={async (paymentId) => {
             if (paymentId) {
               console.log(paymentId);
-
               setPaymentId(paymentId);
-              await handlePaymentSuccess(paymentId);
+              await setPaymentIdToOrderObject(paymentId);
             } else {
               setIsShowPaymentForm(false);
             }
