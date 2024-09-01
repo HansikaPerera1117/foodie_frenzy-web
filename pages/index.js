@@ -13,13 +13,14 @@ import defaultCategoryImg from "../public/assets/images/default-category-img.png
 import { handleError } from "../src/util/CommonFun";
 import ReservationsFrom from "../src/components/ReservationsFrom";
 import parse from "html-react-parser";
+import { getAllServicers } from "../src/service/serviceService";
 
 const Index = () => {
   useEffect(() => {
     document.title = "Home | Foodie Frenzy Restaurant";
   }, []);
 
-  const [servicer, setServicer] = useState([]);
+  const [serviceList, setServiceList] = useState([]);
   const [categories, setCategories] = useState([]);
 
   // let dispatch = useDispatch();
@@ -27,89 +28,7 @@ const Index = () => {
   useEffect(() => {
     document.title = "Gallery | Foodie Frenzy Restaurant";
     loadAllCatagories();
-    setServicer([
-      {
-        id: 1,
-        value: (
-          <div className="col-lg-4 col-md-6 col-sm-12 ">
-            <div className="single-features-item-two animate-hover-icon wow fadeInUp mb-40">
-              <div className="inner-content d-flex flex-column align-items-center">
-                <div className="icon">
-                  <i className="flaticon-pizza-slice-1" />
-                </div>
-                <div className="text text-center">
-                  <h3 className="title">Fastfoods</h3>
-                  <p>
-                    Sit amet consectetur adipisci epsum nisi commodoy elementum
-                    non
-                  </p>
-                  <Link legacyBehavior href="/about">
-                    <a className="main-btn btn-black">
-                      read more
-                      <i className="far fa-arrow-right" />
-                    </a>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        ),
-      },
-      {
-        id: 2,
-        value: (
-          <div className="col-lg-4 col-md-6 col-sm-12">
-            <div className="single-features-item-two animate-hover-icon wow fadeInDown mb-40">
-              <div className="inner-content  d-flex flex-column align-items-center">
-                <div className="icon">
-                  <i className="flaticon-chef-1" />
-                </div>
-                <div className="text text-center">
-                  <h3 className="title">Experience Chefs</h3>
-                  <p>
-                    Sit amet consectetur adipisci epsum nisi commodoy elementum
-                    non
-                  </p>
-                  <Link legacyBehavior href="/about">
-                    <a className="main-btn btn-black">
-                      read more
-                      <i className="far fa-arrow-right" />
-                    </a>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        ),
-      },
-      {
-        id: 3,
-        value: (
-          <div className="col-lg-4 col-md-6 col-sm-12">
-            <div className="single-features-item-two animate-hover-icon wow fadeInUp mb-40">
-              <div className="inner-content  d-flex flex-column align-items-center">
-                <div className="icon">
-                  <i className="flaticon-delivery-man" />
-                </div>
-                <div className="text text-center">
-                  <h3 className="title">Online Delivery</h3>
-                  <p>
-                    Sit amet consectetur adipisci epsum nisi commodoy elementum
-                    non
-                  </p>
-                  <Link legacyBehavior href="/about">
-                    <a className="main-btn btn-black">
-                      read more
-                      <i className="far fa-arrow-right" />
-                    </a>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        ),
-      },
-    ]);
+    loadAllServicers();
   }, []);
 
   const loadAllCatagories = () => {
@@ -143,6 +62,32 @@ const Index = () => {
       });
   };
 
+  const loadAllServicers = () => {
+    let temp = [];
+    setServiceList([]);
+    // popUploader(dispatch, true);
+    getAllServicers()
+      .then(async (resp) => {
+        resp?.data?.map((service, index) => {
+          temp.push({
+            id: service?.id,
+            image:
+              service?.file && Object.keys(service?.file).length > 0
+                ? service.file?.originalPath
+                : null,
+            name: service?.name,
+            description:
+              service?.description != null ? service?.description : "",
+          });
+        });
+        await setServiceList(temp);
+        // popUploader(dispatch, false);
+      })
+      .catch((err) => {
+        // popUploader(dispatch, false);
+        handleError(err);
+      });
+  };
   return (
     <Layout header={1} footer={1}>
       {/*=== Start Banner Section ===*/}
@@ -210,8 +155,37 @@ const Index = () => {
             </div>
           </div>
           <div className="row justify-content-center">
-            {servicer.map((service) => {
-              return service?.value;
+            {serviceList.map((service) => {
+              return (
+                <div className="col-lg-4 col-md-6 col-sm-12">
+                  <div className="single-features-item-two animate-hover-icon wow fadeInDown mb-40">
+                    <div className="inner-content  d-flex flex-column align-items-center">
+                      <div className="icon">
+                        <img
+                          height={80}
+                          width="auto"
+                          src={
+                            service.image
+                              ? service.image
+                              : defaultCategoryImg?.src
+                          }
+                          alt="category image"
+                        />
+                      </div>
+                      <div className="text text-center">
+                        <h3 className="title">{service?.name}</h3>
+                        <p>{parse(service?.description)}</p>
+                        <Link legacyBehavior href="/about">
+                          <a className="main-btn btn-black">
+                            read more
+                            <i className="far fa-arrow-right" />
+                          </a>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
             })}
           </div>
         </div>

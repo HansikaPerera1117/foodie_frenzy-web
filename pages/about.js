@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import PageBanner from "../src/components/PageBanner";
 import Partners from "../src/components/Partners";
@@ -5,93 +6,46 @@ import QichenCounter from "../src/components/QichenCounter";
 import TestimonialSliderThree from "../src/components/slider/TestimonialSliderThree";
 import Layout from "../src/layout/Layout";
 import { useEffect, useState } from "react";
+import { getAllServicers } from "../src/service/serviceService";
+import parse from "html-react-parser";
+
 const About = () => {
-  const [servicer, setServicer] = useState([]);
+  const [serviceList, setServiceList] = useState([]);
 
   useEffect(() => {
     document.title = "About Us | Foodie Frenzy Restaurant";
   }, []);
 
   useEffect(() => {
-    setServicer([
-      {
-        id: 1,
-        value: (
-          <div className="col-md-6">
-            <div className="fancy-features-item mb-30 wow fadeInUp">
-              <div className="icon">
-                <i className="flaticon-pizza-slice-1" />
-              </div>
-              <div className="text">
-                <h3 className="title">Fastfoods</h3>
-                <p>Sit amet consecte adisce epsum nisi commos</p>
-                <Link legacyBehavior href="/about">
-                  <a className="btn-link">Read more</a>
-                </Link>
-              </div>
-            </div>
-          </div>
-        ),
-      },
-      {
-        id: 2,
-        value: (
-          <div className="col-md-6">
-            <div className="fancy-features-item mb-30 wow fadeInUp">
-              <div className="icon">
-                <i className="flaticon-chef-1" />
-              </div>
-              <div className="text">
-                <h3 className="title">Experience Chefs</h3>
-                <p>Sit amet consecte adisce epsum nisi commos</p>
-                <Link legacyBehavior href="/about">
-                  <a className="btn-link">Read more</a>
-                </Link>
-              </div>
-            </div>
-          </div>
-        ),
-      },
-      {
-        id: 3,
-        value: (
-          <div className="col-md-6">
-            <div className="fancy-features-item mb-30 wow fadeInUp">
-              <div className="icon">
-                <i className="flaticon-delivery-man" />
-              </div>
-              <div className="text">
-                <h3 className="title">Online Delivery</h3>
-                <p>Sit amet consecte adisce epsum nisi commos</p>
-                <Link legacyBehavior href="/about">
-                  <a className="btn-link">Read more</a>
-                </Link>
-              </div>
-            </div>
-          </div>
-        ),
-      },
-      {
-        id: 4,
-        value: (
-          <div className="col-md-6">
-            <div className="fancy-features-item mb-30 wow fadeInUp">
-              <div className="icon">
-                <i className="flaticon-food-serving" />
-              </div>
-              <div className="text">
-                <h3 className="title">Fine Dining</h3>
-                <p>Sit amet consecte adisce epsum nisi commos</p>
-                <Link legacyBehavior href="/about">
-                  <a className="btn-link">Read more</a>
-                </Link>
-              </div>
-            </div>
-          </div>
-        ),
-      },
-    ]);
+    loadAllServicers();
   }, []);
+
+  const loadAllServicers = () => {
+    let temp = [];
+    setServiceList([]);
+    // popUploader(dispatch, true);
+    getAllServicers()
+      .then(async (resp) => {
+        resp?.data?.map((service, index) => {
+          temp.push({
+            id: service?.id,
+            image:
+              service?.file && Object.keys(service?.file).length > 0
+                ? service.file?.originalPath
+                : null,
+            name: service?.name,
+            description:
+              service?.description != null ? service?.description : "",
+          });
+        });
+        await setServiceList(temp);
+        // popUploader(dispatch, false);
+      })
+      .catch((err) => {
+        // popUploader(dispatch, false);
+        handleError(err);
+      });
+  };
   return (
     <Layout>
       <PageBanner
@@ -246,10 +200,23 @@ const About = () => {
               <div className="choose-item-list">
                 <div className="row">
                   {" "}
-                  {servicer.map((service) => {
-                    console.log(service);
-
-                    return service?.value;
+                  {serviceList.map((service) => {
+                    return (
+                      <div className="col-md-6">
+                        <div className="fancy-features-item mb-30 wow fadeInUp">
+                          <div className="icon">
+                            <i className="flaticon-pizza-slice-1" />
+                          </div>
+                          <div className="text">
+                            <h3 className="title">{service?.name}</h3>
+                            <p>{parse(service?.description)}</p>
+                            <Link legacyBehavior href="/about">
+                              <a className="btn-link">Read more</a>
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    );
                   })}
                 </div>
               </div>
