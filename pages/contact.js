@@ -137,9 +137,11 @@ const Contact = () => {
                           type="text"
                           className="form_control"
                           placeholder={
-                            customerDetails.firstName +
-                            " " +
-                            customerDetails.lastName
+                            Object.keys(customerDetails).length === 0
+                              ? "Name"
+                              : customerDetails.firstName +
+                                " " +
+                                customerDetails.lastName
                           }
                         />
                       </div>
@@ -150,7 +152,11 @@ const Contact = () => {
                           disabled={true}
                           type="text"
                           className="form_control"
-                          placeholder={customerDetails?.customer?.contactNo}
+                          placeholder={
+                            Object.keys(customerDetails).length === 0
+                              ? "Contact No"
+                              : customerDetails?.customer?.contactNo
+                          }
                         />
                       </div>
                     </div>
@@ -160,7 +166,11 @@ const Contact = () => {
                           disabled={true}
                           type="email"
                           className="form_control"
-                          placeholder={customerDetails.email}
+                          placeholder={
+                            Object.keys(customerDetails).length === 0
+                              ? "Email"
+                              : customerDetails.email
+                          }
                           name="email"
                           required=""
                         />

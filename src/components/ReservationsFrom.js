@@ -169,7 +169,11 @@ const ReservationsFrom = () => {
                   }`}
                   disabled={true}
                   value={
-                    customerDetails?.firstName + " " + customerDetails?.lastName
+                    Object.keys(customerDetails).length === 0
+                      ? "Name"
+                      : customerDetails?.firstName +
+                        " " +
+                        customerDetails?.lastName
                   }
                 />
               </div>
@@ -185,7 +189,11 @@ const ReservationsFrom = () => {
                     error ? (!email ? "invalid" : "") : ""
                   }`}
                   disabled={true}
-                  value={customerDetails?.email}
+                  value={
+                    Object.keys(customerDetails).length === 0
+                      ? "Email"
+                      : customerDetails?.email
+                  }
                 />
               </div>
             </div>
@@ -196,12 +204,16 @@ const ReservationsFrom = () => {
                   <i className="far fa-phone" />
                 </label>
                 <input
-                  type="number"
+                  type="text"
                   className={`form_control ${
                     error ? (!phone ? "invalid" : "") : ""
                   }`}
                   disabled={true}
-                  value={customerDetails?.customer?.contactNo}
+                  value={
+                    Object.keys(customerDetails).length === 0
+                      ? "Contact No"
+                      : customerDetails?.customer?.contactNo
+                  }
                 />
               </div>
             </div>

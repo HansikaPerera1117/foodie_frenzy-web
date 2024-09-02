@@ -178,8 +178,12 @@ const CheckoutForm = ({ btnLeft }) => {
                   className={`form_control2 ${
                     error ? (!firstName ? "invalid" : "") : ""
                   }`}
-                  value={customerDetails?.firstName}
-                   disabled={true}
+                  value={
+                    Object.keys(customerDetails).length === 0
+                      ? "First Name"
+                      : customerDetails?.firstName
+                  }
+                  disabled={true}
                 />
               </div>
             </div>
@@ -191,7 +195,11 @@ const CheckoutForm = ({ btnLeft }) => {
                   className={`form_control2 ${
                     error ? (!lastName ? "invalid" : "") : ""
                   }`}
-                  value={customerDetails?.lastName}
+                  value={
+                    Object.keys(customerDetails).length === 0
+                      ? "Last Name"
+                      : customerDetails?.lastName
+                  }
                   disabled={true}
                 />
               </div>
@@ -216,11 +224,15 @@ const CheckoutForm = ({ btnLeft }) => {
               <div className="form_group my-2">
                 <label className="fw-semibold">Contact Number</label>
                 <input
-                  type="number"
+                  type="text"
                   className={`form_control2 ${
                     error ? (!contactNumber ? "invalid" : "") : ""
                   }`}
-                  value={customerDetails?.customer?.contactNo}
+                  value={
+                    Object.keys(customerDetails).length === 0
+                      ? "Contact No"
+                      : customerDetails?.customer?.contactNo
+                  }
                   disabled={true}
                 />
               </div>
@@ -233,7 +245,11 @@ const CheckoutForm = ({ btnLeft }) => {
                   className={`form_control2 ${
                     error ? (!email ? "invalid" : "") : ""
                   }`}
-                  value={customerDetails?.email}
+                  value={
+                    Object.keys(customerDetails).length === 0
+                      ? "Email"
+                      : customerDetails?.email
+                  }
                   disabled={true}
                 />
               </div>
