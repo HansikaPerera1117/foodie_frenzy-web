@@ -1,11 +1,58 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import PageBanner from "../src/components/PageBanner";
 import Partners from "../src/components/Partners";
 import Layout from "../src/layout/Layout";
+import { customToastMsg, handleError } from "../src/util/CommonFun";
+import { sendInquiry } from "../src/service/inquiryService";
 const Contact = () => {
+  const [customerDetails, setCustomerDetails] = useState({});
+  const [message, setMessage] = useState("");
+
   useEffect(() => {
     document.title = "Contact Us | Foodie Frenzy Restaurant";
+    setCustomerDetails(
+      localStorage.getItem("CUSTOMER")
+        ? JSON.parse(localStorage.getItem("CUSTOMER"))
+        : {}
+    );
   }, []);
+
+  const checkLoginCustomer = () => {
+    if (localStorage.getItem("CUSTOMER")) {
+      handleSubmitInquiry();
+    } else {
+      customToastMsg("You have to login before send an inquiry");
+    }
+  };
+
+  const handleSubmitInquiry = () => {
+    let isValidated = false;
+    if (message === "") {
+      customToastMsg("Message cannot be empty");
+    } else {
+      isValidated = true;
+    }
+
+    if (isValidated) {
+      const data = {
+        userId: customerDetails?.id,
+        message: message,
+      };
+
+      console.log(data);
+
+      sendInquiry(data)
+        .then((response) => {
+          // popUploader(dispatch, false);
+          customToastMsg("Your inquiry message send successfully", 1);
+          setMessage("");
+        })
+        .catch((error) => {
+          // popUploader(dispatch, false);
+          handleError(error);
+        });
+    }
+  };
 
   return (
     <Layout>
@@ -33,7 +80,7 @@ const Contact = () => {
                   </div>
                   <div className="info">
                     <span className="title">Location</span>
-                    <p>55 Main Street, 2nd Floor New York City</p>
+                    <p>No. 36 De Kretser Pl, Colombo 00400</p>
                   </div>
                 </div>
               </div>
@@ -45,10 +92,12 @@ const Contact = () => {
                   <div className="info">
                     <span className="title">Email Address</span>
                     <p>
-                      <a href="mailto:support@gmail.com">support@gmail.com</a>
+                      <a href="mailto:hansikaperera59@gmail.com">
+                        foodiefrenzy@gmail.com
+                      </a>
                     </p>
                     <p>
-                      <a href="mailto:contactfood.net">contactfood.net</a>
+                      <a href="mailto:foodiefrenzy.net">foodiefrenzy.net</a>
                     </p>
                   </div>
                 </div>
@@ -61,10 +110,7 @@ const Contact = () => {
                   <div className="info">
                     <span className="title">Contact Us</span>
                     <p>
-                      Mobile :<a href="tel:+000(123)4589">+000 (123) 4589</a>
-                    </p>
-                    <p>
-                      Phone :<a href="tel:+012(345)67">+012 (345) 67</a>
+                      Mobile :<a href="tel:+94755646280">+94 755646280</a>
                     </p>
                   </div>
                 </div>
@@ -82,51 +128,40 @@ const Contact = () => {
             </div>
             <div className="row">
               <div className="col-lg-12">
-                <form
-                  onSubmit={(e) => e.preventDefault()}
-                  className="contact-form-one"
-                >
+                <form className="contact-form-one">
                   <div className="row justify-content-center">
                     <div className="col-lg-6">
                       <div className="form_group">
                         <input
+                          disabled={true}
                           type="text"
                           className="form_control"
-                          placeholder="Name"
-                          name="name"
-                          required=""
+                          placeholder={
+                            customerDetails.firstName +
+                            " " +
+                            customerDetails.lastName
+                          }
                         />
                       </div>
                     </div>
                     <div className="col-lg-6">
                       <div className="form_group">
                         <input
+                          disabled={true}
                           type="text"
                           className="form_control"
-                          placeholder="Phone Number"
-                          name="phone"
-                          required=""
+                          placeholder={customerDetails?.customer?.contactNo}
                         />
                       </div>
                     </div>
-                    <div className="col-lg-6">
+                    <div className="col-lg-126">
                       <div className="form_group">
                         <input
+                          disabled={true}
                           type="email"
                           className="form_control"
-                          placeholder="Email Address"
+                          placeholder={customerDetails.email}
                           name="email"
-                          required=""
-                        />
-                      </div>
-                    </div>
-                    <div className="col-lg-6">
-                      <div className="form_group">
-                        <input
-                          type="url"
-                          className="form_control"
-                          placeholder="Website"
-                          name="website"
                           required=""
                         />
                       </div>
@@ -138,12 +173,22 @@ const Contact = () => {
                           placeholder="Write Message"
                           name="message"
                           defaultValue={""}
+                          value={message}
+                          onChange={(e) => {
+                            setMessage(e.target.value);
+                          }}
                         />
                       </div>
                     </div>
                     <div className="col-lg-6">
                       <div className="form_group">
-                        <button className="main-btn btn-red">
+                        <button
+                          type="button"
+                          className="main-btn btn-red"
+                          onClick={() => {
+                            checkLoginCustomer();
+                          }}
+                        >
                           Send us message
                           <i className="far fa-arrow-right" />
                         </button>
