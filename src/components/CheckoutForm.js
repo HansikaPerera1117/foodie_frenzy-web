@@ -132,10 +132,6 @@ const CheckoutForm = ({ btnLeft }) => {
           1
         );
         setFormData({
-          firstName: "",
-          lastName: "",
-          contactNumber: "",
-          email: "",
           address: "",
           orderNotes: "",
           paymentMethod: "",
