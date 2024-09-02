@@ -101,7 +101,7 @@ const CardDetailsForm = ({ getPaymentId }) => {
         <div className="col-lg-6">
           <div className="form_group">
             <label>
-              <i className="far fa-user" />
+              <i className="far fa-credit-card" />
             </label>
             <input
               type="number"
@@ -122,7 +122,7 @@ const CardDetailsForm = ({ getPaymentId }) => {
         <div className="col-lg-6">
           <div className="form_group">
             <label>
-              <i className="far fa-user" />
+              <i className="far fa-credit-card" />
             </label>
             <input
               type="number"
@@ -159,7 +159,8 @@ const CardDetailsForm = ({ getPaymentId }) => {
         <div className="col-lg-6">
           <div className="form_group">
             <label>
-              <i className="far fa-user" />
+              <i className="far fa-money-bill" />
+              
             </label>
             <input
               type="number"
