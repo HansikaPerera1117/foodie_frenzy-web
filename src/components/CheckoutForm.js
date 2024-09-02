@@ -132,6 +132,10 @@ const CheckoutForm = ({ btnLeft }) => {
           1
         );
         setFormData({
+          firstName: "",
+          lastName: "",
+          contactNumber: "",
+          email: "",
           address: "",
           orderNotes: "",
           paymentMethod: "",
@@ -175,7 +179,7 @@ const CheckoutForm = ({ btnLeft }) => {
                     error ? (!firstName ? "invalid" : "") : ""
                   }`}
                   value={customerDetails?.firstName}
-                  disabled={true}
+                   disabled={true}
                 />
               </div>
             </div>
