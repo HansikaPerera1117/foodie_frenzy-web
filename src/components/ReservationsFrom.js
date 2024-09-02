@@ -83,15 +83,7 @@ const ReservationsFrom = () => {
 
   const handleSubmitReservation = () => {
     let isValidated = false;
-    if (formData.name === "") {
-      customToastMsg("Name cannot be empty");
-    } else if (
-      !validateInputs(formData.email, ["isEmpty", "isEmail"]).isValid
-    ) {
-      customToastMsg("Enter valid email");
-    } else if (formData.phone === "") {
-      customToastMsg("Contact no cannot be empty");
-    } else if (formData.date === "") {
+    if (formData.date === "") {
       customToastMsg("Select reservation date");
     } else if (formData.time === "") {
       customToastMsg("Select reservation time");
@@ -105,11 +97,11 @@ const ReservationsFrom = () => {
     if (isValidated) {
       const data = {
         userId: customerDetails?.id,
-        name: formData.name,
+        name: customerDetails?.firstName + " " + customerDetails?.lastName,
         branchId: formData.branchId,
-        email: formData.email,
+        email: customerDetails?.email,
         personCount: parseFloat(formData.person),
-        contactNo: formData.phone,
+        contactNo: customerDetails?.customer?.contactNo,
         date: formData.date,
         time: formData.time,
       };
@@ -133,9 +125,6 @@ const ReservationsFrom = () => {
         // popUploader(dispatch, false);
         customToastMsg("Reservation placed successfully", 1);
         setFormData({
-          name: "",
-          email: "",
-          phone: "",
           date: today,
           time: "",
           person: "",
@@ -178,11 +167,10 @@ const ReservationsFrom = () => {
                   className={`form_control ${
                     error ? (!name ? "invalid" : "") : ""
                   }`}
-                  placeholder="Name"
-                  name="name"
-                  onChange={(e) => onChange(e)}
-                  value={name}
-                  required=""
+                  disabled={true}
+                  value={
+                    customerDetails?.firstName + " " + customerDetails?.lastName
+                  }
                 />
               </div>
             </div>
@@ -196,11 +184,8 @@ const ReservationsFrom = () => {
                   className={`form_control ${
                     error ? (!email ? "invalid" : "") : ""
                   }`}
-                  placeholder="Email"
-                  name="email"
-                  onChange={(e) => onChange(e)}
-                  value={email}
-                  required=""
+                  disabled={true}
+                  value={customerDetails?.email}
                 />
               </div>
             </div>
@@ -215,11 +200,8 @@ const ReservationsFrom = () => {
                   className={`form_control ${
                     error ? (!phone ? "invalid" : "") : ""
                   }`}
-                  placeholder="Contact No"
-                  name="phone"
-                  onChange={(e) => onChange(e)}
-                  value={phone}
-                  required=""
+                  disabled={true}
+                  value={customerDetails?.customer?.contactNo}
                 />
               </div>
             </div>
