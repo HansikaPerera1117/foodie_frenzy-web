@@ -35,7 +35,7 @@ const Contact = () => {
 
     if (isValidated) {
       const data = {
-        userId: customerDetails?.id,
+        email: customerDetails.email,
         message: message,
       };
 
