@@ -66,18 +66,8 @@ const CheckoutForm = ({ btnLeft }) => {
 
     if (orderProductsList.length === 0) {
       customToastMsg("First add some products to cart");
-    } else if (formData.firstName === "") {
-      customToastMsg("First Name cannot be empty");
-    } else if (formData.lastName === "") {
-      customToastMsg("Last Name cannot be empty");
     } else if (formData.address === "") {
       customToastMsg("Address cannot be empty");
-    } else if (formData.contactNumber === "") {
-      customToastMsg("Contact no cannot be empty");
-    } else if (
-      !validateInputs(formData.email, ["isEmpty", "isEmail"]).isValid
-    ) {
-      customToastMsg("Enter valid email");
     } else if (formData.paymentMethod === "") {
       customToastMsg("Select payment method");
     } else {
@@ -101,10 +91,10 @@ const CheckoutForm = ({ btnLeft }) => {
         description: formData.orderNotes,
         userId: customerDetails?.id,
         orderItems: newArray,
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        contactNo: formData.contactNumber,
-        email: formData.email,
+        firstName: customerDetails?.firstName,
+        lastName: customerDetails?.lastName,
+        contactNo: customerDetails?.customer?.contactNo,
+        email: customerDetails?.email,
         addressLine: formData.address,
         orderType: "DELIVERY",
         paymentId: "",
@@ -188,11 +178,8 @@ const CheckoutForm = ({ btnLeft }) => {
                   className={`form_control2 ${
                     error ? (!firstName ? "invalid" : "") : ""
                   }`}
-                  placeholder="Enter your first name"
-                  name="firstName"
-                  onChange={onChange}
-                  value={firstName}
-                  required
+                  value={customerDetails?.firstName}
+                  disabled={true}
                 />
               </div>
             </div>
@@ -204,11 +191,8 @@ const CheckoutForm = ({ btnLeft }) => {
                   className={`form_control2 ${
                     error ? (!lastName ? "invalid" : "") : ""
                   }`}
-                  placeholder="Enter your last name"
-                  name="lastName"
-                  onChange={onChange}
-                  value={lastName}
-                  required
+                  value={customerDetails?.lastName}
+                  disabled={true}
                 />
               </div>
             </div>
@@ -236,11 +220,8 @@ const CheckoutForm = ({ btnLeft }) => {
                   className={`form_control2 ${
                     error ? (!contactNumber ? "invalid" : "") : ""
                   }`}
-                  placeholder="Enter your contact number"
-                  name="contactNumber"
-                  onChange={onChange}
-                  value={contactNumber}
-                  required
+                  value={customerDetails?.customer?.contactNo}
+                  disabled={true}
                 />
               </div>
             </div>
@@ -252,11 +233,8 @@ const CheckoutForm = ({ btnLeft }) => {
                   className={`form_control2 ${
                     error ? (!email ? "invalid" : "") : ""
                   }`}
-                  placeholder="Enter your email"
-                  name="email"
-                  onChange={onChange}
-                  value={email}
-                  required
+                  value={customerDetails?.email}
+                  disabled={true}
                 />
               </div>
             </div>
